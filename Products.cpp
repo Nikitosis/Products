@@ -13,7 +13,7 @@
 TForm2 *Form2;
 int ProductsA;
 TPanel *Panels[100];
-const int PanelH=30;
+const int PanelH=60;
 //---------------------------------------------------------------------------
 __fastcall TForm2::TForm2(TComponent* Owner)
 	: TForm(Owner)
@@ -25,12 +25,18 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 void __fastcall TForm2::Button1Click(TObject *Sender)
 {
 ProductsA++;
+int k=ScrollBox1->VertScrollBar->Position;  //нужно обязательно,иначе появл. пропуски
+ScrollBox1->VertScrollBar->Position=0;
+
 Panels[ProductsA]=new TPanel(Form2);
 Panels[ProductsA]->Parent=ScrollBox1;
 Panels[ProductsA]->Top=(ProductsA-1)*PanelH;
 Panels[ProductsA]->Left=0;
 Panels[ProductsA]->Width=ScrollBox1->Width-4;
 Panels[ProductsA]->Height=PanelH;
+Panels[ProductsA]->Caption=ProductsA;
+
+ScrollBox1->VertScrollBar->Position=k;
 }
 //---------------------------------------------------------------------------
 

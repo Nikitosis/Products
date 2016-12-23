@@ -1,6 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
+  VertScrollBar.Tracking = True
   Caption = 'Form2'
   ClientHeight = 500
   ClientWidth = 693
@@ -23,10 +24,13 @@ object Form2: TForm2
     OnClick = Button1Click
   end
   object ScrollBox1: TScrollBox
-    Left = 8
-    Top = 32
-    Width = 677
-    Height = 385
+    Left = 56
+    Top = 40
+    Width = 585
+    Height = 345
+    HorzScrollBar.Visible = False
+    VertScrollBar.Smooth = True
+    VertScrollBar.Tracking = True
     TabOrder = 1
   end
 end
