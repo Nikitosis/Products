@@ -20,14 +20,16 @@ __published:	// IDE-managed Components
 	TLabel *Label5;
 	TLabel *Label6;
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall PropClick(TObject *Sender);
 private:	// User declarations
 public:	 int ProductsA;
 TPanel *Panels[100];
 int PanelH;	// User declarations
 TImage *Images[100];
 TLabel *Labeles[300];
-TEdit *Edits[100];
+TMemo *Edits[100];
 TButton *Buttons[100];
+int PropNum,ProductsDel;
 	__fastcall TForm2(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

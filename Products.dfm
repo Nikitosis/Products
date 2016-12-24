@@ -94,6 +94,7 @@ object Form2: TForm2
     ParentFont = False
   end
   object Button1: TButton
+    Tag = -1
     Left = 8
     Top = 447
     Width = 900
