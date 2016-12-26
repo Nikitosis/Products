@@ -19,7 +19,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
+			<LinkPackageImports>rtl.bpi;vcl.bpi;vclimg.bpi</LinkPackageImports>
 			<PackageImports>vclx.bpi;vcl.bpi;vclimg.bpi;dbrtl.bpi;Rave77VCL.bpi;bdertl.bpi;rtl.bpi;bcbie.bpi;vclactnband.bpi;xmlrtl.bpi;bcbsmp.bpi;vcldb.bpi;vcldbx.bpi;vcltouch.bpi;dsnap.bpi;dsnapcon.bpi;TeeUI.bpi;TeeDB.bpi;Tee.bpi;vclib.bpi;ibxpress.bpi;adortl.bpi;IndyCore.bpi;IndySystem.bpi;IndyProtocols.bpi;inet.bpi;intrawebdb_100_140.bpi;Intraweb_100_140.bpi;VclSmp.bpi;vclie.bpi;websnap.bpi;webdsnap.bpi;inetdb.bpi;inetdbbde.bpi;inetdbxpress.bpi;soaprtl.bpi;vclribbon.bpi;dbexpress.bpi;DbxCommonDriver.bpi;DataSnapIndy10ServerTransport.bpi;DataSnapProviderClient.bpi;DbxClientDriver.bpi;DataSnapServer.bpi;DBXInterBaseDriver.bpi;DBXMySQLDriver.bpi;dbxcds.bpi;DBXFirebirdDriver.bpi;DBXSybaseASEDriver.bpi;DBXSybaseASADriver.bpi;DBXOracleDriver.bpi;DBXMSSQLDriver.bpi;DBXInformixDriver.bpi;DBXDb2Driver.bpi</PackageImports>
 			<Multithreaded>true</Multithreaded>
 			<AllPackageLibs>rtl.lib;vcl.lib;vclimg.lib</AllPackageLibs>
@@ -61,22 +61,6 @@
 			<ILINK_TranslatedLibraryPath>$(BDS)\lib\$(LANGDIR)\release;$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
 		</PropertyGroup>
 		<ItemGroup>
-			<ResFiles Include="Project1.res">
-				<BuildOrder>1</BuildOrder>
-			</ResFiles>
-			<CppCompile Include="Project1.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Main.cpp">
-				<Form>Form1</Form>
-				<DependentOn>Main.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Meals.cpp">
-				<Form>Form3</Form>
-				<DependentOn>Meals.h</DependentOn>
-				<BuildOrder>3</BuildOrder>
-			</CppCompile>
 			<CppCompile Include="Products.cpp">
 				<Form>Form2</Form>
 				<DependentOn>Products.h</DependentOn>
@@ -92,11 +76,33 @@
 				<DependentOn>ProdForm.h</DependentOn>
 				<BuildOrder>6</BuildOrder>
 			</CppCompile>
-			<FormResources Include="Main.dfm"/>
-			<FormResources Include="Meals.dfm"/>
+			<CppCompile Include="Meals.cpp">
+				<Form>Form3</Form>
+				<DependentOn>Meals.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<ResFiles Include="Project1.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="Project1.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Main.cpp">
+				<Form>Form1</Form>
+				<DependentOn>Main.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="MealsForm.cpp">
+				<Form>Form6</Form>
+				<DependentOn>MealsForm.h</DependentOn>
+				<BuildOrder>7</BuildOrder>
+			</CppCompile>
 			<FormResources Include="Products.dfm"/>
 			<FormResources Include="Recommend.dfm"/>
 			<FormResources Include="ProdForm.dfm"/>
+			<FormResources Include="Meals.dfm"/>
+			<FormResources Include="Main.dfm"/>
+			<FormResources Include="MealsForm.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

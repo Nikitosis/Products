@@ -64,53 +64,65 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Edits[n]->ReadOnly=true;
 	Form2->Edits[n]->ScrollBars=ssBoth;
 
-	Form2->Labeles[n*4]=new TLabel(Form2);
-	Form2->Labeles[n*4]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*4]->Top=40;
-	Form2->Labeles[n*4]->Left=10;
-	Form2->Labeles[n*4]->WordWrap=true;
-	Form2->Labeles[n*4]->AutoSize=false;
-	Form2->Labeles[n*4]->Height=50;
-	Form2->Labeles[n*4]->Width=130;
-	Form2->Labeles[n*4]->Font->Size=14;
-	Form2->Labeles[n*4]->Caption=Edit1->Text;
+	Form2->Labeles[n*5]=new TLabel(Form2);
+	Form2->Labeles[n*5]->Parent=Form2->Panels[n];
+	Form2->Labeles[n*5]->Top=40;
+	Form2->Labeles[n*5]->Left=10;
+	Form2->Labeles[n*5]->WordWrap=true;
+	Form2->Labeles[n*5]->AutoSize=false;
+	Form2->Labeles[n*5]->Height=50;
+	Form2->Labeles[n*5]->Width=130;
+	Form2->Labeles[n*5]->Font->Size=14;
+	Form2->Labeles[n*5]->Caption=Edit1->Text;
 
-	Form2->Labeles[n*4+1]=new TLabel(Form2);
-	Form2->Labeles[n*4+1]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*4+1]->Top=40;
-	Form2->Labeles[n*4+1]->Left=450;
-	Form2->Labeles[n*4+1]->WordWrap=true;
-	Form2->Labeles[n*4+1]->AutoSize=false;
-	Form2->Labeles[n*4+1]->Height=20;
-	Form2->Labeles[n*4+1]->Width=50;
-	Form2->Labeles[n*4+1]->Font->Size=10;
-	Form2->Labeles[n*4+1]->Caption=Edit2->Text;
+	Form2->Labeles[n*5+1]=new TLabel(Form2);
+	Form2->Labeles[n*5+1]->Parent=Form2->Panels[n];
+	Form2->Labeles[n*5+1]->Top=40;
+	Form2->Labeles[n*5+1]->Left=450;
+	Form2->Labeles[n*5+1]->WordWrap=true;
+	Form2->Labeles[n*5+1]->AutoSize=false;
+	Form2->Labeles[n*5+1]->Height=20;
+	Form2->Labeles[n*5+1]->Width=50;
+	Form2->Labeles[n*5+1]->Font->Size=10;
+	Form2->Labeles[n*5+1]->Caption=Edit2->Text;
 
-	Form2->Labeles[n*4+2]=new TLabel(Form2);
-	Form2->Labeles[n*4+2]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*4+2]->Top=40;
-	Form2->Labeles[n*4+2]->Left=573;
-	Form2->Labeles[n*4+2]->WordWrap=true;
-	Form2->Labeles[n*4+2]->AutoSize=false;
-	Form2->Labeles[n*4+2]->Height=20;
-	Form2->Labeles[n*4+2]->Width=50;
-	Form2->Labeles[n*4+2]->Font->Size=10;
-	Form2->Labeles[n*4+2]->Caption=Edit3->Text;
+	Form2->Labeles[n*5+2]=new TLabel(Form2);
+	Form2->Labeles[n*5+2]->Parent=Form2->Panels[n];
+	Form2->Labeles[n*5+2]->Top=40;
+	Form2->Labeles[n*5+2]->Left=573;
+	Form2->Labeles[n*5+2]->WordWrap=true;
+	Form2->Labeles[n*5+2]->AutoSize=false;
+	Form2->Labeles[n*5+2]->Height=20;
+	Form2->Labeles[n*5+2]->Width=50;
+	Form2->Labeles[n*5+2]->Font->Size=10;
+	Form2->Labeles[n*5+2]->Caption=Edit3->Text;
 
-	Form2->Labeles[n*4+3]=new TLabel(Form2);
-	Form2->Labeles[n*4+3]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*4+3]->Top=40;
-	Form2->Labeles[n*4+3]->Left=696;
-	Form2->Labeles[n*4+3]->WordWrap=true;
-	Form2->Labeles[n*4+3]->AutoSize=false;
-	Form2->Labeles[n*4+3]->Height=20;
-	Form2->Labeles[n*4+3]->Width=50;
-	Form2->Labeles[n*4+3]->Font->Size=10;
-	Form2->Labeles[n*4+3]->Caption=Edit4->Text;
+	Form2->Labeles[n*5+3]=new TLabel(Form2);
+	Form2->Labeles[n*5+3]->Parent=Form2->Panels[n];
+	Form2->Labeles[n*5+3]->Top=40;
+	Form2->Labeles[n*5+3]->Left=696;
+	Form2->Labeles[n*5+3]->WordWrap=true;
+	Form2->Labeles[n*5+3]->AutoSize=false;
+	Form2->Labeles[n*5+3]->Height=20;
+	Form2->Labeles[n*5+3]->Width=50;
+	Form2->Labeles[n*5+3]->Font->Size=10;
+	Form2->Labeles[n*5+3]->Caption=Edit4->Text;
+
+	Form2->Labeles[n*5+4]=new TLabel(Form2);
+	Form2->Labeles[n*5+4]->Parent=Form2->Panels[n];
+	Form2->Labeles[n*5+4]->Top=40;
+	Form2->Labeles[n*5+4]->Left=819;
+	Form2->Labeles[n*5+4]->WordWrap=true;
+	Form2->Labeles[n*5+4]->AutoSize=false;
+	Form2->Labeles[n*5+4]->Height=20;
+	Form2->Labeles[n*5+4]->Width=50;
+	Form2->Labeles[n*5+4]->Font->Size=10;
+    Form2->Labeles[n*5+4]->Caption="sdsadsdsadsa";
+   //	Form2->Labeles[n*5+4]->Caption=Edit;
 
 	Form2->Buttons[n]=new TButton(Form2);
 	Form2->Buttons[n]->Parent=Form2->Panels[n];
-	Form2->Buttons[n]->Left=797;
+	Form2->Buttons[n]->Left=920;
 	Form2->Buttons[n]->Height=Form2->PanelH-1;
 	Form2->Buttons[n]->Width=100;
 	Form2->Buttons[n]->Tag=n;
@@ -175,6 +187,16 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	line5->Picture->Bitmap->Height=Form2->PanelH-1;
 	line5->Picture->Bitmap->Canvas->Brush->Color=clBlack;
 	line5->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
+
+	TImage *line6=new TImage(Form2);
+	line6->Parent=Form2->Panels[n];
+	line6->Left=919;
+	line6->Width=2;
+	line6->Height=Form2->PanelH-1;
+	line6->Picture->Bitmap->Width=2;
+	line6->Picture->Bitmap->Height=Form2->PanelH-1;
+	line6->Picture->Bitmap->Canvas->Brush->Color=clBlack;
+	line6->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 }
 	else
 	{
@@ -206,9 +228,11 @@ int num=Form2->PropNum;
 int n=Form2->ProductsA-1;
 for(int i=num+1;i<n+1;i++)
 {
-	Form2->Panels[i]->Top-=Form2->PanelH;
+	if(Form2->IsDel[i]==false)
+		Form2->Panels[i]->Top-=Form2->PanelH;
 }
 Form2->Panels[num]->Free();
+Form2->IsDel[num]=true;
 Form2->ProductsDel++;
 
 Close();

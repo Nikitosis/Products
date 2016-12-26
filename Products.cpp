@@ -20,6 +20,7 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 	: TForm(Owner)
 {
 	PanelH=100;
+	memset(IsDel,false,100*sizeof(bool));
 }
 //---------------------------------------------------------------------------
 
@@ -48,5 +49,8 @@ void __fastcall TForm2::Button1Click(TObject *Sender)
 	Form5->Button4->Visible=false;
 	Form5->Show();
 }
+//---------------------------------------------------------------------------
+
+
 //---------------------------------------------------------------------------
 
