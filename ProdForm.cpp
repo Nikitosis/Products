@@ -7,6 +7,7 @@
 
 #include "ProdForm.h"
 #include "Products.h"
+#include "Meals.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -27,7 +28,7 @@ if (OpenPictureDialog1->Execute())
 //---------------------------------------------------------------------------
 void __fastcall TForm5::Button2Click(TObject *Sender)
 {
-int n=Form2->ProductsA-1;
+int n;
 if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кнопку добавить)
 {
 	Form2->ProductsA++;
@@ -200,12 +201,13 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 }
 	else
 	{
+        n=Form2->PropNum;
 		Form2->Images[n]->Picture=Image1->Picture;
 		Form2->Edits[n]->Lines->Text=Edit5->Lines->Text;
-		Form2->Labeles[n*4]->Caption=Edit1->Text;
-		Form2->Labeles[n*4+1]->Caption=Edit2->Text;
-		Form2->Labeles[n*4+2]->Caption=Edit3->Text;
-		Form2->Labeles[n*4+3]->Caption=Edit4->Text;
+		Form2->Labeles[n*5]->Caption=Edit1->Text;
+		Form2->Labeles[n*5+1]->Caption=Edit2->Text;
+		Form2->Labeles[n*5+2]->Caption=Edit3->Text;
+		Form2->Labeles[n*5+3]->Caption=Edit4->Text;
     }
 
 Close();

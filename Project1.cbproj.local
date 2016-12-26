@@ -11,5 +11,32 @@
     <Transaction>2016.12.26 16:18:24.565.cpp,C:\My documents\RAD Studio\Projects\Products\Unit6.cpp=C:\My documents\RAD Studio\Projects\Products\MealsForm.cpp</Transaction>
     <Transaction>2016.12.26 16:18:24.565.h,C:\My documents\RAD Studio\Projects\Products\Unit6.h=C:\My documents\RAD Studio\Projects\Products\MealsForm.h</Transaction>
     <Transaction>2016.12.26 16:18:24.565.dfm,C:\My documents\RAD Studio\Projects\Products\Unit6.dfm=C:\My documents\RAD Studio\Projects\Products\MealsForm.dfm</Transaction>
-  </Transactions>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="Main.cpp"/>
+    <File Path="Main.cpp"/>
+    <File Path="Main.dfm"/>
+    <File Path="Main.h"/>
+    <File Path="Meals.cpp"/>
+    <File Path="Meals.cpp"/>
+    <File Path="Meals.dfm"/>
+    <File Path="Meals.h"/>
+    <File Path="MealsForm.cpp"/>
+    <File Path="MealsForm.cpp"/>
+    <File Path="MealsForm.dfm"/>
+    <File Path="MealsForm.h"/>
+    <File Path="ProdForm.cpp"/>
+    <File Path="ProdForm.cpp"/>
+    <File Path="ProdForm.dfm"/>
+    <File Path="ProdForm.h"/>
+    <File Path="Products.cpp"/>
+    <File Path="Products.cpp"/>
+    <File Path="Products.dfm"/>
+    <File Path="Products.h"/>
+    <File Path="Project1.cpp"/>
+    <File Path="Project1.res"/>
+    <File Path="Recommend.cpp"/>
+    <File Path="Recommend.cpp"/>
+    <File Path="Recommend.dfm"/>
+    <File Path="Recommend.h"/>
+  </ProjectSortOrder>
 </BorlandProject>

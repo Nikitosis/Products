@@ -61,48 +61,48 @@
 			<ILINK_TranslatedLibraryPath>$(BDS)\lib\$(LANGDIR)\release;$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="Products.cpp">
-				<Form>Form2</Form>
-				<DependentOn>Products.h</DependentOn>
-				<BuildOrder>4</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Recommend.cpp">
-				<Form>Form4</Form>
-				<DependentOn>Recommend.h</DependentOn>
-				<BuildOrder>5</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="ProdForm.cpp">
-				<Form>Form5</Form>
-				<DependentOn>ProdForm.h</DependentOn>
-				<BuildOrder>6</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Meals.cpp">
-				<Form>Form3</Form>
-				<DependentOn>Meals.h</DependentOn>
-				<BuildOrder>3</BuildOrder>
+			<CppCompile Include="Project1.cpp">
+				<BuildOrder>0</BuildOrder>
 			</CppCompile>
 			<ResFiles Include="Project1.res">
 				<BuildOrder>1</BuildOrder>
 			</ResFiles>
-			<CppCompile Include="Project1.cpp">
-				<BuildOrder>0</BuildOrder>
+			<CppCompile Include="MealsForm.cpp">
+				<Form>Form6</Form>
+				<DependentOn>MealsForm.h</DependentOn>
+				<BuildOrder>7</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="Main.cpp">
 				<Form>Form1</Form>
 				<DependentOn>Main.h</DependentOn>
 				<BuildOrder>2</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="MealsForm.cpp">
-				<Form>Form6</Form>
-				<DependentOn>MealsForm.h</DependentOn>
-				<BuildOrder>7</BuildOrder>
+			<CppCompile Include="Recommend.cpp">
+				<Form>Form4</Form>
+				<DependentOn>Recommend.h</DependentOn>
+				<BuildOrder>5</BuildOrder>
 			</CppCompile>
-			<FormResources Include="Products.dfm"/>
-			<FormResources Include="Recommend.dfm"/>
-			<FormResources Include="ProdForm.dfm"/>
-			<FormResources Include="Meals.dfm"/>
-			<FormResources Include="Main.dfm"/>
+			<CppCompile Include="Products.cpp">
+				<Form>Form2</Form>
+				<DependentOn>Products.h</DependentOn>
+				<BuildOrder>4</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Meals.cpp">
+				<Form>Form3</Form>
+				<DependentOn>Meals.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ProdForm.cpp">
+				<Form>Form5</Form>
+				<DependentOn>ProdForm.h</DependentOn>
+				<BuildOrder>6</BuildOrder>
+			</CppCompile>
 			<FormResources Include="MealsForm.dfm"/>
+			<FormResources Include="Main.dfm"/>
+			<FormResources Include="Recommend.dfm"/>
+			<FormResources Include="Products.dfm"/>
+			<FormResources Include="Meals.dfm"/>
+			<FormResources Include="ProdForm.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

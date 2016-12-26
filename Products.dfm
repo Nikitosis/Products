@@ -106,13 +106,6 @@ object Form2: TForm2
     Font.Style = []
     ParentFont = False
   end
-  object Label8: TLabel
-    Left = 0
-    Top = 8
-    Width = 31
-    Height = 13
-    Caption = 'Label8'
-  end
   object Button1: TButton
     Tag = -1
     Left = 8

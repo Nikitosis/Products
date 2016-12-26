@@ -30,12 +30,18 @@ TLabel *Labeles[300];
 TButton *Buttons[100];
 int ProductsA,ProductsDel,PanelH,PanelHaveH;
 int ProductsHave,ProductsUse;
+int PropNum;
 TPanel *PanelsHave[100];
 TLabel *LabelesHave[100];
 TImage *ImagesHave[100];
 TEdit *EditsHave[100];
 TButton *ButtonsHave[100];
+bool IsLeft[100][100];
+bool IsRight[100][100];
 	__fastcall TForm3(TComponent* Owner);
+	void __fastcall TForm3::AddClick(TObject *Sender);
+	void __fastcall TForm3::AddClickF(int num);
+	void __fastcall TForm3::PropClick(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;

@@ -29,10 +29,10 @@ void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на
 	TButton *btn = dynamic_cast<TButton *>(Sender);       //переводим Sender в TButton
 	int num=btn->Tag;
 	Form5->Image1->Picture=Images[num]->Picture;
-	Form5->Edit1->Text=Labeles[(num)*4]->Caption;
-	Form5->Edit2->Text=Labeles[(num)*4+1]->Caption;
-	Form5->Edit3->Text=Labeles[(num)*4+2]->Caption;
-	Form5->Edit4->Text=Labeles[(num)*4+3]->Caption;
+	Form5->Edit1->Text=Labeles[(num)*5]->Caption;
+	Form5->Edit2->Text=Labeles[(num)*5+1]->Caption;
+	Form5->Edit3->Text=Labeles[(num)*5+2]->Caption;
+	Form5->Edit4->Text=Labeles[(num)*5+3]->Caption;
 	Form5->Edit5->Text=Edits[num]->Text;
 	PropNum=num;
 	Form5->Button4->Visible=true;
