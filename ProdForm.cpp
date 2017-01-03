@@ -118,7 +118,10 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+4]->Height=20;
 	Form2->Labeles[n*5+4]->Width=50;
 	Form2->Labeles[n*5+4]->Font->Size=10;
-    Form2->Labeles[n*5+4]->Caption="sdsadsdsadsa";
+	int n1=StrToInt(Form2->Labeles[n*5+1]->Caption);
+	int n2=StrToInt(Form2->Labeles[n*5+2]->Caption);
+	int n3=StrToInt(Form2->Labeles[n*5+3]->Caption);
+	Form2->Labeles[n*5+4]->Caption=n1+n2+n3;
    //	Form2->Labeles[n*5+4]->Caption=Edit;
 
 	Form2->Buttons[n]=new TButton(Form2);

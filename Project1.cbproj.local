@@ -11,7 +11,8 @@
     <Transaction>2016.12.26 16:18:24.565.cpp,C:\My documents\RAD Studio\Projects\Products\Unit6.cpp=C:\My documents\RAD Studio\Projects\Products\MealsForm.cpp</Transaction>
     <Transaction>2016.12.26 16:18:24.565.h,C:\My documents\RAD Studio\Projects\Products\Unit6.h=C:\My documents\RAD Studio\Projects\Products\MealsForm.h</Transaction>
     <Transaction>2016.12.26 16:18:24.565.dfm,C:\My documents\RAD Studio\Projects\Products\Unit6.dfm=C:\My documents\RAD Studio\Projects\Products\MealsForm.dfm</Transaction>
-  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Main.cpp"/>
     <File Path="Main.cpp"/>
     <File Path="Main.dfm"/>

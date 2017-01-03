@@ -18,7 +18,7 @@ __fastcall TForm6::TForm6(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm6::Button2Click(TObject *Sender)
 {
-if(Form3->PropNum==-1)
+if(Form3->PropNum==99)
 {
 		Form3->ProductsA++;
 		int n=Form3->ProductsA-1;
@@ -74,7 +74,7 @@ if(Form3->PropNum==-1)
 		Form3->Labeles[n*5+1]->Height=20;
 		Form3->Labeles[n*5+1]->Width=70;
 		Form3->Labeles[n*5+1]->Font->Size=10;
-		Form3->Labeles[n*5+1]->Caption="sadsadsadsd";
+		Form3->Labeles[n*5+1]->Caption=Label5->Caption;
 
 		Form3->Labeles[n*5+2]=new TLabel(Form3);
 		Form3->Labeles[n*5+2]->Parent=Form3->Panels[n];
@@ -85,7 +85,7 @@ if(Form3->PropNum==-1)
 		Form3->Labeles[n*5+2]->Height=20;
 		Form3->Labeles[n*5+2]->Width=70;
 		Form3->Labeles[n*5+2]->Font->Size=10;
-		Form3->Labeles[n*5+2]->Caption="sadsadsadsd";
+		Form3->Labeles[n*5+2]->Caption=Label6->Caption;
 
 		Form3->Labeles[n*5+3]=new TLabel(Form3);
 		Form3->Labeles[n*5+3]->Parent=Form3->Panels[n];
@@ -96,18 +96,18 @@ if(Form3->PropNum==-1)
 		Form3->Labeles[n*5+3]->Height=20;
 		Form3->Labeles[n*5+3]->Width=70;
 		Form3->Labeles[n*5+3]->Font->Size=10;
-		Form3->Labeles[n*5+3]->Caption="sadsadsadsd";
+		Form3->Labeles[n*5+3]->Caption=Label7->Caption;
 
-		Form3->Labeles[n*5+3]=new TLabel(Form3);
-		Form3->Labeles[n*5+3]->Parent=Form3->Panels[n];
-		Form3->Labeles[n*5+3]->Top=40;
-		Form3->Labeles[n*5+3]->Left=929;
-		Form3->Labeles[n*5+3]->WordWrap=true;
-		Form3->Labeles[n*5+3]->AutoSize=false;
-		Form3->Labeles[n*5+3]->Height=20;
-		Form3->Labeles[n*5+3]->Width=70;
-		Form3->Labeles[n*5+3]->Font->Size=10;
-		Form3->Labeles[n*5+3]->Caption="sadsadsadsd";
+		Form3->Labeles[n*5+4]=new TLabel(Form3);
+		Form3->Labeles[n*5+4]->Parent=Form3->Panels[n];
+		Form3->Labeles[n*5+4]->Top=40;
+		Form3->Labeles[n*5+4]->Left=929;
+		Form3->Labeles[n*5+4]->WordWrap=true;
+		Form3->Labeles[n*5+4]->AutoSize=false;
+		Form3->Labeles[n*5+4]->Height=20;
+		Form3->Labeles[n*5+4]->Width=70;
+		Form3->Labeles[n*5+4]->Font->Size=10;
+		Form3->Labeles[n*5+4]->Caption=Label8->Caption;
 
 		Form3->Buttons[n]=new TButton(Form3);
 		Form3->Buttons[n]->Parent=Form3->Panels[n];
@@ -204,12 +204,33 @@ if(Form3->PropNum==-1)
 			Form3->IsRight[n][i]=Form3->IsRight[-1][i];
 		}
 	}
+	else
+	{
+		int n=Form3->PropNum;
+		Form3->Memos[n]->Text=Memo1->Text;
+		Form3->Images[n]->Picture=Image1->Picture;
+		Form3->Labeles[n*5]->Caption=Edit1->Text;
+		Form3->Labeles[n*5+1]->Caption=Label5->Caption;
+		Form3->Labeles[n*5+2]->Caption=Label6->Caption;
+		Form3->Labeles[n*5+3]->Caption=Label7->Caption;
+		Form3->Labeles[n*5+4]->Caption=Label8->Caption;
+    }
+
 
 	Close();
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm6::Button3Click(TObject *Sender)
 {
+if(Form3->PropNum!=-1)
+{
+	int num=Form3->PropNum;
+	for(int i=0;i<Form2->ProductsA;i++)
+	{
+	  Form3->IsLeft[num][i]=Form3->LeftWas[i];
+	  Form3->IsRight[num][i]=Form3->RightWas[i];
+	}
+}
 Close();
 }
 //---------------------------------------------------------------------------
@@ -221,3 +242,7 @@ if (OpenPictureDialog1->Execute())
 	}
 }
 //---------------------------------------------------------------------------
+
+
+
+

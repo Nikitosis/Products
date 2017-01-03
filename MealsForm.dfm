@@ -630,9 +630,9 @@ object Form6: TForm6
   object Label2: TLabel
     Left = 264
     Top = 88
-    Width = 131
+    Width = 96
     Height = 24
-    Caption = #1050#1086#1084#1084#1077#1085#1090#1072#1088#1080#1081':'
+    Caption = #1054#1087#1080#1089#1072#1085#1080#1077':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -665,6 +665,34 @@ object Form6: TForm6
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 248
+    Top = 240
+    Width = 6
+    Height = 13
+    Caption = '0'
+  end
+  object Label6: TLabel
+    Left = 304
+    Top = 240
+    Width = 6
+    Height = 13
+    Caption = '0'
+  end
+  object Label7: TLabel
+    Left = 354
+    Top = 240
+    Width = 6
+    Height = 13
+    Caption = '0'
+  end
+  object Label8: TLabel
+    Left = 400
+    Top = 240
+    Width = 6
+    Height = 13
+    Caption = '0'
   end
   object Button1: TButton
     Left = 48
@@ -703,6 +731,7 @@ object Form6: TForm6
     Top = 336
     Width = 289
     Height = 209
+    HorzScrollBar.Visible = False
     TabOrder = 3
   end
   object ScrollBox2: TScrollBox
@@ -710,6 +739,7 @@ object Form6: TForm6
     Top = 336
     Width = 289
     Height = 209
+    HorzScrollBar.Visible = False
     TabOrder = 4
   end
   object Button2: TButton
@@ -722,7 +752,7 @@ object Form6: TForm6
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 368
+    Left = 376
     Top = 568
     Width = 129
     Height = 33
