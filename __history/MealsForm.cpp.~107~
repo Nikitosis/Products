@@ -18,7 +18,7 @@ __fastcall TForm6::TForm6(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm6::Button2Click(TObject *Sender)
 {
-if(Form3->PropNum==-1)
+if(Form3->PropNum==99)
 {
 		Form3->ProductsA++;
 		int n=Form3->ProductsA-1;
@@ -243,9 +243,6 @@ if (OpenPictureDialog1->Execute())
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm6::FormClose(TObject *Sender, TCloseAction &Action)
-{
-Form6->Button3Click(Sender);
-}
-//---------------------------------------------------------------------------
+
+
 

@@ -240,6 +240,14 @@ Form2->Panels[num]->Free();
 Form2->IsDel[num]=true;
 Form2->ProductsDel++;
 
+for(int i=0;i<Form3->ProductsHave+Form3->ProductsUse;i++)
+if(Form3->PanelsHave[i]->Tag==num)
+	for(int j=0;j<Form2->ProductsA;j++)
+	{
+		Form3->IsLeft[num][j]=false;
+		Form3->IsRight[num][j]=false;
+    }
+
 Close();
 }
 //---------------------------------------------------------------------------

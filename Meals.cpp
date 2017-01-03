@@ -22,7 +22,7 @@ __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 // ---------------------------------------------------------------------------
 void AddLeft(int num) {
 	Form3->ProductsHave++;
-	int n = Form3->ProductsHave - 1;
+	int n = Form3->ProductsHave+Form3->ProductsUse - 1;
 	int k = Form6->ScrollBox1->VertScrollBar->Position;
 	Form6->ScrollBox1->VertScrollBar->Position = 0;
 
@@ -34,7 +34,7 @@ void AddLeft(int num) {
 	Form3->PanelsHave[n]->Top = Form3->PanelHaveH * (Form3->ProductsHave - 1);
 	Form3->PanelsHave[n]->Height = Form3->PanelHaveH;
 	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 4;
-	Form3->PanelsHave[n]->Tag=num;
+	Form3->PanelsHave[n]->Tag=num;    //сохраняем привязку к Products(num-номер продукта)
 
 	Form3->LabelesHave[n*4] = new TLabel(Form6);
 	Form3->LabelesHave[n*4]->Parent = Form3->PanelsHave[n];
@@ -115,7 +115,7 @@ void __fastcall TForm3::AddClickF(int num)
 {
    int i;            //i- meals num-каждый продукт
 	i=PropNum;
-
+	int prodnum=PanelsHave[num]->Tag;            //при изменении масы чтоб обратиться к продуктам
 	int k = Form6->ScrollBox1->VertScrollBar->Position;
 	Form6->ScrollBox1->VertScrollBar->Position = 0;
 	int k1 = Form6->ScrollBox2->VertScrollBar->Position;
@@ -124,10 +124,10 @@ void __fastcall TForm3::AddClickF(int num)
 	if(IsLeft[i][num]==true)
 	{
         int amount=StrToInt(Form3->EditsHave[num]->Text);
-		Form6->Label5->Caption=StrToInt(Form6->Label5->Caption)+StrToInt(Form2->Labeles[num*5+1]->Caption)*amount;          //пишем,сколько витаминов
-		Form6->Label6->Caption=StrToInt(Form6->Label6->Caption)+StrToInt(Form2->Labeles[num*5+2]->Caption)*amount;
-		Form6->Label7->Caption=StrToInt(Form6->Label7->Caption)+StrToInt(Form2->Labeles[num*5+3]->Caption)*amount;
-		Form6->Label8->Caption=StrToInt(Form6->Label8->Caption)+StrToInt(Form2->Labeles[num*5+1]->Caption)*amount+StrToInt(Form2->Labeles[num*5+2]->Caption)*amount+StrToInt(Form2->Labeles[num*5+3]->Caption)*amount;
+		Form6->Label5->Caption=StrToInt(Form6->Label5->Caption)+StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount;          //пишем,сколько витаминов
+		Form6->Label6->Caption=StrToInt(Form6->Label6->Caption)+StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount;
+		Form6->Label7->Caption=StrToInt(Form6->Label7->Caption)+StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
+		Form6->Label8->Caption=StrToInt(Form6->Label8->Caption)+StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount+StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount+StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
 
 		ProductsUse++;
 		ProductsHave--;
@@ -141,11 +141,11 @@ void __fastcall TForm3::AddClickF(int num)
 	}
 	else
 	{
-	    int amount=StrToInt(Form3->EditsHave[num]->Text);
-		Form6->Label5->Caption=StrToInt(Form6->Label5->Caption)-StrToInt(Form2->Labeles[num*5+1]->Caption)*amount;          //пишем,сколько витаминов
-		Form6->Label6->Caption=StrToInt(Form6->Label6->Caption)-StrToInt(Form2->Labeles[num*5+2]->Caption)*amount;
-		Form6->Label7->Caption=StrToInt(Form6->Label7->Caption)-StrToInt(Form2->Labeles[num*5+3]->Caption)*amount;
-		Form6->Label8->Caption=StrToInt(Form6->Label8->Caption)-StrToInt(Form2->Labeles[num*5+1]->Caption)*amount-StrToInt(Form2->Labeles[num*5+2]->Caption)*amount-StrToInt(Form2->Labeles[num*5+3]->Caption)*amount;
+		int amount=StrToInt(Form3->EditsHave[num]->Text);
+		Form6->Label5->Caption=StrToInt(Form6->Label5->Caption)-StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount;          //пишем,сколько витаминов
+		Form6->Label6->Caption=StrToInt(Form6->Label6->Caption)-StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount;
+		Form6->Label7->Caption=StrToInt(Form6->Label7->Caption)-StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
+		Form6->Label8->Caption=StrToInt(Form6->Label8->Caption)-StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount-StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount-StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
 
 		ProductsUse--;
 		ProductsHave++;
@@ -175,27 +175,40 @@ void __fastcall TForm3::PropClick(TObject *Sender)
 
   memset(LeftWas,false,100*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
   memset(RightWas,false,100*sizeof(bool));
-  for(int i=0;i<Form2->ProductsA;i++)
+  for(int i=0;i<ProductsUse+ProductsHave;i++)
   {
-  if(IsLeft[num][i])
-	LeftWas[i]=true;
-  if(IsRight[num][i])
-	RightWas[i]=true;
+	  if(IsLeft[num][i])
+	  LeftWas[i]=true;
+	  if(IsRight[num][i])
+	  RightWas[i]=true;
   }
-
-  PropNum=num;
-  	ProductsHave = 0;
-	ProductsUse = 0;
-	for (int i = 0; i < Form2->ProductsA; i++)
+	for (int i = 0; i < ProductsHave+ProductsUse; i++)
 		PanelsHave[i]->Free();
+
+	PropNum=num;
+	ProductsHave = 0;
+	ProductsUse = 0;
+
+	for(int i=0;i<Form2->ProductsA;i++)
+	if(!IsRight[num][i])
+	IsLeft[num][i]=true;
+
+	int n=0;
 	for (int i = 0; i < Form2->ProductsA; i++)
 		if (Form2->IsDel[i] == false) {
 			AddLeft(i);
+			if(IsRight[num][n])
+			{
+                IsRight[num][n]==false;
+				IsLeft[num][n]=true;
+				AddClickF(n);
+			}
+			n++;
 		}
 
-  for(int i=0;i<Form2->ProductsA;i++)                //чтоб лишних пропусков не было
+ /* for(int i=0;i<Form2->ProductsA;i++)                //чтоб лишних пропусков не было
   if(IsRight[num][i])
-	 IsLeft[num][i]=true;
+	 IsLeft[num][i]=true;  */
 
 	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
 	Form6->Label6->Caption="0";
@@ -203,18 +216,8 @@ void __fastcall TForm3::PropClick(TObject *Sender)
 	Form6->Label8->Caption="0";
 
 
-  for(int i=0;i<Form2->ProductsA;i++)
-{
-	if(IsRight[num][i])
-	{
-	   IsRight[num][i]==false;
-	   IsLeft[num][i]=true;
-	   AddClickF(i);
-	}
-
 
 	Form6->Show();
-}
 }
 
 void __fastcall TForm3::EditsHaveChange(TObject *Sender)          //доделать(динамически изменять калор при изменении веса)

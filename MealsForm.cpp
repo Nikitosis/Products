@@ -200,8 +200,8 @@ if(Form3->PropNum==99)
 
 		for(int i=0;i<Form2->ProductsA;i++)
 		{
-			Form3->IsLeft[n][i]=Form3->IsLeft[-1][i];
-			Form3->IsRight[n][i]=Form3->IsRight[-1][i];
+			Form3->IsLeft[n][i]=Form3->IsLeft[99][i];
+			Form3->IsRight[n][i]=Form3->IsRight[99][i];
 		}
 	}
 	else
