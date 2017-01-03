@@ -17,6 +17,9 @@ TForm3 *Form3;
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 	memset(IsLeft, false, 10000 * sizeof(bool));
 	memset(IsRight, false, 10000 * sizeof(bool));
+	for(int i=0;i<100;i++)
+	for(int j=0;j<100;j++)
+	Weights[i][j]="0";
 }
 
 // ---------------------------------------------------------------------------
@@ -206,14 +209,17 @@ void __fastcall TForm3::PropClick(TObject *Sender)
 			n++;
 		}
 
- /* for(int i=0;i<Form2->ProductsA;i++)                //чтоб лишних пропусков не было
-  if(IsRight[num][i])
-	 IsLeft[num][i]=true;  */
-
 	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
 	Form6->Label6->Caption="0";
 	Form6->Label7->Caption="0";
 	Form6->Label8->Caption="0";
+	n=0;
+	for(int i=0;i<Form2->ProductsA;i++)
+	if(Form2->IsDel[i]==false)
+	{
+	EditsHave[n]->Text=Weights[num][n];
+	n++;
+	}
 
 
 
@@ -229,17 +235,23 @@ int num=PropNum;
 int sum1=0,sum2=0,sum3=0;
 if(btn->Parent->Parent==Form6->ScrollBox2)
 {
+	int n=0;
 	for(int i=0;i<Form2->ProductsA;i++)
 	{
-	   if(i==btn->Parent->Tag && flag)
-			int a=1;
-	   else
-	   if(IsRight[num][i]==true)
-		  {
-			  sum1+=StrToInt(Form2->Labeles[i*5+1]->Caption)*StrToInt(Form3->EditsHave[i]->Text);
-			  sum2+=StrToInt(Form2->Labeles[i*5+2]->Caption)*StrToInt(Form3->EditsHave[i]->Text);
-			  sum3+=StrToInt(Form2->Labeles[i*5+3]->Caption)*StrToInt(Form3->EditsHave[i]->Text);
-		  }
+		if(Form2->IsDel[i]==false)
+		{
+			   if(i==btn->Parent->Tag && flag)
+					int a=1;
+			   else
+			   if(IsRight[num][n]==true)
+				  {
+				  int k=PanelsHave[n]->Tag;
+					  sum1+=StrToInt(Form2->Labeles[k*5+1]->Caption)*StrToInt(Form3->EditsHave[n]->Text);
+					  sum2+=StrToInt(Form2->Labeles[k*5+2]->Caption)*StrToInt(Form3->EditsHave[n]->Text);
+					  sum3+=StrToInt(Form2->Labeles[k*5+3]->Caption)*StrToInt(Form3->EditsHave[n]->Text);
+				  }
+			n++;
+		}
 	}
 }
 Form6->Label5->Caption=sum1;

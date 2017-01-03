@@ -203,6 +203,9 @@ if(Form3->PropNum==99)
 			Form3->IsLeft[n][i]=Form3->IsLeft[99][i];
 			Form3->IsRight[n][i]=Form3->IsRight[99][i];
 		}
+
+		for(int i=0;i<Form2->ProductsA;i++)
+			Form3->Weights[n][i]=Form3->EditsHave[i]->Text;
 	}
 	else
 	{
@@ -214,6 +217,8 @@ if(Form3->PropNum==99)
 		Form3->Labeles[n*5+2]->Caption=Label6->Caption;
 		Form3->Labeles[n*5+3]->Caption=Label7->Caption;
 		Form3->Labeles[n*5+4]->Caption=Label8->Caption;
+		for(int i=0;i<Form2->ProductsA;i++)
+			Form3->Weights[n][i]=Form3->EditsHave[i]->Text;
     }
 
 
