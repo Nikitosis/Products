@@ -760,6 +760,15 @@ object Form6: TForm6
     TabOrder = 6
     OnClick = Button3Click
   end
+  object Button4: TButton
+    Left = 48
+    Top = 568
+    Width = 113
+    Height = 33
+    Caption = #1059#1076#1072#1083#1080#1090#1100
+    TabOrder = 7
+    OnClick = Button4Click
+  end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 32
     Top = 592

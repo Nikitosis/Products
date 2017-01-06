@@ -9,6 +9,8 @@
 #include <Forms.hpp>
 #include <ExtCtrls.hpp>
 #include <jpeg.hpp>
+#include <Dialogs.hpp>
+#include <ExtDlgs.hpp>
 //---------------------------------------------------------------------------
 class TForm6 : public TForm
 {
@@ -25,6 +27,11 @@ __published:	// IDE-managed Components
 	TLabel *Label4;
 	TButton *Button2;
 	TButton *Button3;
+	TOpenPictureDialog *OpenPictureDialog1;
+	TLabel *Label5;
+	TLabel *Label6;
+	TLabel *Label7;
+	TLabel *Label8;
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);

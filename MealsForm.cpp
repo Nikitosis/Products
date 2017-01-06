@@ -20,15 +20,15 @@ void __fastcall TForm6::Button2Click(TObject *Sender)
 {
 if(Form3->PropNum==99)
 {
-		Form3->ProductsA++;
-		int n=Form3->ProductsA-1;
+		Form3->MealsA++;
+		int n=Form3->MealsA-1;
 		int k;
 		k=Form3->ScrollBox1->VertScrollBar->Position;  //нужно обязательно,иначе появл. пропуски
 		Form3->ScrollBox1->VertScrollBar->Position=0;
 
 		Form3->Panels[n]=new TPanel(Form3);
 		Form3->Panels[n]->Parent=Form3->ScrollBox1;
-		Form3->Panels[n]->Top=(Form3->ProductsA-1-Form3->ProductsDel)*Form3->PanelH;
+		Form3->Panels[n]->Top=(Form3->MealsA-1-Form3->MealsDel)*Form3->PanelH;
 		Form3->Panels[n]->Left=0;
 		Form3->Panels[n]->Width=Form3->ScrollBox1->Width-4;
 		Form3->Panels[n]->Height=Form3->PanelH;
@@ -250,4 +250,24 @@ if (OpenPictureDialog1->Execute())
 
 
 
+
+
+
+void __fastcall TForm6::Button4Click(TObject *Sender)      //удаляем meals
+{
+	Form3->Panels[Form3->PropNum]->Free();
+	for(int i=0;i<Form3->MealsA;i++)
+	  if(Form3->IsDelMeal[i]==false && Form3->Panels[i]->Top>Form3->Panels[Form3->PropNum]->Top)
+	  	Form3->Panels[i]->Top-=Form3->PanelH;
+
+	for(int i=0;i<Form2->ProductsA;i++)
+	{
+		Form3->IsLeft[Form3->PropNum][i]=true;
+		Form3->IsRight[Form3->PropNum][i]=false;
+	}
+	Form3->MealsDel++;
+	Form3->IsDelMeal[Form3->PropNum]=true;
+	Form6->Close();
+}
+//---------------------------------------------------------------------------
 

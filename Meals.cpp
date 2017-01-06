@@ -17,6 +17,7 @@ TForm3 *Form3;
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 	memset(IsLeft, false, 10000 * sizeof(bool));
 	memset(IsRight, false, 10000 * sizeof(bool));
+	memset(IsDelMeal,false,100*sizeof(bool));
 	for(int i=0;i<100;i++)
 	for(int j=0;j<100;j++)
 	Weights[i][j]="0";
@@ -89,6 +90,14 @@ void AddLeft(int num) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm3::Button1Click(TObject *Sender) {
+	Form6->Label5->Caption="0";        //обнул. витамины
+	Form6->Label6->Caption="0";
+	Form6->Label7->Caption="0";
+	Form6->Label8->Caption="0";
+	Form6->Edit1->Text="";
+	Form6->Memo1->Lines->Text="";
+	Form6->Button4->Visible=false;       //кнопка удалить
+
 	for (int i = 0; i < ProductsHave+ProductsUse; i++)
 		PanelsHave[i]->Free();
 	ProductsHave = 0;
@@ -173,6 +182,8 @@ AddClickF(num);
 //------------------------------------------------------------------------------
 void __fastcall TForm3::PropClick(TObject *Sender)
 {
+  Form6->Button4->Visible=true;    //кнопка удалить
+
   TButton *btn = dynamic_cast<TButton *>(Sender);
   int num=btn->Tag;
 

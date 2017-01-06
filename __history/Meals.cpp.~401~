@@ -89,6 +89,14 @@ void AddLeft(int num) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm3::Button1Click(TObject *Sender) {
+	Form6->Label5->Caption="0";        //обнул. витамины
+	Form6->Label6->Caption="0";
+	Form6->Label7->Caption="0";
+	Form6->Label8->Caption="0";
+	Form6->Edit1->Text="";
+	Form6->Memo1->Lines->Text="";
+	Form6->Button4->Visible=false;       //кнопка удалить
+
 	for (int i = 0; i < ProductsHave+ProductsUse; i++)
 		PanelsHave[i]->Free();
 	ProductsHave = 0;
@@ -173,6 +181,8 @@ AddClickF(num);
 //------------------------------------------------------------------------------
 void __fastcall TForm3::PropClick(TObject *Sender)
 {
+  Form6->Button4->Visible=false;    //кнопка удалить
+
   TButton *btn = dynamic_cast<TButton *>(Sender);
   int num=btn->Tag;
 
@@ -217,7 +227,7 @@ void __fastcall TForm3::PropClick(TObject *Sender)
 	for(int i=0;i<Form2->ProductsA;i++)
 	if(Form2->IsDel[i]==false)
 	{
-	EditsHave[n]->Text=Weights[num][i];
+	EditsHave[n]->Text=Weights[num][n];
 	n++;
 	}
 

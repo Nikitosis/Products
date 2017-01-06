@@ -29,7 +29,7 @@ TImage *Images[100];
 TMemo *Memos[100];
 TLabel *Labeles[300];
 TButton *Buttons[100];
-int ProductsA,ProductsDel,PanelH,PanelHaveH;          //колво прод. колво удаленных, высота панели в Meals,высота панели в MealsForm
+int MealsA,MealsDel,PanelH,PanelHaveH;          //колво прод. колво удаленных, высота панели в Meals,высота панели в MealsForm
 int ProductsHave,ProductsUse;           //кол-во продуктов слева и справа соотв.
 int PropNum;    //номер нажатой кнопки настроек
 TPanel *PanelsHave[100];       //дл€ каждой MealsForm
@@ -41,6 +41,7 @@ bool IsLeft[100][100];
 bool IsRight[100][100];       //сохран€ют,с какой стороны находитс€ продукт
 bool LeftWas[100];
 bool RightWas[100];
+bool IsDelMeal[100];
 AnsiString Weights[100][100];
 	__fastcall TForm3(TComponent* Owner);
 	void __fastcall TForm3::AddClick(TObject *Sender);

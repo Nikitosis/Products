@@ -2,6 +2,7 @@
 
 #ifndef MealsH
 #define MealsH
+
 //---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>
@@ -40,6 +41,7 @@ bool IsLeft[100][100];
 bool IsRight[100][100];       //сохраняют,с какой стороны находится продукт
 bool LeftWas[100];
 bool RightWas[100];
+AnsiString Weights[100][100];
 	__fastcall TForm3(TComponent* Owner);
 	void __fastcall TForm3::AddClick(TObject *Sender);
 	void __fastcall TForm3::AddClickF(int num);
