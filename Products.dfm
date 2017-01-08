@@ -11,6 +11,7 @@ object Form2: TForm2
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesigned
   PixelsPerInch = 96
@@ -125,5 +126,17 @@ object Form2: TForm2
     VertScrollBar.Smooth = True
     VertScrollBar.Tracking = True
     TabOrder = 1
+  end
+  object MainMenu1: TMainMenu
+    Left = 288
+    object File1: TMenuItem
+      Caption = 'File'
+      object Save1: TMenuItem
+        Caption = 'Save'
+      end
+      object Load1: TMenuItem
+        Caption = 'Load'
+      end
+    end
   end
 end

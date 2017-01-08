@@ -33,7 +33,7 @@ void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на
 	Form5->Edit2->Text=Labeles[(num)*5+1]->Caption;
 	Form5->Edit3->Text=Labeles[(num)*5+2]->Caption;
 	Form5->Edit4->Text=Labeles[(num)*5+3]->Caption;
-	Form5->Edit5->Text=Edits[num]->Text;
+	Form5->Edit5->Text=Memos[num]->Text;
 	PropNum=num;
 	Form5->Button4->Visible=true;
     Form5->Show();

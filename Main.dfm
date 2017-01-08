@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
@@ -39,5 +40,28 @@ object Form1: TForm1
     Caption = #1056#1077#1082#1086#1084#1077#1085#1076
     TabOrder = 2
     OnClick = Button3Click
+  end
+  object MainMenu1: TMainMenu
+    Left = 144
+    Top = 8
+    object File1: TMenuItem
+      Caption = 'File'
+      object Save1: TMenuItem
+        Caption = 'Save'
+        OnClick = Save1Click
+      end
+      object Load1: TMenuItem
+        Caption = 'Load'
+        OnClick = Load1Click
+      end
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 216
+    Top = 16
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 296
+    Top = 16
   end
 end

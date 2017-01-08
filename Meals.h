@@ -8,6 +8,7 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
+#include <Menus.hpp>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -21,6 +22,10 @@ __published:	// IDE-managed Components
 	TLabel *Label3;
 	TLabel *Label2;
 	TLabel *Label1;
+	TMainMenu *MainMenu1;
+	TMenuItem *File1;
+	TMenuItem *Save1;
+	TMenuItem *Load1;
 	void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations

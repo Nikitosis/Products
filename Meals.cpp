@@ -18,6 +18,8 @@ __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 	memset(IsLeft, false, 10000 * sizeof(bool));
 	memset(IsRight, false, 10000 * sizeof(bool));
 	memset(IsDelMeal,false,100*sizeof(bool));
+	PanelH = 100;
+	PanelHaveH = 50;
 	for(int i=0;i<100;i++)
 	for(int j=0;j<100;j++)
 	Weights[i][j]="0";
@@ -102,9 +104,7 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {
 		PanelsHave[i]->Free();
 	ProductsHave = 0;
 	ProductsUse = 0;
-	PanelHaveH = 50;
 	PropNum=99;             //99-номер,если нажали на добавить
-	PanelH = 100;
 	Form6->Show();
 	int m = Form2->ProductsA;
 	for(int i=0;i<Form2->ProductsA;i++)
@@ -189,6 +189,10 @@ void __fastcall TForm3::PropClick(TObject *Sender)
 
   memset(LeftWas,false,100*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
   memset(RightWas,false,100*sizeof(bool));
+
+  Form6->Edit1->Text=Form3->Labeles[num*5]->Caption;
+  Form6->Memo1->Lines->Text=Form3->Memos[num]->Lines->Text;
+
   for(int i=0;i<ProductsUse+ProductsHave;i++)
   {
 	  if(IsLeft[num][i])

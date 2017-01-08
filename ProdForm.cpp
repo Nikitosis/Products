@@ -56,14 +56,14 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Images[n]->Stretch=true;
 
 
-	Form2->Edits[n]=new TMemo(Form2);
-	Form2->Edits[n]->Parent=Form2->Panels[n];
-	Form2->Edits[n]->Left=277;
-	Form2->Edits[n]->Height=Form2->PanelH-1;
-	Form2->Edits[n]->Width=150;
-	Form2->Edits[n]->Lines->Text=Edit5->Lines->Text;
-	Form2->Edits[n]->ReadOnly=true;
-	Form2->Edits[n]->ScrollBars=ssBoth;
+	Form2->Memos[n]=new TMemo(Form2);
+	Form2->Memos[n]->Parent=Form2->Panels[n];
+	Form2->Memos[n]->Left=277;
+	Form2->Memos[n]->Height=Form2->PanelH-1;
+	Form2->Memos[n]->Width=150;
+	Form2->Memos[n]->Lines->Text=Edit5->Lines->Text;
+	Form2->Memos[n]->ReadOnly=true;
+	Form2->Memos[n]->ScrollBars=ssBoth;
 
 	Form2->Labeles[n*5]=new TLabel(Form2);
 	Form2->Labeles[n*5]->Parent=Form2->Panels[n];
@@ -206,7 +206,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	{
         n=Form2->PropNum;
 		Form2->Images[n]->Picture=Image1->Picture;
-		Form2->Edits[n]->Lines->Text=Edit5->Lines->Text;
+		Form2->Memos[n]->Lines->Text=Edit5->Lines->Text;
 		Form2->Labeles[n*5]->Caption=Edit1->Text;
 		Form2->Labeles[n*5+1]->Caption=Edit2->Text;
 		Form2->Labeles[n*5+2]->Caption=Edit3->Text;
