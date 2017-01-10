@@ -54,3 +54,15 @@ void __fastcall TForm2::Button1Click(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
+void __fastcall TForm2::Save1Click(TObject *Sender)
+{
+Form1->Save1Click(this);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Load1Click(TObject *Sender)
+{
+Form1->Load1Click(this);
+}
+//---------------------------------------------------------------------------
+

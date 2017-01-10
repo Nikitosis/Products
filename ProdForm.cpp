@@ -7,7 +7,9 @@
 
 #include "ProdForm.h"
 #include "Products.h"
+#include "MealsForm.h"
 #include "Meals.h"
+#include <math.h>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -118,10 +120,10 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+4]->Height=20;
 	Form2->Labeles[n*5+4]->Width=50;
 	Form2->Labeles[n*5+4]->Font->Size=10;
-	int n1=StrToInt(Form2->Labeles[n*5+1]->Caption);
-	int n2=StrToInt(Form2->Labeles[n*5+2]->Caption);
-	int n3=StrToInt(Form2->Labeles[n*5+3]->Caption);
-	Form2->Labeles[n*5+4]->Caption=n1+n2+n3;
+	double n1=StrToInt(Form2->Labeles[n*5+1]->Caption)*0.004;
+	double n2=StrToInt(Form2->Labeles[n*5+2]->Caption)*0.009;
+	double n3=StrToInt(Form2->Labeles[n*5+3]->Caption)*0.004;
+	Form2->Labeles[n*5+4]->Caption=ceil(n1+n2+n3);
    //	Form2->Labeles[n*5+4]->Caption=Edit;
 
 	Form2->Buttons[n]=new TButton(Form2);
@@ -246,7 +248,18 @@ if(Form3->PanelsHave[i]->Tag==num)
 	{
 		Form3->IsLeft[j][num]=false;
 		Form3->IsRight[j][num]=false;
-    }
+	}
+
+for(int i=0;i<Form3->MealsA;i++)
+if(Form3->IsDelMeal[i]==false)
+{
+	Form3->Labeles[i*5+1]->Caption="0";
+	Form3->Labeles[i*5+2]->Caption="0";
+	Form3->Labeles[i*5+3]->Caption="0";
+	Form3->Labeles[i*5+4]->Caption="0";
+	Form3->PropClickNum(i);
+	Form6->Close();
+}
 
 Close();
 }

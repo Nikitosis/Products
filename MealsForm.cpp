@@ -74,7 +74,7 @@ if(Form3->PropNum==99)
 		Form3->Labeles[n*5+1]->Height=20;
 		Form3->Labeles[n*5+1]->Width=70;
 		Form3->Labeles[n*5+1]->Font->Size=10;
-		Form3->Labeles[n*5+1]->Caption=Label5->Caption;
+		Form3->Labeles[n*5+1]->Caption=Label9->Caption;
 
 		Form3->Labeles[n*5+2]=new TLabel(Form3);
 		Form3->Labeles[n*5+2]->Parent=Form3->Panels[n];
@@ -85,7 +85,7 @@ if(Form3->PropNum==99)
 		Form3->Labeles[n*5+2]->Height=20;
 		Form3->Labeles[n*5+2]->Width=70;
 		Form3->Labeles[n*5+2]->Font->Size=10;
-		Form3->Labeles[n*5+2]->Caption=Label6->Caption;
+		Form3->Labeles[n*5+2]->Caption=Label10->Caption;
 
 		Form3->Labeles[n*5+3]=new TLabel(Form3);
 		Form3->Labeles[n*5+3]->Parent=Form3->Panels[n];
@@ -96,7 +96,7 @@ if(Form3->PropNum==99)
 		Form3->Labeles[n*5+3]->Height=20;
 		Form3->Labeles[n*5+3]->Width=70;
 		Form3->Labeles[n*5+3]->Font->Size=10;
-		Form3->Labeles[n*5+3]->Caption=Label7->Caption;
+		Form3->Labeles[n*5+3]->Caption=Label11->Caption;
 
 		Form3->Labeles[n*5+4]=new TLabel(Form3);
 		Form3->Labeles[n*5+4]->Parent=Form3->Panels[n];
@@ -107,7 +107,7 @@ if(Form3->PropNum==99)
 		Form3->Labeles[n*5+4]->Height=20;
 		Form3->Labeles[n*5+4]->Width=70;
 		Form3->Labeles[n*5+4]->Font->Size=10;
-		Form3->Labeles[n*5+4]->Caption=Label8->Caption;
+		Form3->Labeles[n*5+4]->Caption=Label12->Caption;
 
 		Form3->Buttons[n]=new TButton(Form3);
 		Form3->Buttons[n]->Parent=Form3->Panels[n];
@@ -213,10 +213,10 @@ if(Form3->PropNum==99)
 		Form3->Memos[n]->Text=Memo1->Text;
 		Form3->Images[n]->Picture=Image1->Picture;
 		Form3->Labeles[n*5]->Caption=Edit1->Text;
-		Form3->Labeles[n*5+1]->Caption=Label5->Caption;
-		Form3->Labeles[n*5+2]->Caption=Label6->Caption;
-		Form3->Labeles[n*5+3]->Caption=Label7->Caption;
-		Form3->Labeles[n*5+4]->Caption=Label8->Caption;
+		Form3->Labeles[n*5+1]->Caption=Label9->Caption;
+		Form3->Labeles[n*5+2]->Caption=Label10->Caption;
+		Form3->Labeles[n*5+3]->Caption=Label11->Caption;
+		Form3->Labeles[n*5+4]->Caption=Label12->Caption;
 		for(int i=0;i<Form2->ProductsA;i++)
 			Form3->Weights[n][i]=Form3->EditsHave[i]->Text;
     }

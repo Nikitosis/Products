@@ -126,7 +126,8 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 	if(OpenDialog1->Execute())
 	{
 	ifstream fin(OpenDialog1->FileName.c_str());
-		for(int i=0;i<Form2->ProductsA;i++)
+
+		for(int i=0;i<Form2->ProductsA;i++)                      //открываем Products
 		if(Form2->IsDel[i]==false)
 		 Form2->Panels[i]->Free();
 
@@ -184,7 +185,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 			fin>>s;
             Form3->Weights[i][j]=s.c_str();
 		}
-		/////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////     открываем Meals
 	    n;
 		fin>>n;
 		Form5->Button4->Visible=false;

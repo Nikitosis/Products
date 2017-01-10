@@ -27,6 +27,8 @@ __published:	// IDE-managed Components
 	TMenuItem *Load1;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall PropClick(TObject *Sender);
+	void __fastcall Save1Click(TObject *Sender);
+	void __fastcall Load1Click(TObject *Sender);
 private:	// User declarations
 public:	 int ProductsA;
 TPanel *Panels[100];

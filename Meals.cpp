@@ -2,6 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
+#include <math.h>
 
 #include "Products.h"
 #include "Main.h"
@@ -52,14 +53,17 @@ void AddLeft(int num) {
 	Form3->LabelesHave[n*4+1]=new TLabel(Form6);                     //лейблы хранят белки,жири,калор.
 	Form3->LabelesHave[n*4+1]->Parent=Form3->PanelsHave[n];
 	Form3->LabelesHave[n*4+1]->Caption=Form2->Labeles[num*5+1]->Caption;
+	Form3->LabelesHave[n*4+1]->Visible=false;
 
 	Form3->LabelesHave[n*4+2]=new TLabel(Form6);
 	Form3->LabelesHave[n*4+2]->Parent=Form3->PanelsHave[n];
 	Form3->LabelesHave[n*4+2]->Caption=Form2->Labeles[num*5+2]->Caption;
+	Form3->LabelesHave[n*4+2]->Visible=false;
 
 	Form3->LabelesHave[n*4+3]=new TLabel(Form6);
 	Form3->LabelesHave[n*4+3]->Parent=Form3->PanelsHave[n];
 	Form3->LabelesHave[n*4+3]->Caption=Form2->Labeles[num*5+3]->Caption;
+    Form3->LabelesHave[n*4+3]->Visible=false;
 
 	Form3->ImagesHave[n] = new TImage(Form6);
 	Form3->ImagesHave[n]->Parent = Form3->PanelsHave[n];
@@ -91,11 +95,16 @@ void AddLeft(int num) {
 }
 
 // ---------------------------------------------------------------------------
-void __fastcall TForm3::Button1Click(TObject *Sender) {
+void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Label5->Caption="0";        //обнул. витамины
 	Form6->Label6->Caption="0";
 	Form6->Label7->Caption="0";
 	Form6->Label8->Caption="0";
+	Form6->Label9->Caption="0";
+	Form6->Label10->Caption="0";
+	Form6->Label11->Caption="0";
+	Form6->Label12->Caption="0";
+
 	Form6->Edit1->Text="";
 	Form6->Memo1->Lines->Text="";
 	Form6->Button4->Visible=false;       //кнопка удалить
@@ -136,10 +145,22 @@ void __fastcall TForm3::AddClickF(int num)
 	if(IsLeft[i][num]==true)
 	{
         int amount=StrToInt(Form3->EditsHave[num]->Text);
-		Form6->Label5->Caption=StrToInt(Form6->Label5->Caption)+StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount;          //пишем,сколько витаминов
-		Form6->Label6->Caption=StrToInt(Form6->Label6->Caption)+StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount;
-		Form6->Label7->Caption=StrToInt(Form6->Label7->Caption)+StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
-		Form6->Label8->Caption=StrToInt(Form6->Label8->Caption)+StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount+StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount+StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
+		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)+StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);          //пишем,сколько витаминов
+		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)+StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
+		Form6->Label7->Caption=FloatToStr(StrToFloat(Form6->Label7->Caption)+StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
+		Form6->Label8->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)*4+StrToFloat(Form6->Label6->Caption)*9+StrToFloat(Form6->Label7->Caption)*4);
+
+		int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
 
 		ProductsUse++;
 		ProductsHave--;
@@ -154,10 +175,22 @@ void __fastcall TForm3::AddClickF(int num)
 	else
 	{
 		int amount=StrToInt(Form3->EditsHave[num]->Text);
-		Form6->Label5->Caption=StrToInt(Form6->Label5->Caption)-StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount;          //пишем,сколько витаминов
-		Form6->Label6->Caption=StrToInt(Form6->Label6->Caption)-StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount;
-		Form6->Label7->Caption=StrToInt(Form6->Label7->Caption)-StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
-		Form6->Label8->Caption=StrToInt(Form6->Label8->Caption)-StrToInt(Form2->Labeles[prodnum*5+1]->Caption)*amount-StrToInt(Form2->Labeles[prodnum*5+2]->Caption)*amount-StrToInt(Form2->Labeles[prodnum*5+3]->Caption)*amount;
+		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);          //пишем,сколько витаминов
+		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
+		Form6->Label7->Caption=FloatToStr(StrToFloat(Form6->Label7->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
+		Form6->Label8->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)*4+StrToFloat(Form6->Label6->Caption)*9+StrToFloat(Form6->Label7->Caption)*4);
+
+		int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
 
 		ProductsUse--;
 		ProductsHave++;
@@ -182,10 +215,16 @@ AddClickF(num);
 //------------------------------------------------------------------------------
 void __fastcall TForm3::PropClick(TObject *Sender)
 {
-  Form6->Button4->Visible=true;    //кнопка удалить
-
   TButton *btn = dynamic_cast<TButton *>(Sender);
   int num=btn->Tag;
+  PropClickNum(num);
+
+}
+//--------------------------------------------------------------------------------------
+void __fastcall TForm3::PropClickNum(int num)
+{
+  Form6->Button4->Visible=true;    //кнопка удалить
+
 
   memset(LeftWas,false,100*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
   memset(RightWas,false,100*sizeof(bool));
@@ -228,7 +267,19 @@ void __fastcall TForm3::PropClick(TObject *Sender)
 	Form6->Label6->Caption="0";
 	Form6->Label7->Caption="0";
 	Form6->Label8->Caption="0";
+	Form6->Label9->Caption="0";
+	Form6->Label10->Caption="0";
+	Form6->Label11->Caption="0";
+	Form6->Label12->Caption="0";
+
 	n=0;
+
+	while(Form2->IsDel[n]==false)
+	{
+        n++;
+	}
+	Form3->EditsHave[n]=Form3->EditsHave[n];
+
 	for(int i=0;i<Form2->ProductsA;i++)
 	if(Form2->IsDel[i]==false)
 	{
@@ -247,7 +298,7 @@ TEdit *btn = dynamic_cast<TEdit *>(Sender);
 bool flag=btn->Text.IsEmpty();
 
 int num=PropNum;
-int sum1=0,sum2=0,sum3=0;
+double sum1=0,sum2=0,sum3=0;
 if(btn->Parent->Parent==Form6->ScrollBox2)
 {
 	int n=0;
@@ -269,12 +320,40 @@ if(btn->Parent->Parent==Form6->ScrollBox2)
 		}
 	}
 }
-Form6->Label5->Caption=sum1;
-Form6->Label6->Caption=sum2;
-Form6->Label7->Caption=sum3;
-Form6->Label8->Caption=sum1+sum2+sum3;
+Form6->Label5->Caption=FloatToStr(sum1);
+Form6->Label6->Caption=FloatToStr(sum2);
+Form6->Label7->Caption=FloatToStr(sum3);
+Form6->Label8->Caption=FloatToStr(sum1*4+sum2*9+sum3*4);
 
+int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
+
+Form3->Labeles[num*5+1]->Caption=Form6->Label9->Caption;
+Form3->Labeles[num*5+2]->Caption=Form6->Label10->Caption;
+Form3->Labeles[num*5+3]->Caption=Form6->Label11->Caption;
+Form3->Labeles[num*5+4]->Caption=Form6->Label12->Caption;
 }
 
 //------------------------------------------------------------------------------
+
+void __fastcall TForm3::Save1Click(TObject *Sender)
+{
+Form1->Save1Click(this);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Load1Click(TObject *Sender)
+{
+Form1->Load1Click(this);
+}
+//---------------------------------------------------------------------------
 

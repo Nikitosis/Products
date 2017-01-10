@@ -27,6 +27,8 @@ __published:	// IDE-managed Components
 	TMenuItem *Save1;
 	TMenuItem *Load1;
 	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall Save1Click(TObject *Sender);
+	void __fastcall Load1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 TPanel *Panels[100];                   //для каждой Meals
@@ -52,6 +54,7 @@ AnsiString Weights[100][100];
 	void __fastcall TForm3::AddClick(TObject *Sender);
 	void __fastcall TForm3::AddClickF(int num);
 	void __fastcall TForm3::PropClick(TObject *Sender);
+		void __fastcall TForm3::PropClickNum(int num);
 	void __fastcall TForm3::EditsHaveChange(TObject *Sender);
 };
 //---------------------------------------------------------------------------
