@@ -10,6 +10,7 @@
 #include "MealsForm.h"
 #include "Meals.h"
 #include <math.h>
+#include "Math.hpp"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -31,8 +32,59 @@ if (OpenPictureDialog1->Execute())
 void __fastcall TForm5::Button2Click(TObject *Sender)
 {
 int n;
+
+///////////
+while(Edit2->Text[1]=='0')           //удаляем первые нули в массах
+{
+	if(Edit2->Text.Length()>1)
+	{
+		if(Edit2->Text[2]!=',')
+			Edit2->Text=Edit2->Text.Delete(1,1);
+		   else
+		   break;
+	}
+	else break;
+}
+if(Edit2->Text[Edit2->Text.Length()]==',')                 //удаляем последнюю кому
+	Edit2->Text=Edit2->Text.Delete(Edit2->Text.Length(),1);
+
+while(Edit3->Text[1]=='0')
+{
+	if(Edit3->Text.Length()>1)
+	{
+		if(Edit3->Text[2]!=',')
+			Edit3->Text=Edit3->Text.Delete(1,1);
+		   else
+		   break;
+	}
+	else break;
+}
+if(Edit3->Text[Edit3->Text.Length()]==',')
+	Edit3->Text=Edit3->Text.Delete(Edit3->Text.Length(),1);
+
+while(Edit4->Text[1]=='0')
+{
+	if(Edit4->Text.Length()>1)
+	{
+		if(Edit4->Text[2]!=',')
+			Edit4->Text=Edit4->Text.Delete(1,1);
+		   else
+		   break;
+	}
+	else break;
+}
+if(Edit4->Text[Edit4->Text.Length()]==',')
+	Edit4->Text=Edit4->Text.Delete(Edit4->Text.Length(),1);
+////////////
+
+
+double sum;
+sum=Edit2->Text.ToDouble()+Edit3->Text.ToDouble()+Edit4->Text.ToDouble();
+if(sum==0)           //чтоб не было деления на ноль
+	sum=1;
 if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кнопку добавить)
 {
+
 	Form2->ProductsA++;
 	n=Form2->ProductsA-1;
 	int k;
@@ -87,7 +139,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+1]->Height=20;
 	Form2->Labeles[n*5+1]->Width=50;
 	Form2->Labeles[n*5+1]->Font->Size=10;
-	Form2->Labeles[n*5+1]->Caption=Edit2->Text;
+	Form2->Labeles[n*5+1]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
 
 	Form2->Labeles[n*5+2]=new TLabel(Form2);
 	Form2->Labeles[n*5+2]->Parent=Form2->Panels[n];
@@ -98,7 +150,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+2]->Height=20;
 	Form2->Labeles[n*5+2]->Width=50;
 	Form2->Labeles[n*5+2]->Font->Size=10;
-	Form2->Labeles[n*5+2]->Caption=Edit3->Text;
+	Form2->Labeles[n*5+2]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
 
 	Form2->Labeles[n*5+3]=new TLabel(Form2);
 	Form2->Labeles[n*5+3]->Parent=Form2->Panels[n];
@@ -109,7 +161,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+3]->Height=20;
 	Form2->Labeles[n*5+3]->Width=50;
 	Form2->Labeles[n*5+3]->Font->Size=10;
-	Form2->Labeles[n*5+3]->Caption=Edit4->Text;
+	Form2->Labeles[n*5+3]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit4->Text)/sum*1000,0));
 
 	Form2->Labeles[n*5+4]=new TLabel(Form2);
 	Form2->Labeles[n*5+4]->Parent=Form2->Panels[n];
@@ -123,7 +175,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	double n1=StrToInt(Form2->Labeles[n*5+1]->Caption)*0.004;
 	double n2=StrToInt(Form2->Labeles[n*5+2]->Caption)*0.009;
 	double n3=StrToInt(Form2->Labeles[n*5+3]->Caption)*0.004;
-	Form2->Labeles[n*5+4]->Caption=ceil(n1+n2+n3);
+	Form2->Labeles[n*5+4]->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
    //	Form2->Labeles[n*5+4]->Caption=Edit;
 
 	Form2->Buttons[n]=new TButton(Form2);
@@ -203,16 +255,29 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	line6->Picture->Bitmap->Height=Form2->PanelH-1;
 	line6->Picture->Bitmap->Canvas->Brush->Color=clBlack;
 	line6->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
+	Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем
+	Masses[n*3+1]=Edit3->Text;
+   	Masses[n*3+2]=Edit4->Text;
 }
 	else
 	{
+
         n=Form2->PropNum;
 		Form2->Images[n]->Picture=Image1->Picture;
 		Form2->Memos[n]->Lines->Text=Edit5->Lines->Text;
 		Form2->Labeles[n*5]->Caption=Edit1->Text;
-		Form2->Labeles[n*5+1]->Caption=Edit2->Text;
-		Form2->Labeles[n*5+2]->Caption=Edit3->Text;
-		Form2->Labeles[n*5+3]->Caption=Edit4->Text;
+
+		Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем
+		Masses[n*3+1]=Edit3->Text;
+		Masses[n*3+2]=Edit4->Text;
+
+		Form2->Labeles[n*5+1]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
+		Form2->Labeles[n*5+2]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
+		Form2->Labeles[n*5+3]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit4->Text)/sum*1000,0));
+		double n1=StrToInt(Form2->Labeles[n*5+1]->Caption)*0.004;
+		double n2=StrToInt(Form2->Labeles[n*5+2]->Caption)*0.009;
+		double n3=StrToInt(Form2->Labeles[n*5+3]->Caption)*0.004;
+		Form2->Labeles[n*5+4]->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
     }
 
 Close();
@@ -262,6 +327,29 @@ if(Form3->IsDelMeal[i]==false)
 }
 
 Close();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm5::Edit2Change(TObject *Sender)
+{
+TEdit *Edit = dynamic_cast<TEdit *>(Sender);
+bool flag=false;
+for(int i=1;i<=Edit->Text.Length();i++)
+{
+	if(Edit->Text[i]==',' && flag)        //проверяем на наличие второй точки
+	{
+		Edit->Text=Edit->Text.Delete(i,1);
+		continue;
+	}
+	if(Edit->Text[i]==',')
+	{
+		flag=true;
+	}
+
+	if(!((Edit->Text[i]>='0' && Edit->Text[i]<='9') || Edit->Text[i]==','))
+	Edit->Text=Edit->Text.Delete(i,1);
+}
 }
 //---------------------------------------------------------------------------
 

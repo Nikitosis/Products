@@ -27,7 +27,7 @@ __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 }
 
 // ---------------------------------------------------------------------------
-void AddLeft(int num) {
+void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->ProductsHave++;
 	int n = Form3->ProductsHave+Form3->ProductsUse - 1;
 	int k = Form6->ScrollBox1->VertScrollBar->Position;
@@ -80,6 +80,7 @@ void AddLeft(int num) {
 	Form3->EditsHave[n]->Width = w;
 	Form3->EditsHave[n]->NumbersOnly=true;
 	Form3->EditsHave[n]->Text="0";
+	Form3->EditsHave[n]->MaxLength=6;
 	Form3->EditsHave[n]->OnChange=Form3->EditsHaveChange;
 
 	Form3->ButtonsHave[n] = new TButton(Form6);
@@ -111,16 +112,19 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 
 	for (int i = 0; i < ProductsHave+ProductsUse; i++)
 		PanelsHave[i]->Free();
+
 	ProductsHave = 0;
 	ProductsUse = 0;
 	PropNum=99;             //99-номер,если нажали на добавить
 	Form6->Show();
+
 	int m = Form2->ProductsA;
 	for(int i=0;i<Form2->ProductsA;i++)
 	{
 		IsLeft[99][i]=false;
 		IsRight[99][i]=false;
 	}
+
 	int n=0;
 	for (int i = 0; i < Form2->ProductsA; i++)
 		if (Form2->IsDel[i] == false) {
@@ -252,7 +256,8 @@ void __fastcall TForm3::PropClickNum(int num)
 
 	int n=0;
 	for (int i = 0; i < Form2->ProductsA; i++)
-		if (Form2->IsDel[i] == false) {
+		if (Form2->IsDel[i] == false)
+		{
 			AddLeft(i);
 			if(IsRight[num][n])
 			{
@@ -271,6 +276,10 @@ void __fastcall TForm3::PropClickNum(int num)
 	Form6->Label10->Caption="0";
 	Form6->Label11->Caption="0";
 	Form6->Label12->Caption="0";
+
+	for(int i=0;i<Form2->ProductsA;i++)
+		if(Form2->IsDel[i]==false)
+			EditsHave[i]->Text=Weights[num][i];
 
 	n=0;
 
