@@ -235,6 +235,7 @@ void __fastcall TForm3::PropClickNum(int num)
   memset(RightWas,false,100*sizeof(bool));
 
   Form6->Edit1->Text=Form3->Labeles[num*5]->Caption;
+  Form6->Image1->Picture=Images[num]->Picture;
   Form7->Memo1->Lines->Text=Form3->Memos[num]->Lines->Text;
 
   for(int i=0;i<ProductsUse+ProductsHave;i++)

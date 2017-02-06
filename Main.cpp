@@ -49,6 +49,8 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 	  if(SaveDialog1->Execute())
 	  {
 		   ofstream fout(SaveDialog1->FileName.c_str());
+
+		   Graphics::TBitmap*   gBitmap = new Graphics::TBitmap;
 		   fout<<Form3->MealsA-Form3->MealsDel<<endl;
 		   for(int i=0;i<Form3->MealsA;i++)
 		   if(Form3->IsDelMeal[i]==false)
@@ -72,6 +74,18 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 
 			 s=Form3->Memos[i]->Lines->Text.c_str();
 			 fout<<s.c_str()<<endl;
+
+			  gBitmap->Assign(Form3->Images[i]->Picture->Graphic);  	//сохраняем картинки
+				   int w,h;
+				   w=Form3->Images[i]->Picture->Width;
+				   h=Form3->Images[i]->Picture->Height;
+				   fout<<w<<" "<<h<<endl;
+				   for(int x=0;x<w;x++)
+					for(int y=0;y<h;y++)
+						{
+							s=ColorToString(gBitmap->Canvas->Pixels[x][y]);
+							fout<<s.c_str()<<endl;
+						}
 		   }
 
 		   for(int i=0;i<99;i++)
@@ -116,6 +130,18 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 				   s=Form2->Labeles[i*5+4]->Caption.c_str();
 				   fout<<s.c_str()<<endl;
 
+				   gBitmap->Assign(Form2->Images[i]->Picture->Graphic);  	//сохраняем картинки
+				   int w,h;
+				   w=Form2->Images[i]->Picture->Width;
+				   h=Form2->Images[i]->Picture->Height;
+				   fout<<w<<" "<<h<<endl;
+				   for(int x=0;x<w;x++)
+					for(int y=0;y<h;y++)
+						{
+							s=ColorToString(gBitmap->Canvas->Pixels[x][y]);
+							fout<<s.c_str()<<endl;
+						}
+
 			   }
 
 	  }
@@ -138,7 +164,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 		 memset(Form2->IsDel,false,100*sizeof(bool));
 		 memset(Form3->IsDelMeal,false,100*sizeof(bool));
-
+		 Graphics::TBitmap*   gBitmap = new Graphics::TBitmap;
 
 		int n;
 		fin>>n;
@@ -170,6 +196,20 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 		  getline(fin,s);
 		  Form3->Memos[i]->Lines->Text=s.c_str();
+
+		  gBitmap->Assign(Form3->Images[i]->Picture->Graphic);          //загружаем картинки
+		  int w,h;
+		  fin>>w>>h;
+		  gBitmap->Width=w;
+		  gBitmap->Height=h;
+		  getline(fin,s);
+		  for(int x=0;x<w;x++)
+			for(int y=0;y<h;y++)
+				{
+					getline(fin,s);
+					gBitmap->Canvas->Pixels[x][y]=StringToColor(s.c_str());
+				}
+		  Form3->Images[i]->Picture->Graphic=gBitmap;
 		}
 
 	  for(int i=0;i<99;i++)
@@ -209,7 +249,20 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  getline(fin,s);
 		  Form2->Labeles[i*5+4]->Caption=s.c_str();
 
-        }
+		  gBitmap->Assign(Form2->Images[i]->Picture->Graphic);          //загружаем картинки
+		  int w,h;
+		  fin>>w>>h;
+		  gBitmap->Width=w;
+		  gBitmap->Height=h;
+		  getline(fin,s);
+		  for(int x=0;x<w;x++)
+			for(int y=0;y<h;y++)
+				{
+					getline(fin,s);
+					gBitmap->Canvas->Pixels[x][y]=StringToColor(s.c_str());
+				}
+		  Form2->Images[i]->Picture->Graphic=gBitmap;
+		}
 
     }
 }
