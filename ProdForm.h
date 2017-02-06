@@ -29,8 +29,6 @@ __published:	// IDE-managed Components
 	TOpenPictureDialog *OpenPictureDialog1;
 	TButton *Button1;
 	TImage *Image2;
-	TMemo *Edit5;
-	TLabel *Label2;
 	TButton *Button4;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);

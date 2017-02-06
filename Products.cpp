@@ -13,6 +13,7 @@
 #pragma resource "*.dfm"
 TForm2 *Form2;
 
+
 const int PanelH=100;
 
 //---------------------------------------------------------------------------
@@ -33,7 +34,6 @@ void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на
 	Form5->Edit2->Text=Labeles[(num)*5+1]->Caption;
 	Form5->Edit3->Text=Labeles[(num)*5+2]->Caption;
 	Form5->Edit4->Text=Labeles[(num)*5+3]->Caption;
-	Form5->Edit5->Text=Memos[num]->Text;
 	PropNum=num;
 	Form5->Button4->Visible=true;
 
@@ -48,7 +48,6 @@ void __fastcall TForm2::Button1Click(TObject *Sender)
 	Form5->Edit2->Text="0";
 	Form5->Edit3->Text="0";
 	Form5->Edit4->Text="0";
-	Form5->Edit5->Text="";
 	Form5->Image1->Picture=Form5->Image2->Picture;
 	Form5->Button4->Visible=false;
 	Form5->Show();

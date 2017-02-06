@@ -15,7 +15,7 @@ object Form3: TForm3
   PixelsPerInch = 96
   TextHeight = 13
   object Label6: TLabel
-    Left = 937
+    Left = 945
     Top = 18
     Width = 101
     Height = 24
@@ -28,7 +28,7 @@ object Form3: TForm3
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 806
+    Left = 812
     Top = 18
     Width = 119
     Height = 24
@@ -41,7 +41,7 @@ object Form3: TForm3
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 691
+    Left = 699
     Top = 18
     Width = 85
     Height = 24
@@ -54,7 +54,7 @@ object Form3: TForm3
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 566
+    Left = 582
     Top = 18
     Width = 89
     Height = 24
@@ -66,21 +66,8 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
   end
-  object Label3: TLabel
-    Left = 320
-    Top = 18
-    Width = 89
-    Height = 24
-    Caption = #1054#1087#1080#1089#1072#1085#1080#1077
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -20
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object Label2: TLabel
-    Left = 165
+    Left = 429
     Top = 18
     Width = 125
     Height = 24
@@ -93,7 +80,7 @@ object Form3: TForm3
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 40
+    Left = 144
     Top = 18
     Width = 88
     Height = 24

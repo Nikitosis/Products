@@ -103,47 +103,37 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	Form2->Images[n]=new TImage(Form2);
 	Form2->Images[n]->Parent=Form2->Panels[n];
-	Form2->Images[n]->Left=150;
+	Form2->Images[n]->Left=300;
 	Form2->Images[n]->Height=Form2->PanelH-1;
 	Form2->Images[n]->Width=125;
 	Form2->Images[n]->Picture=Image1->Picture;
 	Form2->Images[n]->Stretch=true;
 
-
-	Form2->Memos[n]=new TMemo(Form2);
-	Form2->Memos[n]->Parent=Form2->Panels[n];
-	Form2->Memos[n]->Left=277;
-	Form2->Memos[n]->Height=Form2->PanelH-1;
-	Form2->Memos[n]->Width=150;
-	Form2->Memos[n]->Lines->Text=Edit5->Lines->Text;
-	Form2->Memos[n]->ReadOnly=true;
-	Form2->Memos[n]->ScrollBars=ssBoth;
-
 	Form2->Labeles[n*5]=new TLabel(Form2);
 	Form2->Labeles[n*5]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5]->Top=40;
+	Form2->Labeles[n*5]->Top=20;
 	Form2->Labeles[n*5]->Left=10;
 	Form2->Labeles[n*5]->WordWrap=true;
 	Form2->Labeles[n*5]->AutoSize=false;
-	Form2->Labeles[n*5]->Height=50;
-	Form2->Labeles[n*5]->Width=130;
+	Form2->Labeles[n*5]->Height=80;
+	Form2->Labeles[n*5]->Width=270;
 	Form2->Labeles[n*5]->Font->Size=14;
 	Form2->Labeles[n*5]->Caption=Edit1->Text;
 
 	Form2->Labeles[n*5+1]=new TLabel(Form2);
 	Form2->Labeles[n*5+1]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+1]->Top=40;
+	Form2->Labeles[n*5+1]->Top=20;
 	Form2->Labeles[n*5+1]->Left=450;
 	Form2->Labeles[n*5+1]->WordWrap=true;
 	Form2->Labeles[n*5+1]->AutoSize=false;
-	Form2->Labeles[n*5+1]->Height=20;
+	Form2->Labeles[n*5+1]->Height=40;
 	Form2->Labeles[n*5+1]->Width=50;
 	Form2->Labeles[n*5+1]->Font->Size=10;
 	Form2->Labeles[n*5+1]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
 
 	Form2->Labeles[n*5+2]=new TLabel(Form2);
 	Form2->Labeles[n*5+2]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+2]->Top=40;
+	Form2->Labeles[n*5+2]->Top=20;
 	Form2->Labeles[n*5+2]->Left=573;
 	Form2->Labeles[n*5+2]->WordWrap=true;
 	Form2->Labeles[n*5+2]->AutoSize=false;
@@ -154,7 +144,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	Form2->Labeles[n*5+3]=new TLabel(Form2);
 	Form2->Labeles[n*5+3]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+3]->Top=40;
+	Form2->Labeles[n*5+3]->Top=20;
 	Form2->Labeles[n*5+3]->Left=696;
 	Form2->Labeles[n*5+3]->WordWrap=true;
 	Form2->Labeles[n*5+3]->AutoSize=false;
@@ -165,7 +155,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	Form2->Labeles[n*5+4]=new TLabel(Form2);
 	Form2->Labeles[n*5+4]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+4]->Top=40;
+	Form2->Labeles[n*5+4]->Top=20;
 	Form2->Labeles[n*5+4]->Left=819;
 	Form2->Labeles[n*5+4]->WordWrap=true;
 	Form2->Labeles[n*5+4]->AutoSize=false;
@@ -188,23 +178,13 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	TImage *line=new TImage(Form2);               //рисуем линии
 	line->Parent=Form2->Panels[n];
-	line->Left=150;
+	line->Left=300;
 	line->Width=2;
 	line->Height=Form2->PanelH-1;
 	line->Picture->Bitmap->Width=2;
 	line->Picture->Bitmap->Height=Form2->PanelH-1;
 	line->Picture->Bitmap->Canvas->Brush->Color=clBlack;
 	line->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
-
-	TImage *line1=new TImage(Form2);
-	line1->Parent=Form2->Panels[n];
-	line1->Left=275;
-	line1->Width=2;
-	line1->Height=Form2->PanelH-1;
-	line1->Picture->Bitmap->Width=2;
-	line1->Picture->Bitmap->Height=Form2->PanelH-1;
-	line1->Picture->Bitmap->Canvas->Brush->Color=clBlack;
-	line1->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 	TImage *line2=new TImage(Form2);
 	line2->Parent=Form2->Panels[n];
@@ -264,7 +244,6 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
         n=Form2->PropNum;
 		Form2->Images[n]->Picture=Image1->Picture;
-		Form2->Memos[n]->Lines->Text=Edit5->Lines->Text;
 		Form2->Labeles[n*5]->Caption=Edit1->Text;
 
 		Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем

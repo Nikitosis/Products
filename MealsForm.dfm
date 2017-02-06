@@ -628,11 +628,11 @@ object Form6: TForm6
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 264
-    Top = 88
-    Width = 96
+    Left = 281
+    Top = 75
+    Width = 168
     Height = 24
-    Caption = #1054#1087#1080#1089#1072#1085#1080#1077':'
+    Caption = #1054#1087#1080#1089#1072#1085#1080#1077'/'#1088#1077#1094#1077#1087#1090':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -667,92 +667,140 @@ object Form6: TForm6
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 527
-    Top = 223
+    Left = 510
+    Top = 271
     Width = 6
     Height = 13
     Caption = '0'
     Visible = False
   end
   object Label6: TLabel
-    Left = 583
-    Top = 223
+    Left = 566
+    Top = 271
     Width = 6
     Height = 13
     Caption = '0'
     Visible = False
   end
   object Label7: TLabel
-    Left = 633
-    Top = 223
+    Left = 616
+    Top = 271
     Width = 6
     Height = 13
     Caption = '0'
     Visible = False
   end
   object Label8: TLabel
-    Left = 679
-    Top = 223
+    Left = 662
+    Top = 271
     Width = 6
     Height = 13
     Caption = '0'
     Visible = False
   end
   object Label9: TLabel
-    Left = 185
-    Top = 268
-    Width = 6
-    Height = 13
+    Left = 365
+    Top = 130
+    Width = 10
+    Height = 23
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label10: TLabel
-    Left = 308
-    Top = 268
-    Width = 6
-    Height = 13
+    Left = 365
+    Top = 170
+    Width = 10
+    Height = 23
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label11: TLabel
-    Left = 441
-    Top = 268
-    Width = 6
-    Height = 13
+    Left = 365
+    Top = 211
+    Width = 10
+    Height = 23
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label12: TLabel
-    Left = 579
-    Top = 268
-    Width = 6
-    Height = 13
+    Left = 365
+    Top = 248
+    Width = 10
+    Height = 23
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label13: TLabel
-    Left = 139
-    Top = 268
-    Width = 40
-    Height = 13
+    Left = 279
+    Top = 130
+    Width = 68
+    Height = 23
     Caption = #1041#1077#1083#1082#1086#1074':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label14: TLabel
-    Left = 264
-    Top = 268
-    Width = 38
-    Height = 13
+    Left = 281
+    Top = 170
+    Width = 66
+    Height = 23
     Caption = #1046#1080#1088#1086#1074':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label15: TLabel
-    Left = 376
-    Top = 268
-    Width = 59
-    Height = 13
+    Left = 249
+    Top = 211
+    Width = 98
+    Height = 23
     Caption = #1059#1075#1083#1077#1074#1086#1076#1086#1074':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label16: TLabel
-    Left = 519
-    Top = 268
-    Width = 54
-    Height = 13
+    Left = 254
+    Top = 248
+    Width = 93
+    Height = 23
     Caption = #1050#1050#1072#1083#1086#1088#1080#1081':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Button1: TButton
     Left = 48
@@ -776,23 +824,13 @@ object Form6: TForm6
     ParentFont = False
     TabOrder = 1
   end
-  object Memo1: TMemo
-    Left = 400
-    Top = 96
-    Width = 281
-    Height = 121
-    Lines.Strings = (
-      'Memo1')
-    ScrollBars = ssBoth
-    TabOrder = 2
-  end
   object ScrollBox1: TScrollBox
     Left = 24
     Top = 336
     Width = 289
     Height = 209
     HorzScrollBar.Visible = False
-    TabOrder = 3
+    TabOrder = 2
   end
   object ScrollBox2: TScrollBox
     Left = 384
@@ -800,7 +838,7 @@ object Form6: TForm6
     Width = 289
     Height = 209
     HorzScrollBar.Visible = False
-    TabOrder = 4
+    TabOrder = 3
   end
   object Button2: TButton
     Left = 544
@@ -808,7 +846,7 @@ object Form6: TForm6
     Width = 129
     Height = 33
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
-    TabOrder = 5
+    TabOrder = 4
     OnClick = Button2Click
   end
   object Button3: TButton
@@ -817,7 +855,7 @@ object Form6: TForm6
     Width = 121
     Height = 33
     Caption = #1054#1090#1084#1077#1085#1072
-    TabOrder = 6
+    TabOrder = 5
     OnClick = Button3Click
   end
   object Button4: TButton
@@ -826,8 +864,16 @@ object Form6: TForm6
     Width = 113
     Height = 33
     Caption = #1059#1076#1072#1083#1080#1090#1100
-    TabOrder = 7
+    TabOrder = 6
     OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 455
+    Top = 67
+    Width = 230
+    Height = 49
+    TabOrder = 7
+    OnClick = Button5Click
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 32

@@ -6,6 +6,7 @@
 #include "Products.h"
 #include "MealsForm.h"
 #include "Meals.h"
+#include "Recipe.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -38,12 +39,11 @@ if(Form3->PropNum==99)
 
 		Form3->Images[n]=new TImage(Form3);
 		Form3->Images[n]->Parent=Form3->Panels[n];
-		Form3->Images[n]->Left=150;
+		Form3->Images[n]->Left=427;
 		Form3->Images[n]->Height=Form3->PanelH-1;
 		Form3->Images[n]->Width=125;
 		Form3->Images[n]->Stretch=true;
 		Form3->Images[n]->Picture=Image1->Picture;
-
 
 		Form3->Memos[n]=new TMemo(Form3);
 		Form3->Memos[n]->Parent=Form3->Panels[n];
@@ -52,16 +52,17 @@ if(Form3->PropNum==99)
 		Form3->Memos[n]->Width=273;
 		Form3->Memos[n]->ReadOnly=true;
 		Form3->Memos[n]->ScrollBars=ssBoth;
-		Form3->Memos[n]->Lines->Text=Form6->Memo1->Lines->Text;
+		Form3->Memos[n]->Lines->Text=Form7->Memo1->Lines->Text;
+		Form3->Memos[n]->Visible=false;
 
 		Form3->Labeles[n*5]=new TLabel(Form3);
 		Form3->Labeles[n*5]->Parent=Form3->Panels[n];
-		Form3->Labeles[n*5]->Top=40;
+		Form3->Labeles[n*5]->Top=20;
 		Form3->Labeles[n*5]->Left=10;
 		Form3->Labeles[n*5]->WordWrap=true;
 		Form3->Labeles[n*5]->AutoSize=false;
-		Form3->Labeles[n*5]->Height=50;
-		Form3->Labeles[n*5]->Width=130;
+		Form3->Labeles[n*5]->Height=70;
+		Form3->Labeles[n*5]->Width=400;
 		Form3->Labeles[n*5]->Font->Size=14;
 		Form3->Labeles[n*5]->Caption=Form6->Edit1->Text;
 
@@ -117,26 +118,6 @@ if(Form3->PropNum==99)
 		Form3->Buttons[n]->Tag=n;
 		Form3->Buttons[n]->OnClick=Form3->PropClick;
 
-
-		TImage *line=new TImage(Form3);               //рисуем линии
-		line->Parent=Form3->Panels[n];
-		line->Left=150;
-		line->Width=2;
-		line->Height=Form3->PanelH-1;
-		line->Picture->Bitmap->Width=2;
-		line->Picture->Bitmap->Height=Form3->PanelH-1;
-		line->Picture->Bitmap->Canvas->Brush->Color=clBlack;
-		line->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
-
-		TImage *line1=new TImage(Form3);
-		line1->Parent=Form3->Panels[n];
-		line1->Left=275;
-		line1->Width=2;
-		line1->Height=Form3->PanelH-1;
-		line1->Picture->Bitmap->Width=2;
-		line1->Picture->Bitmap->Height=Form3->PanelH-1;
-		line1->Picture->Bitmap->Canvas->Brush->Color=clBlack;
-		line1->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 		TImage *line2=new TImage(Form3);
 		line2->Parent=Form3->Panels[n];
@@ -210,7 +191,7 @@ if(Form3->PropNum==99)
 	else
 	{
 		int n=Form3->PropNum;
-		Form3->Memos[n]->Text=Memo1->Text;
+		Form3->Memos[n]->Text=Form7->Memo1->Text;
 		Form3->Images[n]->Picture=Image1->Picture;
 		Form3->Labeles[n*5]->Caption=Edit1->Text;
 		Form3->Labeles[n*5+1]->Caption=Label9->Caption;
@@ -268,6 +249,14 @@ void __fastcall TForm6::Button4Click(TObject *Sender)      //удаляем meals
 	Form3->MealsDel++;
 	Form3->IsDelMeal[Form3->PropNum]=true;
 	Form6->Close();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm6::Button5Click(TObject *Sender)
+{
+Form7->text=Form7->Memo1->Text;
+Form7->Show();
 }
 //---------------------------------------------------------------------------
 

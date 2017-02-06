@@ -5,6 +5,7 @@
 #include <fstream.h>
 #include <iostream.h>
 #include <string>
+#include <windows.h>
 
 #include "Main.h"
 #include "Products.h"
@@ -20,6 +21,8 @@ TForm1 *Form1;
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {
+setlocale(LC_ALL, "Russian");
+SetConsoleCP(1251);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
@@ -113,8 +116,6 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 				   s=Form2->Labeles[i*5+4]->Caption.c_str();
 				   fout<<s.c_str()<<endl;
 
-				   s=Form2->Memos[i]->Lines->Text.c_str();
-				   fout<<s.c_str()<<endl;
 			   }
 
 	  }
@@ -208,8 +209,6 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  getline(fin,s);
 		  Form2->Labeles[i*5+4]->Caption=s.c_str();
 
-		  getline(fin,s);
-		  Form2->Memos[i]->Lines->Text=s.c_str();
         }
 
     }

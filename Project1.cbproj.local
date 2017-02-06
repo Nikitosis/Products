@@ -11,6 +11,9 @@
     <Transaction>2016.12.26 16:18:24.565.cpp,C:\My documents\RAD Studio\Projects\Products\Unit6.cpp=C:\My documents\RAD Studio\Projects\Products\MealsForm.cpp</Transaction>
     <Transaction>2016.12.26 16:18:24.565.h,C:\My documents\RAD Studio\Projects\Products\Unit6.h=C:\My documents\RAD Studio\Projects\Products\MealsForm.h</Transaction>
     <Transaction>2016.12.26 16:18:24.565.dfm,C:\My documents\RAD Studio\Projects\Products\Unit6.dfm=C:\My documents\RAD Studio\Projects\Products\MealsForm.dfm</Transaction>
+    <Transaction>2017.02.06 15:08:07.673.cpp,C:\My documents\RAD Studio\Projects\Products\Unit7.cpp=C:\My documents\RAD Studio\Projects\Products\Recipe.cpp</Transaction>
+    <Transaction>2017.02.06 15:08:07.673.h,C:\My documents\RAD Studio\Projects\Products\Unit7.h=C:\My documents\RAD Studio\Projects\Products\Recipe.h</Transaction>
+    <Transaction>2017.02.06 15:08:07.673.dfm,C:\My documents\RAD Studio\Projects\Products\Unit7.dfm=C:\My documents\RAD Studio\Projects\Products\Recipe.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Main.cpp"/>
@@ -25,6 +28,10 @@
     <File Path="MealsForm.cpp"/>
     <File Path="MealsForm.dfm"/>
     <File Path="MealsForm.h"/>
+    <File Path="Recipe.cpp"/>
+    <File Path="Recipe.cpp"/>
+    <File Path="Recipe.dfm"/>
+    <File Path="Recipe.h"/>
     <File Path="ProdForm.cpp"/>
     <File Path="ProdForm.cpp"/>
     <File Path="ProdForm.dfm"/>

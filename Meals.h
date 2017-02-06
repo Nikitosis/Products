@@ -19,7 +19,6 @@ __published:	// IDE-managed Components
 	TLabel *Label7;
 	TLabel *Label5;
 	TLabel *Label4;
-	TLabel *Label3;
 	TLabel *Label2;
 	TLabel *Label1;
 	TMainMenu *MainMenu1;

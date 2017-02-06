@@ -20,7 +20,6 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TEdit *Edit1;
 	TLabel *Label2;
-	TMemo *Memo1;
 	TScrollBox *ScrollBox1;
 	TScrollBox *ScrollBox2;
 	TLabel *Label3;
@@ -41,10 +40,12 @@ __published:	// IDE-managed Components
 	TLabel *Label14;
 	TLabel *Label15;
 	TLabel *Label16;
+	TButton *Button5;
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
+	void __fastcall Button5Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm6(TComponent* Owner);

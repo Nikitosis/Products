@@ -9,6 +9,7 @@
 #include "Meals.h"
 #include "Recommend.h"
 #include "MealsForm.h"
+#include "Recipe.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -107,7 +108,7 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Label12->Caption="0";
 
 	Form6->Edit1->Text="";
-	Form6->Memo1->Lines->Text="";
+	Form7->Memo1->Lines->Text="";
 	Form6->Button4->Visible=false;       //кнопка удалить
 
 	for (int i = 0; i < ProductsHave+ProductsUse; i++)
@@ -234,7 +235,7 @@ void __fastcall TForm3::PropClickNum(int num)
   memset(RightWas,false,100*sizeof(bool));
 
   Form6->Edit1->Text=Form3->Labeles[num*5]->Caption;
-  Form6->Memo1->Lines->Text=Form3->Memos[num]->Lines->Text;
+  Form7->Memo1->Lines->Text=Form3->Memos[num]->Lines->Text;
 
   for(int i=0;i<ProductsUse+ProductsHave;i++)
   {

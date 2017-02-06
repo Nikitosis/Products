@@ -35,7 +35,6 @@ TPanel *Panels[100];
 int PanelH;	// User declarations
 TImage *Images[100];
 TLabel *Labeles[300];
-TMemo *Memos[100];
 TButton *Buttons[100];
 bool IsDel[100];
 int PropNum,ProductsDel;
