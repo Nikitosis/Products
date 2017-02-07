@@ -143,7 +143,7 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 						}
 
 			   }
-
+          gBitmap->Free();
 	  }
 }
 //---------------------------------------------------------------------------
@@ -165,6 +165,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		 memset(Form2->IsDel,false,100*sizeof(bool));
 		 memset(Form3->IsDelMeal,false,100*sizeof(bool));
 		 Graphics::TBitmap*   gBitmap = new Graphics::TBitmap;
+		 gBitmap->Transparent=false;
 
 		int n;
 		fin>>n;
@@ -196,8 +197,6 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 		  getline(fin,s);
 		  Form3->Memos[i]->Lines->Text=s.c_str();
-
-		  gBitmap->Assign(Form3->Images[i]->Picture->Graphic);          //загружаем картинки
 		  int w,h;
 		  fin>>w>>h;
 		  gBitmap->Width=w;
@@ -231,7 +230,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		fin>>n;
 		Form5->Button4->Visible=false;
 		getline(fin,s);
-		for(int i=0;i<n;i++)
+		for(int i=0;i<10;i++)
 		{
 		  Form5->Button2Click(this);
 		  getline(fin,s);
@@ -249,7 +248,6 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  getline(fin,s);
 		  Form2->Labeles[i*5+4]->Caption=s.c_str();
 
-		  gBitmap->Assign(Form2->Images[i]->Picture->Graphic);          //загружаем картинки
 		  int w,h;
 		  fin>>w>>h;
 		  gBitmap->Width=w;
@@ -260,11 +258,14 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 				{
 					getline(fin,s);
 					gBitmap->Canvas->Pixels[x][y]=StringToColor(s.c_str());
+					//gBitmap->Canvas->Pixels[x][y]=clRed;
+					//Form2->Label1->Font->Color=StringToColor("0x000605FB");
 				}
 		  Form2->Images[i]->Picture->Graphic=gBitmap;
+		  Form2->Image1->Picture->Graphic=gBitmap;
 		}
-
-    }
+	   gBitmap->Free();
+	}
 }
 //---------------------------------------------------------------------------
 

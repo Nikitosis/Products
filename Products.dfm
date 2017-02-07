@@ -23,7 +23,7 @@ object Form2: TForm2
     Height = 21
     Caption = #1053#1072#1079#1074#1072#1085#1080#1077
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clNone
     Font.Height = -17
     Font.Name = 'Tahoma'
     Font.Style = []
@@ -106,6 +106,12 @@ object Form2: TForm2
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+  end
+  object Image1: TImage
+    Left = 126
+    Top = 8
+    Width = 33
+    Height = 25
   end
   object Button1: TButton
     Tag = -1

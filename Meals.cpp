@@ -41,7 +41,7 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->PanelsHave[n]->Parent = Form6->ScrollBox1;
 	Form3->PanelsHave[n]->Top = Form3->PanelHaveH * (Form3->ProductsHave - 1);
 	Form3->PanelsHave[n]->Height = Form3->PanelHaveH;
-	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 4;
+	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 1;
 	Form3->PanelsHave[n]->Tag=num;    //сохраняем привязку к Products(num-номер продукта)
 
 	Form3->LabelesHave[n*4] = new TLabel(Form6);

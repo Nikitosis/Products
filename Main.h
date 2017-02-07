@@ -9,6 +9,7 @@
 #include <Forms.hpp>
 #include <Menus.hpp>
 #include <Dialogs.hpp>
+#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -22,6 +23,7 @@ __published:	// IDE-managed Components
 	TMenuItem *Load1;
 	TSaveDialog *SaveDialog1;
 	TOpenDialog *OpenDialog1;
+	TImage *Image9;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);

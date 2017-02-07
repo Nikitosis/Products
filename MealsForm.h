@@ -41,13 +41,23 @@ __published:	// IDE-managed Components
 	TLabel *Label15;
 	TLabel *Label16;
 	TButton *Button5;
+	TPanel *Panel1;
+	TPanel *Panel2;
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall Button5Click(TObject *Sender);
+	void __fastcall Panel1MouseEnter(TObject *Sender);
+	void __fastcall Panel2MouseEnter(TObject *Sender);
+	void __fastcall FormMouseEnter(TObject *Sender);
+	void __fastcall FormMouseWheelDown(TObject *Sender, TShiftState Shift, TPoint &MousePos,
+          bool &Handled);
+	void __fastcall FormMouseWheelUp(TObject *Sender, TShiftState Shift, TPoint &MousePos,
+          bool &Handled);
 private:	// User declarations
 public:		// User declarations
+bool onScroll1,onScroll2;
 	__fastcall TForm6(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

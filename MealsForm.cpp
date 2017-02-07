@@ -260,3 +260,54 @@ Form7->Show();
 }
 //---------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+void __fastcall TForm6::Panel1MouseEnter(TObject *Sender)
+{
+onScroll1=true;
+onScroll2=false;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::Panel2MouseEnter(TObject *Sender)
+{
+onScroll2=true;
+onScroll1=false;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::FormMouseEnter(TObject *Sender)
+{
+onScroll1=false;
+onScroll2=false;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm6::FormMouseWheelDown(TObject *Sender, TShiftState Shift, TPoint &MousePos,
+          bool &Handled)
+{
+if(onScroll1)
+{
+	ScrollBox1->VertScrollBar->Position+=10;
+}
+	else
+	ScrollBox2->VertScrollBar->Position+=10;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::FormMouseWheelUp(TObject *Sender, TShiftState Shift, TPoint &MousePos,
+          bool &Handled)
+{
+if(onScroll1)
+	ScrollBox1->VertScrollBar->Position-=10;
+	else
+	ScrollBox2->VertScrollBar->Position-=10;
+}
+//---------------------------------------------------------------------------
+
