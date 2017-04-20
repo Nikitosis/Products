@@ -29,7 +29,6 @@ __published:	// IDE-managed Components
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Save1Click(TObject *Sender);
 	void __fastcall Load1Click(TObject *Sender);
-	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);

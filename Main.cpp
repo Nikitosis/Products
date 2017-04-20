@@ -330,12 +330,4 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 
 
-void __fastcall TForm1::FormCreate(TObject *Sender)
-{
-Form2->Show();
-Form3->Show();
-memset(Form2->IsDel,false,100*sizeof(bool));
-memset(Form3->IsDelMeal,false,100*sizeof(bool));
-}
-//---------------------------------------------------------------------------
 

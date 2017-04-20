@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = #1052#1077#1085#1102
   ClientHeight = 500
   ClientWidth = 693
   Color = clBtnFace
@@ -12,7 +12,6 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Image9: TImage

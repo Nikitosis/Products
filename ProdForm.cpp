@@ -85,9 +85,15 @@ if(Edit4->Text[Edit4->Text.Length()]==',')
 
 
 double sum;
-sum=Edit2->Text.ToDouble()+Edit3->Text.ToDouble()+Edit4->Text.ToDouble();
-if(sum==0)           //чтоб не было деления на ноль
-	sum=1;
+//sum=Edit2->Text.ToDouble()+Edit3->Text.ToDouble()+Edit4->Text.ToDouble();
+//if(sum==0)           //чтоб не было деления на ноль
+ //	sum=1;
+sum=100;
+if(StrToFloat(Edit2->Text)+StrToFloat(Edit3->Text)+StrToFloat(Edit4->Text)>100)   //если сумма бжу > массы продукта
+{
+	ShowMessage("Максимальная сумма белков,жиров и углеводов-100г");
+	return;
+}
 if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кнопку добавить)
 {
 

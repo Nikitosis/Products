@@ -1,9 +1,9 @@
 object Form6: TForm6
   Left = 0
   Top = 0
-  Caption = 'Form6'
+  Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1073#1083#1102#1076
   ClientHeight = 620
-  ClientWidth = 693
+  ClientWidth = 719
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +11,7 @@ object Form6: TForm6
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnMouseEnter = FormMouseEnter
   OnMouseWheelDown = FormMouseWheelDown
   OnMouseWheelUp = FormMouseWheelUp
@@ -1408,9 +1409,9 @@ object Form6: TForm6
     Visible = False
   end
   object Panel2: TPanel
-    Left = 362
+    Left = 365
     Top = 333
-    Width = 323
+    Width = 335
     Height = 236
     Caption = 'Panel2'
     TabOrder = 9
@@ -1419,7 +1420,7 @@ object Form6: TForm6
   object Panel1: TPanel
     Left = 7
     Top = 333
-    Width = 321
+    Width = 330
     Height = 236
     Caption = 'Panel1'
     TabOrder = 8
@@ -1450,7 +1451,7 @@ object Form6: TForm6
   object ScrollBox1: TScrollBox
     Left = 24
     Top = 343
-    Width = 289
+    Width = 304
     Height = 209
     HorzScrollBar.Visible = False
     VertScrollBar.Increment = 18
@@ -1458,9 +1459,9 @@ object Form6: TForm6
     TabOrder = 2
   end
   object ScrollBox2: TScrollBox
-    Left = 379
+    Left = 384
     Top = 343
-    Width = 289
+    Width = 304
     Height = 209
     HorzScrollBar.Visible = False
     VertScrollBar.Tracking = True

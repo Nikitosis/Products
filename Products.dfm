@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   VertScrollBar.Tracking = True
-  Caption = 'Form2'
+  Caption = #1055#1088#1086#1076#1091#1082#1090#1099
   ClientHeight = 530
   ClientWidth = 1045
   Color = clBtnFace

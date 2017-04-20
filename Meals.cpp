@@ -46,10 +46,13 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 
 	Form3->LabelesHave[n*4] = new TLabel(Form6);
 	Form3->LabelesHave[n*4]->Parent = Form3->PanelsHave[n];
-	Form3->LabelesHave[n*4]->Top = 15;
+	Form3->LabelesHave[n*4]->Top = 5;
 	Form3->LabelesHave[n*4]->Left = 15;
 	Form3->LabelesHave[n*4]->Caption = Form2->Labeles[num * 5]->Caption;
 	Form3->LabelesHave[n*4]->Width = w;
+	Form3->LabelesHave[n*4]->Height = 20;
+	Form3->LabelesHave[n*4]->WordWrap = true;
+
 
 	Form3->LabelesHave[n*4+1]=new TLabel(Form6);                     //лейблы хранят белки,жири,калор.
 	Form3->LabelesHave[n*4+1]->Parent=Form3->PanelsHave[n];
@@ -64,11 +67,11 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->LabelesHave[n*4+3]=new TLabel(Form6);
 	Form3->LabelesHave[n*4+3]->Parent=Form3->PanelsHave[n];
 	Form3->LabelesHave[n*4+3]->Caption=Form2->Labeles[num*5+3]->Caption;
-    Form3->LabelesHave[n*4+3]->Visible=false;
+	Form3->LabelesHave[n*4+3]->Visible=false;
 
 	Form3->ImagesHave[n] = new TImage(Form6);
 	Form3->ImagesHave[n]->Parent = Form3->PanelsHave[n];
-	Form3->ImagesHave[n]->Left = 10 + w;
+	Form3->ImagesHave[n]->Left = 40 + w;
 	Form3->ImagesHave[n]->Width = w;
 	Form3->ImagesHave[n]->Height = 46;
 	Form3->ImagesHave[n]->Stretch = true;
@@ -76,9 +79,9 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 
 	Form3->EditsHave[n] = new TEdit(Form6);
 	Form3->EditsHave[n]->Parent = Form3->PanelsHave[n];
-	Form3->EditsHave[n]->Left = 15 + 2 * w;
+	Form3->EditsHave[n]->Left = 45 + 2 * w;
 	Form3->EditsHave[n]->Top = 15;
-	Form3->EditsHave[n]->Width = w;
+	Form3->EditsHave[n]->Width = w-30;
 	Form3->EditsHave[n]->NumbersOnly=true;
 	Form3->EditsHave[n]->Text="0";
 	Form3->EditsHave[n]->MaxLength=6;
@@ -87,7 +90,7 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->ButtonsHave[n] = new TButton(Form6);
 	Form3->ButtonsHave[n]->Parent = Form3->PanelsHave[n];
 	Form3->ButtonsHave[n]->Left = 15 + 3 * w;
-	Form3->ButtonsHave[n]->Width = w - 20;
+	Form3->ButtonsHave[n]->Width = w - 36;
 	Form3->ButtonsHave[n]->Height = Form3->PanelHaveH;
 	Form3->ButtonsHave[n]->Tag = n;
 	Form3->ButtonsHave[n]->OnClick=Form3->AddClick;
@@ -373,8 +376,8 @@ Form1->Load1Click(this);
 
 void __fastcall TForm3::FormCreate(TObject *Sender)
 {
-memset(Form2->IsDel,false,100*sizeof(bool));
-memset(Form3->IsDelMeal,false,100*sizeof(bool));
+//memset(Form2->IsDel,false,100*sizeof(bool));
+//memset(Form3->IsDelMeal,false,100*sizeof(bool));
 MealsA=0;
 MealsDel=0;
 }

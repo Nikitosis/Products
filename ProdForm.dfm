@@ -1,7 +1,7 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'Form5'
+  Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1087#1088#1086#1076#1091#1082#1090#1072
   ClientHeight = 500
   ClientWidth = 693
   Color = clBtnFace
@@ -11,6 +11,7 @@ object Form5: TForm5
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
@@ -628,11 +629,11 @@ object Form5: TForm5
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 340
+    Left = 245
     Top = 120
-    Width = 96
+    Width = 249
     Height = 24
-    Caption = #1041#1077#1083#1082#1086#1074'('#1075'):'
+    Caption = #1041#1077#1083#1082#1086#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -641,11 +642,11 @@ object Form5: TForm5
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 344
+    Left = 249
     Top = 184
-    Width = 92
+    Width = 245
     Height = 24
-    Caption = #1046#1080#1088#1086#1074'('#1075'):'
+    Caption = #1046#1080#1088#1086#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -654,11 +655,11 @@ object Form5: TForm5
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 310
+    Left = 215
     Top = 243
-    Width = 126
+    Width = 279
     Height = 24
-    Caption = #1059#1075#1083#1077#1074#1086#1076#1086#1074'('#1075'):'
+    Caption = #1059#1075#1083#1077#1074#1086#1076#1086#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -1281,7 +1282,7 @@ object Form5: TForm5
     TabOrder = 0
   end
   object Edit2: TEdit
-    Left = 455
+    Left = 500
     Top = 117
     Width = 106
     Height = 32
@@ -1297,7 +1298,7 @@ object Form5: TForm5
     OnChange = Edit2Change
   end
   object Edit3: TEdit
-    Left = 455
+    Left = 500
     Top = 181
     Width = 106
     Height = 32
@@ -1313,7 +1314,7 @@ object Form5: TForm5
     OnChange = Edit2Change
   end
   object Edit4: TEdit
-    Left = 455
+    Left = 500
     Top = 240
     Width = 106
     Height = 32
