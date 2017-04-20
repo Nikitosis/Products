@@ -14,6 +14,9 @@
     <Transaction>2017.02.06 15:08:07.673.cpp,C:\My documents\RAD Studio\Projects\Products\Unit7.cpp=C:\My documents\RAD Studio\Projects\Products\Recipe.cpp</Transaction>
     <Transaction>2017.02.06 15:08:07.673.h,C:\My documents\RAD Studio\Projects\Products\Unit7.h=C:\My documents\RAD Studio\Projects\Products\Recipe.h</Transaction>
     <Transaction>2017.02.06 15:08:07.673.dfm,C:\My documents\RAD Studio\Projects\Products\Unit7.dfm=C:\My documents\RAD Studio\Projects\Products\Recipe.dfm</Transaction>
+    <Transaction>2017.04.20 15:51:59.644.cpp,C:\My documents\RAD Studio\Projects\Products\Unit8.cpp=C:\My documents\RAD Studio\Projects\Products\RecommendDialog.cpp</Transaction>
+    <Transaction>2017.04.20 15:51:59.644.h,C:\My documents\RAD Studio\Projects\Products\Unit8.h=C:\My documents\RAD Studio\Projects\Products\RecommendDialog.h</Transaction>
+    <Transaction>2017.04.20 15:51:59.644.dfm,C:\My documents\RAD Studio\Projects\Products\Unit8.dfm=C:\My documents\RAD Studio\Projects\Products\RecommendDialog.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Main.cpp"/>
@@ -46,5 +49,9 @@
     <File Path="Recommend.cpp"/>
     <File Path="Recommend.dfm"/>
     <File Path="Recommend.h"/>
+    <File Path="RecommendDialog.cpp"/>
+    <File Path="RecommendDialog.cpp"/>
+    <File Path="RecommendDialog.dfm"/>
+    <File Path="RecommendDialog.h"/>
   </ProjectSortOrder>
 </BorlandProject>

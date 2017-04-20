@@ -5,6 +5,8 @@ object Form3: TForm3
   ClientHeight = 540
   ClientWidth = 1173
   Color = clBtnFace
+  TransparentColor = True
+  TransparentColorValue = cl3DLight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

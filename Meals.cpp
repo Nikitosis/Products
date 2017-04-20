@@ -380,6 +380,7 @@ void __fastcall TForm3::FormCreate(TObject *Sender)
 //memset(Form3->IsDelMeal,false,100*sizeof(bool));
 MealsA=0;
 MealsDel=0;
+IsRecommend=false;
 }
 //---------------------------------------------------------------------------
 

@@ -27,13 +27,17 @@ SetConsoleCP(1251);
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-Form2->Show();
+Form2->ShowModal();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
-Form3->Show();
+Form3->IsRecommend=false;
+Form3->ShowModal();
+for(int i=0;i<Form3->MealsA;i++)
+	if(Form3->IsDelMeal[i]==false)
+		Form3->RecomPanel[i]->Height=0;
 }
 //---------------------------------------------------------------------------
 
@@ -46,7 +50,7 @@ Form4->ComboBox1->ItemIndex=-1;
 Form4->ComboBox1->Text="Пол";
 Form4->ComboBox2->ItemIndex=-1;
 Form4->ComboBox2->Text="Уровень активности";
-Form4->Show();
+Form4->ShowModal();
 }
 //---------------------------------------------------------------------------
 

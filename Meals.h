@@ -40,10 +40,12 @@ int MealsA,MealsDel,PanelH,PanelHaveH;          //колво прод. колво удаленных, в
 int ProductsHave,ProductsUse;           //кол-во продуктов слева и справа соотв.
 int PropNum;    //номер нажатой кнопки настроек
 TPanel *PanelsHave[100];       //для каждой MealsForm
+TPanel *RecomPanel[100];
 TLabel *LabelesHave[100];
 TImage *ImagesHave[100];
 TEdit *EditsHave[100];
 TButton *ButtonsHave[100];
+bool IsRecommend;
 bool IsLeft[100][100];
 bool IsRight[100][100];       //сохраняют,с какой стороны находится продукт
 bool LeftWas[100];

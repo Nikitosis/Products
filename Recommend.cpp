@@ -8,6 +8,7 @@
 #include "Main.h"
 #include "Meals.h"
 #include "Recommend.h"
+#include "RecommendDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -48,7 +49,9 @@ else
 			if(ComboBox2->ItemIndex==5)
 			  BMR*=1.9;
 			BMR=ceil(BMR);
-			ShowMessage("Ваше рекомендуемое количество ккал в день: " +FloatToStr(BMR));
+			Form8->Label1->Caption="Ваше рекомендуемое количество ккал в день: " +FloatToStr(BMR);
+			Form8->BMR=BMR;
+			Form8->ShowModal();
 		}
 
 }
