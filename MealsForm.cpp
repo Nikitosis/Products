@@ -293,11 +293,9 @@ void __fastcall TForm6::FormMouseWheelDown(TObject *Sender, TShiftState Shift, T
           bool &Handled)
 {
 if(onScroll1)
-{
 	ScrollBox1->VertScrollBar->Position+=10;
-}
 	else
-	ScrollBox2->VertScrollBar->Position+=10;
+    ScrollBox2->VertScrollBar->Position+=10;
 }
 //---------------------------------------------------------------------------
 

@@ -39,6 +39,13 @@ Form3->Show();
 
 void __fastcall TForm1::Button3Click(TObject *Sender)
 {
+Form4->Edit1->Text="";
+Form4->Edit2->Text="";
+Form4->Edit3->Text="";
+Form4->ComboBox1->ItemIndex=-1;
+Form4->ComboBox1->Text="Пол";
+Form4->ComboBox2->ItemIndex=-1;
+Form4->ComboBox2->Text="Уровень активности";
 Form4->Show();
 }
 //---------------------------------------------------------------------------
@@ -51,6 +58,10 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 		   ofstream fout(SaveDialog1->FileName.c_str());
 
 		   Graphics::TBitmap*   gBitmap = new Graphics::TBitmap;
+		   Graphics::TBitmap*   gBitmap2 = new Graphics::TBitmap;
+		   int imgh=100; //размер сохраненных картинок
+		   int imgw=100;
+
 		   fout<<Form3->MealsA-Form3->MealsDel<<endl;
 		   for(int i=0;i<Form3->MealsA;i++)
 		   if(Form3->IsDelMeal[i]==false)
@@ -72,16 +83,17 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 			 s=Form3->Labeles[i*5+4]->Caption.c_str();
 			 fout<<s.c_str()<<endl;
 
+			 fout<<Form3->Memos[i]->Lines->Count<<endl;
 			 s=Form3->Memos[i]->Lines->Text.c_str();
 			 fout<<s.c_str()<<endl;
 
-			  gBitmap->Assign(Form3->Images[i]->Picture->Graphic);  	//сохраняем картинки
-				   int w,h;
-				   w=Form3->Images[i]->Picture->Width;
-				   h=Form3->Images[i]->Picture->Height;
-				   fout<<w<<" "<<h<<endl;
-				   for(int x=0;x<w;x++)
-					for(int y=0;y<h;y++)
+			  gBitmap2->Assign(Form3->Images[i]->Picture->Graphic);  	//сохраняем картинки
+				   gBitmap->Width=imgh;
+				   gBitmap->Height=imgw;
+				   gBitmap->Canvas->StretchDraw(Rect(0,0,100,100),gBitmap2);
+				   fout<<imgw<<" "<<imgh<<endl;
+				   for(int x=0;x<imgw;x++)
+					for(int y=0;y<imgh;y++)
 						{
 							s=ColorToString(gBitmap->Canvas->Pixels[x][y]);
 							fout<<s.c_str()<<endl;
@@ -111,7 +123,7 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 		   fout<<Form2->ProductsA-Form2->ProductsDel<<endl;
 
 		   for(int i=0;i<Form2->ProductsA;i++)
-			 if(Form2->IsDel[i]==false)
+			 if(Form2->IsDel[i]==false)     //проверка на то,что мы не удалили эту запись(таким образом мы освобождаем место в массивах)
 			   {
 				   AnsiString s;
 
@@ -130,20 +142,36 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 				   s=Form2->Labeles[i*5+4]->Caption.c_str();
 				   fout<<s.c_str()<<endl;
 
-				   gBitmap->Assign(Form2->Images[i]->Picture->Graphic);  	//сохраняем картинки
-				   int w,h;
-				   w=Form2->Images[i]->Picture->Width;
-				   h=Form2->Images[i]->Picture->Height;
-				   fout<<w<<" "<<h<<endl;
-				   for(int x=0;x<w;x++)
-					for(int y=0;y<h;y++)
+				   gBitmap2->Assign(Form2->Images[i]->Picture->Graphic);  	//сохраняем картинки
+				   gBitmap->Width=imgh;
+				   gBitmap->Height=imgw;
+				   gBitmap->Canvas->StretchDraw(Rect(0,0,100,100),gBitmap2);
+				   fout<<imgw<<" "<<imgh<<endl;
+				   for(int x=0;x<imgw;x++)
+					for(int y=0;y<imgh;y++)
 						{
 							s=ColorToString(gBitmap->Canvas->Pixels[x][y]);
 							fout<<s.c_str()<<endl;
 						}
-
 			   }
-          gBitmap->Free();
+	  	  gBitmap2->Free(); //освобождаем память битмапов
+		  gBitmap->Free();
+
+		  for(int i=0;i<Form2->ProductsA;i++)
+		 {
+			 if(Form2->IsDel[i]==false)
+			 {
+				 AnsiString s;
+				 s=Form5->Masses[i*3].c_str();
+				 fout<<s.c_str()<<endl;
+
+				 s=Form5->Masses[i*3+1].c_str();
+				 fout<<s.c_str()<<endl;
+
+				 s=Form5->Masses[i*3+2].c_str();
+				 fout<<s.c_str()<<endl;
+			 }
+		 }
 	  }
 }
 //---------------------------------------------------------------------------
@@ -177,7 +205,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 		string s;
 	    getline(fin,s);
-		for(int i=0;i<n;i++)
+		for(int i=0;i<n;i++) //Meals
 		{
 		  Form6->Button2Click(this);
 		  getline(fin,s);
@@ -195,8 +223,17 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  getline(fin,s);
 		  Form3->Labeles[i*5+4]->Caption=s.c_str();
 
+
+		  int linesA;
+		  fin>>linesA;
 		  getline(fin,s);
-		  Form3->Memos[i]->Lines->Text=s.c_str();
+		  Form3->Memos[i]->Lines->Clear();
+		  for(int j=0;j<linesA;j++)
+		  {
+			  getline(fin,s);
+			  Form3->Memos[i]->Lines->Add(s.c_str());
+		  }
+
 		  int w,h;
 		  fin>>w>>h;
 		  gBitmap->Width=w;
@@ -211,13 +248,20 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  Form3->Images[i]->Picture->Graphic=gBitmap;
 		}
 
+					bool b;
 	  for(int i=0;i<99;i++)
 		for(int j=0;j<99;j++)
-		  fin>>Form3->IsLeft[i][j];
+		{
+			fin>>b;
+		 Form3->IsLeft[i][j]=b;
+		}
 
 	  for(int i=0;i<99;i++)
 		for(int j=0;j<99;j++)
-		  fin>>Form3->IsRight[i][j];
+		{
+			fin>>b;
+		  Form3->IsRight[i][j]=b;
+		}
 
       for(int i=0;i<99;i++)
 		for(int j=0;j<99;j++)
@@ -225,12 +269,12 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 			fin>>s;
             Form3->Weights[i][j]=s.c_str();
 		}
-		/////////////////////////////////////////////////////////     открываем Meals
+		/////////////////////////////////////////////////////////     открываем Products
 	    n;
 		fin>>n;
 		Form5->Button4->Visible=false;
 		getline(fin,s);
-		for(int i=0;i<10;i++)
+		for(int i=0;i<n;i++)
 		{
 		  Form5->Button2Click(this);
 		  getline(fin,s);
@@ -265,7 +309,33 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  Form2->Image1->Picture->Graphic=gBitmap;
 		}
 	   gBitmap->Free();
+
+	   for(int i=0;i<Form2->ProductsA;i++)    //массы б/ж/у для каждого products
+	   {
+			getline(fin,s);
+		  Form5->Masses[i*3]=s.c_str();
+
+		  	getline(fin,s);
+		  Form5->Masses[i*3+1]=s.c_str();
+
+		  	getline(fin,s);
+		  Form5->Masses[i*3+2]=s.c_str();
+
+	   }
 	}
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+Form2->Show();
+Form3->Show();
+memset(Form2->IsDel,false,100*sizeof(bool));
+memset(Form3->IsDelMeal,false,100*sizeof(bool));
 }
 //---------------------------------------------------------------------------
 

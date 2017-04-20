@@ -41,7 +41,7 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->PanelsHave[n]->Parent = Form6->ScrollBox1;
 	Form3->PanelsHave[n]->Top = Form3->PanelHaveH * (Form3->ProductsHave - 1);
 	Form3->PanelsHave[n]->Height = Form3->PanelHaveH;
-	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 1;
+	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 4;
 	Form3->PanelsHave[n]->Tag=num;    //сохраняем привязку к Products(num-номер продукта)
 
 	Form3->LabelesHave[n*4] = new TLabel(Form6);
@@ -106,6 +106,8 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Label10->Caption="0";
 	Form6->Label11->Caption="0";
 	Form6->Label12->Caption="0";
+	Form6->Image1->Picture=Form6->Image2->Picture;
+
 
 	Form6->Edit1->Text="";
 	Form7->Memo1->Lines->Text="";
@@ -179,6 +181,7 @@ void __fastcall TForm3::AddClickF(int num)
 	}
 	else
 	{
+        Form3->EditsHave[num]->Text="0";
 		int amount=StrToInt(Form3->EditsHave[num]->Text);
 		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);          //пишем,сколько витаминов
 		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
@@ -365,6 +368,15 @@ Form1->Save1Click(this);
 void __fastcall TForm3::Load1Click(TObject *Sender)
 {
 Form1->Load1Click(this);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::FormCreate(TObject *Sender)
+{
+memset(Form2->IsDel,false,100*sizeof(bool));
+memset(Form3->IsDelMeal,false,100*sizeof(bool));
+MealsA=0;
+MealsDel=0;
 }
 //---------------------------------------------------------------------------
 

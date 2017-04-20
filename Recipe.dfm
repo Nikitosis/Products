@@ -28,11 +28,9 @@ object Form7: TForm7
   end
   object Memo1: TMemo
     Left = 40
-    Top = 48
+    Top = 47
     Width = 377
     Height = 209
-    Lines.Strings = (
-      'Memo1')
     TabOrder = 0
   end
   object Button1: TButton

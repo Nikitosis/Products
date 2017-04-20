@@ -17,7 +17,6 @@ __published:	// IDE-managed Components
 	TScrollBox *ScrollBox1;
 	TLabel *Label1;
 	TLabel *Label2;
-	TLabel *Label3;
 	TLabel *Label4;
 	TLabel *Label5;
 	TLabel *Label6;
@@ -31,6 +30,7 @@ __published:	// IDE-managed Components
 	void __fastcall PropClick(TObject *Sender);
 	void __fastcall Save1Click(TObject *Sender);
 	void __fastcall Load1Click(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
 public:	 int ProductsA;
 TPanel *Panels[100];

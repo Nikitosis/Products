@@ -34,6 +34,12 @@ void __fastcall TForm5::Button2Click(TObject *Sender)
 int n;
 
 ///////////
+if(Edit2->Text=="")     //если пустое место в едите
+Edit2->Text='0';
+if(Edit3->Text=="")
+Edit2->Text='0';
+if(Edit4->Text=="")
+Edit4->Text='0';
 while(Edit2->Text[1]=='0')           //удаляем первые нули в массах
 {
 	if(Edit2->Text.Length()>1)

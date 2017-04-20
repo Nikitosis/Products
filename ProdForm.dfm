@@ -1330,7 +1330,7 @@ object Form5: TForm5
   end
   object Button2: TButton
     Left = 544
-    Top = 456
+    Top = 459
     Width = 129
     Height = 33
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100

@@ -69,3 +69,11 @@ Form1->Load1Click(this);
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm2::FormCreate(TObject *Sender)
+{
+memset(Form2->IsDel,false,100*sizeof(bool));
+ProductsA=0;
+ProductsDel=0;
+}
+//---------------------------------------------------------------------------
+

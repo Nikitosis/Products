@@ -14,6 +14,7 @@ object Form2: TForm2
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesigned
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -30,24 +31,11 @@ object Form2: TForm2
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 165
+    Left = 317
     Top = 6
     Width = 105
     Height = 21
     Caption = #1048#1079#1086#1073#1088#1072#1078#1077#1085#1080#1077
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -17
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label3: TLabel
-    Left = 320
-    Top = 6
-    Width = 78
-    Height = 21
-    Caption = #1054#1087#1080#1089#1072#1085#1080#1077
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
