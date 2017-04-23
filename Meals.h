@@ -9,6 +9,7 @@
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
 #include <Menus.hpp>
+#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -25,6 +26,13 @@ __published:	// IDE-managed Components
 	TMenuItem *File1;
 	TMenuItem *Save1;
 	TMenuItem *Load1;
+	TLabel *Label3;
+	TLabel *Label8;
+	TLabel *Label9;
+	TLabel *Label10;
+	TPanel *Panel1;
+	TPanel *Panel2;
+	TPanel *Panel3;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Save1Click(TObject *Sender);
 	void __fastcall Load1Click(TObject *Sender);

@@ -1,9 +1,10 @@
 object Form4: TForm4
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = #1056#1072#1089#1095#1077#1090' '#1082#1072#1083#1086#1088#1080#1081
-  ClientHeight = 342
-  ClientWidth = 322
+  ClientHeight = 352
+  ClientWidth = 332
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

@@ -1,9 +1,10 @@
 object Form7: TForm7
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = #1054#1087#1080#1089#1072#1085#1080#1077' '#1073#1083#1102#1076#1072
-  ClientHeight = 311
-  ClientWidth = 456
+  ClientHeight = 321
+  ClientWidth = 466
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

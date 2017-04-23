@@ -47,10 +47,17 @@ Form6->Hide();
 Form8->Hide();
 Form3->Show();
 
+Form3->Panel1->Visible=false;
+Form3->Panel2->Visible=false;
+Form3->Panel3->Visible=false;
+Form3->Label8->Visible=false;
+Form3->Label9->Visible=false;
+Form3->Label10->Visible=false;
+
 Form3->IsRecommend=false;
 for(int i=0;i<Form3->MealsA;i++)
 	if(Form3->IsDelMeal[i]==false)
-		Form3->RecomPanel[i]->Height=0;
+		Form3->RecomPanel[i]->Visible=false;
 }
 //---------------------------------------------------------------------------
 

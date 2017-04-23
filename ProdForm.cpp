@@ -135,7 +135,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+1]=new TLabel(Form2);
 	Form2->Labeles[n*5+1]->Parent=Form2->Panels[n];
 	Form2->Labeles[n*5+1]->Top=20;
-	Form2->Labeles[n*5+1]->Left=450;
+	Form2->Labeles[n*5+1]->Left=440;
 	Form2->Labeles[n*5+1]->WordWrap=true;
 	Form2->Labeles[n*5+1]->AutoSize=false;
 	Form2->Labeles[n*5+1]->Height=40;
@@ -146,7 +146,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+2]=new TLabel(Form2);
 	Form2->Labeles[n*5+2]->Parent=Form2->Panels[n];
 	Form2->Labeles[n*5+2]->Top=20;
-	Form2->Labeles[n*5+2]->Left=573;
+	Form2->Labeles[n*5+2]->Left=533;
 	Form2->Labeles[n*5+2]->WordWrap=true;
 	Form2->Labeles[n*5+2]->AutoSize=false;
 	Form2->Labeles[n*5+2]->Height=20;
@@ -157,7 +157,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+3]=new TLabel(Form2);
 	Form2->Labeles[n*5+3]->Parent=Form2->Panels[n];
 	Form2->Labeles[n*5+3]->Top=20;
-	Form2->Labeles[n*5+3]->Left=696;
+	Form2->Labeles[n*5+3]->Left=625;
 	Form2->Labeles[n*5+3]->WordWrap=true;
 	Form2->Labeles[n*5+3]->AutoSize=false;
 	Form2->Labeles[n*5+3]->Height=20;
@@ -168,7 +168,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+4]=new TLabel(Form2);
 	Form2->Labeles[n*5+4]->Parent=Form2->Panels[n];
 	Form2->Labeles[n*5+4]->Top=20;
-	Form2->Labeles[n*5+4]->Left=819;
+	Form2->Labeles[n*5+4]->Left=719;
 	Form2->Labeles[n*5+4]->WordWrap=true;
 	Form2->Labeles[n*5+4]->AutoSize=false;
 	Form2->Labeles[n*5+4]->Height=20;
@@ -182,7 +182,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	Form2->Buttons[n]=new TButton(Form2);
 	Form2->Buttons[n]->Parent=Form2->Panels[n];
-	Form2->Buttons[n]->Left=920;
+	Form2->Buttons[n]->Left=820;
 	Form2->Buttons[n]->Height=Form2->PanelH-1;
 	Form2->Buttons[n]->Width=100;
 	Form2->Buttons[n]->Tag=n;
@@ -210,7 +210,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	TImage *line3=new TImage(Form2);
 	line3->Parent=Form2->Panels[n];
-	line3->Left=550;
+	line3->Left=520;
 	line3->Width=2;
 	line3->Height=Form2->PanelH-1;
 	line3->Picture->Bitmap->Width=2;
@@ -220,7 +220,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	TImage *line4=new TImage(Form2);
 	line4->Parent=Form2->Panels[n];
-	line4->Left=673;
+	line4->Left=613;
 	line4->Width=2;
 	line4->Height=Form2->PanelH-1;
 	line4->Picture->Bitmap->Width=2;
@@ -230,7 +230,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	TImage *line5=new TImage(Form2);
 	line5->Parent=Form2->Panels[n];
-	line5->Left=796;
+	line5->Left=706;
 	line5->Width=2;
 	line5->Height=Form2->PanelH-1;
 	line5->Picture->Bitmap->Width=2;
@@ -240,7 +240,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 
 	TImage *line6=new TImage(Form2);
 	line6->Parent=Form2->Panels[n];
-	line6->Left=919;
+	line6->Left=819;
 	line6->Width=2;
 	line6->Height=Form2->PanelH-1;
 	line6->Picture->Bitmap->Width=2;

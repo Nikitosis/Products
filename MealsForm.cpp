@@ -39,7 +39,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		Form3->Images[n] = new TImage(Form3);
 		Form3->Images[n]->Parent = Form3->Panels[n];
-		Form3->Images[n]->Left = 427;
+		Form3->Images[n]->Left = 327;
 		Form3->Images[n]->Height = Form3->PanelH - 1;
 		Form3->Images[n]->Width = 125;
 		Form3->Images[n]->Stretch = true;
@@ -62,14 +62,14 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Labeles[n * 5]->WordWrap = true;
 		Form3->Labeles[n * 5]->AutoSize = false;
 		Form3->Labeles[n * 5]->Height = 70;
-		Form3->Labeles[n * 5]->Width = 400;
+		Form3->Labeles[n * 5]->Width = 300;
 		Form3->Labeles[n * 5]->Font->Size = 14;
 		Form3->Labeles[n * 5]->Caption = Form6->Edit1->Text;
 
 		Form3->Labeles[n * 5 + 1] = new TLabel(Form3);
 		Form3->Labeles[n * 5 + 1]->Parent = Form3->Panels[n];
 		Form3->Labeles[n * 5 + 1]->Top = 40;
-		Form3->Labeles[n * 5 + 1]->Left = 560;
+		Form3->Labeles[n * 5 + 1]->Left = 460;
 		Form3->Labeles[n * 5 + 1]->WordWrap = true;
 		Form3->Labeles[n * 5 + 1]->AutoSize = false;
 		Form3->Labeles[n * 5 + 1]->Height = 20;
@@ -80,7 +80,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Labeles[n * 5 + 2] = new TLabel(Form3);
 		Form3->Labeles[n * 5 + 2]->Parent = Form3->Panels[n];
 		Form3->Labeles[n * 5 + 2]->Top = 40;
-		Form3->Labeles[n * 5 + 2]->Left = 683;
+		Form3->Labeles[n * 5 + 2]->Left = 533;
 		Form3->Labeles[n * 5 + 2]->WordWrap = true;
 		Form3->Labeles[n * 5 + 2]->AutoSize = false;
 		Form3->Labeles[n * 5 + 2]->Height = 20;
@@ -91,7 +91,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Labeles[n * 5 + 3] = new TLabel(Form3);
 		Form3->Labeles[n * 5 + 3]->Parent = Form3->Panels[n];
 		Form3->Labeles[n * 5 + 3]->Top = 40;
-		Form3->Labeles[n * 5 + 3]->Left = 806;
+		Form3->Labeles[n * 5 + 3]->Left = 606;
 		Form3->Labeles[n * 5 + 3]->WordWrap = true;
 		Form3->Labeles[n * 5 + 3]->AutoSize = false;
 		Form3->Labeles[n * 5 + 3]->Height = 20;
@@ -102,7 +102,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Labeles[n * 5 + 4] = new TLabel(Form3);
 		Form3->Labeles[n * 5 + 4]->Parent = Form3->Panels[n];
 		Form3->Labeles[n * 5 + 4]->Top = 40;
-		Form3->Labeles[n * 5 + 4]->Left = 929;
+		Form3->Labeles[n * 5 + 4]->Left = 679;
 		Form3->Labeles[n * 5 + 4]->WordWrap = true;
 		Form3->Labeles[n * 5 + 4]->AutoSize = false;
 		Form3->Labeles[n * 5 + 4]->Height = 20;
@@ -112,7 +112,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		Form3->Buttons[n] = new TButton(Form3);
 		Form3->Buttons[n]->Parent = Form3->Panels[n];
-		Form3->Buttons[n]->Left = 1043;
+		Form3->Buttons[n]->Left = 793;
 		Form3->Buttons[n]->Height = Form3->PanelH - 1;
 		Form3->Buttons[n]->Width = 110;
 		Form3->Buttons[n]->Tag = n;
@@ -121,17 +121,17 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->RecomPanel[n] = new TPanel(Form3); // линия для обозначения,какое блюдо по каллорийности в реккомендациях
 		Form3->RecomPanel[n]->Parent = Form3->Panels[n];
 		Form3->RecomPanel[n]->Left = 0;
-		Form3->RecomPanel[n]->Height = 0;
-		Form3->RecomPanel[n]->Width = 427;
+		Form3->RecomPanel[n]->Height = 10;
+		Form3->RecomPanel[n]->Width = 327;
 		Form3->RecomPanel[n]->Top = 0;
 		Form3->RecomPanel[n]->Tag = n;
-		Form3->RecomPanel[n]->ParentColor = false;
-		Form3->RecomPanel[n]->ParentBackground = false;
-		Form3->RecomPanel[n]->Color = clNone;
+		Form3->RecomPanel[n]->Visible=false;
+		Form3->RecomPanel[n]->Color = clLime;
+		Form3->RecomPanel[n]->ParentBackground=false;
 
 		TImage *line2 = new TImage(Form3);
 		line2->Parent = Form3->Panels[n];
-		line2->Left = 427;
+		line2->Left = 327;
 		line2->Width = 2;
 		line2->Height = Form3->PanelH - 1;
 		line2->Picture->Bitmap->Width = 2;
@@ -141,7 +141,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		TImage *line3 = new TImage(Form3);
 		line3->Parent = Form3->Panels[n];
-		line3->Left = 550;
+		line3->Left = 450;
 		line3->Width = 2;
 		line3->Height = Form3->PanelH - 1;
 		line3->Picture->Bitmap->Width = 2;
@@ -151,7 +151,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		TImage *line4 = new TImage(Form3);
 		line4->Parent = Form3->Panels[n];
-		line4->Left = 673;
+		line4->Left = 523;
 		line4->Width = 2;
 		line4->Height = Form3->PanelH - 1;
 		line4->Picture->Bitmap->Width = 2;
@@ -161,7 +161,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		TImage *line5 = new TImage(Form3);
 		line5->Parent = Form3->Panels[n];
-		line5->Left = 796;
+		line5->Left = 596;
 		line5->Width = 2;
 		line5->Height = Form3->PanelH - 1;
 		line5->Picture->Bitmap->Width = 2;
@@ -171,7 +171,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		TImage *line6 = new TImage(Form3);
 		line6->Parent = Form3->Panels[n];
-		line6->Left = 919;
+		line6->Left = 669;
 		line6->Width = 2;
 		line6->Height = Form3->PanelH - 1;
 		line6->Picture->Bitmap->Width = 2;
@@ -181,7 +181,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		TImage *line7 = new TImage(Form3);
 		line7->Parent = Form3->Panels[n];
-		line7->Left = 1042;
+		line7->Left = 792;
 		line7->Width = 2;
 		line7->Height = Form3->PanelH - 1;
 		line7->Picture->Bitmap->Width = 2;
@@ -197,7 +197,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		for (int i = 0; i < Form2->ProductsA; i++)
 			Form3->Weights[n][i] = Form3->EditsHave[i]->Text;
 
-		if (Form3->IsRecommend) // Если мы в рекомендациях ,то смотрим на ккалории и задаем панели цвет
+		/*if (Form3->IsRecommend) // Если мы в рекомендациях ,то смотрим на ккалории и задаем панели цвет
 		{
 			Form3->RecomPanel[n]->Height=10;
 			int kal=StrToInt(Label12->Caption);
@@ -208,7 +208,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 						Form3->RecomPanel[n]->Color=RGB(247,192,25);
 						else
 						Form3->RecomPanel[n]->Color=RGB(25,247,83);     //если идеально
-		}
+		}     */
 	}
 	else {
 		int n = Form3->PropNum;
@@ -225,7 +225,6 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 		if (Form3->IsRecommend) // Если мы в рекомендациях ,то смотрим на ккалории и задаем панели цвет
 		{
-			Form3->RecomPanel[n]->Height=10;
 			int kal=StrToInt(Label12->Caption);
 			if(Form4->BMR-kal>400)   //если меньше
 					Form3->RecomPanel[n]->Color=clHighlight;
