@@ -35,6 +35,7 @@ __published:	// IDE-managed Components
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall Edit2Change(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
 	AnsiString Masses[300];

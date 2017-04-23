@@ -101,6 +101,8 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
+
+
 	Form6->Label5->Caption="0";        //обнул. витамины
 	Form6->Label6->Caption="0";
 	Form6->Label7->Caption="0";
@@ -381,6 +383,17 @@ void __fastcall TForm3::FormCreate(TObject *Sender)
 MealsA=0;
 MealsDel=0;
 IsRecommend=false;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::FormClose(TObject *Sender, TCloseAction &Action)
+{
+if(IsRecommend==false)
+{
+	Form1->Show();
+	Form6->Hide();
+}
 }
 //---------------------------------------------------------------------------
 

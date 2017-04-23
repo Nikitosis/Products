@@ -44,6 +44,7 @@ void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на
 }
 void __fastcall TForm2::Button1Click(TObject *Sender)
 {
+
 	Form5->Edit1->Text="";
 	Form5->Edit2->Text="0";
 	Form5->Edit3->Text="0";
@@ -77,4 +78,12 @@ ProductsDel=0;
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
+{
+Form1->Visible=true;
+Form5->Close();
+}
+//---------------------------------------------------------------------------
 

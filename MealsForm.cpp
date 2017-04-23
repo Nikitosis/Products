@@ -319,3 +319,9 @@ void __fastcall TForm6::FormMouseWheelUp(TObject *Sender, TShiftState Shift,
 		ScrollBox2->VertScrollBar->Position -= 10;
 }
 // ---------------------------------------------------------------------------
+void __fastcall TForm6::FormClose(TObject *Sender, TCloseAction &Action)
+{
+Form3->Visible=true;
+}
+//---------------------------------------------------------------------------
+

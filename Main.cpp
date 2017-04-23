@@ -13,6 +13,7 @@
 #include "Recommend.h"
 #include "MealsForm.h"
 #include "ProdForm.h"
+#include "RecommendDialog.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -27,14 +28,26 @@ SetConsoleCP(1251);
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-Form2->ShowModal();
+//Form1->Hide();
+Form3->Hide();
+Form4->Hide();
+Form5->Hide();
+Form6->Hide();
+Form8->Hide();
+Form2->Show();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
+Form2->Hide();
+Form4->Hide();
+Form5->Hide();
+Form6->Hide();
+Form8->Hide();
+Form3->Show();
+
 Form3->IsRecommend=false;
-Form3->ShowModal();
 for(int i=0;i<Form3->MealsA;i++)
 	if(Form3->IsDelMeal[i]==false)
 		Form3->RecomPanel[i]->Height=0;
@@ -43,6 +56,14 @@ for(int i=0;i<Form3->MealsA;i++)
 
 void __fastcall TForm1::Button3Click(TObject *Sender)
 {
+Form3->Hide();
+Form4->Hide();
+Form5->Hide();
+Form6->Hide();
+Form8->Hide();
+Form2->Hide();
+Form4->Show();
+
 Form4->Edit1->Text="";
 Form4->Edit2->Text="";
 Form4->Edit3->Text="";
@@ -50,7 +71,6 @@ Form4->ComboBox1->ItemIndex=-1;
 Form4->ComboBox1->Text="Пол";
 Form4->ComboBox2->ItemIndex=-1;
 Form4->ComboBox2->Text="Уровень активности";
-Form4->ShowModal();
 }
 //---------------------------------------------------------------------------
 
@@ -327,8 +347,16 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 	   }
 	}
+	Form3->Close();
+	Form2->Close();
+	Form8->Close();
+	Form4->Close();
+	Form3->Hide();
+	//Form2->Hide();
+	Form1->Show();
 }
 //---------------------------------------------------------------------------
+
 
 
 

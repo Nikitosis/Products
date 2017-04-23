@@ -12,6 +12,7 @@ object Form6: TForm6
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned
+  OnClose = FormClose
   OnMouseEnter = FormMouseEnter
   OnMouseWheelDown = FormMouseWheelDown
   OnMouseWheelUp = FormMouseWheelUp

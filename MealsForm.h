@@ -56,6 +56,7 @@ __published:	// IDE-managed Components
           bool &Handled);
 	void __fastcall FormMouseWheelUp(TObject *Sender, TShiftState Shift, TPoint &MousePos,
           bool &Handled);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
 bool onScroll1,onScroll2;
