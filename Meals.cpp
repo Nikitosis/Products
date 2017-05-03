@@ -3,7 +3,9 @@
 #include <vcl.h>
 #pragma hdrstop
 #include <math.h>
+#include <Buttons.hpp>
 
+#include "RecommendDialog.h"
 #include "Products.h"
 #include "Main.h"
 #include "Meals.h"
@@ -43,6 +45,7 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->PanelsHave[n]->Height = Form3->PanelHaveH;
 	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 4;
 	Form3->PanelsHave[n]->Tag=num;    //сохраняем привязку к Products(num-номер продукта)
+	Form3->PanelsHave[n]->ParentBackground=false;
 
 	Form3->LabelesHave[n*4] = new TLabel(Form6);
 	Form3->LabelesHave[n*4]->Parent = Form3->PanelsHave[n];
@@ -87,14 +90,16 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->EditsHave[n]->MaxLength=6;
 	Form3->EditsHave[n]->OnChange=Form3->EditsHaveChange;
 
-	Form3->ButtonsHave[n] = new TButton(Form6);
+	Form3->ButtonsHave[n] = new TBitBtn(Form6);
 	Form3->ButtonsHave[n]->Parent = Form3->PanelsHave[n];
 	Form3->ButtonsHave[n]->Left = 15 + 3 * w;
 	Form3->ButtonsHave[n]->Width = w - 36;
 	Form3->ButtonsHave[n]->Height = Form3->PanelHaveH;
 	Form3->ButtonsHave[n]->Tag = n;
 	Form3->ButtonsHave[n]->OnClick=Form3->AddClick;
-    Form3->ButtonsHave[n]->Caption=n;
+	//Form3->ButtonsHave[n]->Caption=12;
+   //	Form3->ButtonsHave[n]->Visible=false;
+	Form3->ButtonsHave[n]->Glyph=Form6->BitBtn2->Glyph;
 
 	Form6->ScrollBox1->VertScrollBar->Position = k;
 }
@@ -156,7 +161,7 @@ void __fastcall TForm3::AddClickF(int num)
 
 	if(IsLeft[i][num]==true)
 	{
-        int amount=StrToInt(Form3->EditsHave[num]->Text);
+		int amount=StrToInt(Form3->EditsHave[num]->Text);
 		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)+StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);          //пишем,сколько витаминов
 		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)+StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
 		Form6->Label7->Caption=FloatToStr(StrToFloat(Form6->Label7->Caption)+StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
@@ -183,10 +188,12 @@ void __fastcall TForm3::AddClickF(int num)
 		if(IsLeft[i][j] && PanelsHave[j]->Top > PanelsHave[num]->Top)
 			PanelsHave[j]->Top-=PanelHaveH;
 		PanelsHave[num]->Top=(ProductsUse-1)*PanelHaveH;
+
+		ButtonsHave[num]->Glyph=Form6->BitBtn3->Glyph;
 	}
 	else
 	{
-        Form3->EditsHave[num]->Text="0";
+		Form3->EditsHave[num]->Text="0";
 		int amount=StrToInt(Form3->EditsHave[num]->Text);
 		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);          //пишем,сколько витаминов
 		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)-StrToFloat(Form2->Labeles[prodnum*5+1]->Caption)*amount);
@@ -214,21 +221,23 @@ void __fastcall TForm3::AddClickF(int num)
 		if(IsRight[i][j] && PanelsHave[j]->Top>PanelsHave[num]->Top)
 			PanelsHave[j]->Top-=PanelHaveH;
 		PanelsHave[num]->Top=(ProductsHave-1)*PanelHaveH;
+
+		ButtonsHave[num]->Glyph=Form6->BitBtn2->Glyph;
 	}
 
 	Form6->ScrollBox1->VertScrollBar->Position = k;
-    Form6->ScrollBox2->VertScrollBar->Position = k1;
+	Form6->ScrollBox2->VertScrollBar->Position = k1;
 }
 void __fastcall TForm3::AddClick(TObject *Sender)
 {
-TButton *btn = dynamic_cast<TButton *>(Sender);
+TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
 int num=btn->Tag;
 AddClickF(num);
 }
 //------------------------------------------------------------------------------
 void __fastcall TForm3::PropClick(TObject *Sender)
 {
-  TButton *btn = dynamic_cast<TButton *>(Sender);
+  TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
   int num=btn->Tag;
   PropClickNum(num);
 
@@ -271,7 +280,7 @@ void __fastcall TForm3::PropClickNum(int num)
 			AddLeft(i);
 			if(IsRight[num][n])
 			{
-                IsRight[num][n]==false;
+				IsRight[num][n]==false;
 				IsLeft[num][n]=true;
 				AddClickF(n);
 			}
@@ -291,19 +300,20 @@ void __fastcall TForm3::PropClickNum(int num)
 		if(Form2->IsDel[i]==false)
 			EditsHave[i]->Text=Weights[num][i];
 
-	n=0;
+	/*n=0;
 
 	while(Form2->IsDel[n]==false)
 	{
-        n++;
+		n++;
 	}
-	Form3->EditsHave[n]=Form3->EditsHave[n];
+	Form3->EditsHave[n]=Form3->EditsHave[n];   */
 
 	for(int i=0;i<Form2->ProductsA;i++)
 	if(Form2->IsDel[i]==false)
 	{
-	EditsHave[n]->Text=Weights[num][n];
-	n++;
+	//EditsHave[n]->Text=Weights[num][n];
+	ButtonsHave[i]->Caption="";
+	//n++;
 	}
 
 
@@ -311,7 +321,7 @@ void __fastcall TForm3::PropClickNum(int num)
 	Form6->Show();
 }
 
-void __fastcall TForm3::EditsHaveChange(TObject *Sender)          //доделать(динамически изменять калор при изменении веса)
+void __fastcall TForm3::EditsHaveChange(TObject *Sender)
 {
 TEdit *btn = dynamic_cast<TEdit *>(Sender);
 bool flag=btn->Text.IsEmpty();
@@ -383,6 +393,8 @@ void __fastcall TForm3::FormCreate(TObject *Sender)
 MealsA=0;
 MealsDel=0;
 IsRecommend=false;
+SettingsNum=-1;
+PictureNum=0;
 }
 //---------------------------------------------------------------------------
 
@@ -394,6 +406,32 @@ if(IsRecommend==false)
 	Form1->Show();
 	Form6->Hide();
 }
+else
+{
+    Form8->Close();
+}
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::Timer1Timer(TObject *Sender)
+{
+if(SettingsNum>=0)
+	{
+	   AnsiString s=ExtractFilePath(Application->ExeName);
+	   s+="/SettingButtons/"+IntToStr(PictureNum)+".bmp";
+	   Form3->Buttons[SettingsNum]->Glyph->LoadFromFile(s);
+	   PictureNum++;
+	   PictureNum%=3;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::FormMouseEnter(TObject *Sender)
+{
+SettingsNum=-1;
+PictureNum=0;
 }
 //---------------------------------------------------------------------------
 

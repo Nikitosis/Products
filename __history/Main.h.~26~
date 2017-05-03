@@ -1,0 +1,54 @@
+//---------------------------------------------------------------------------
+
+#ifndef MainH
+#define MainH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <Menus.hpp>
+#include <Dialogs.hpp>
+#include <ExtCtrls.hpp>
+#include <Buttons.hpp>
+#include <jpeg.hpp>
+#include <Graphics.hpp>
+#include <pngimage.hpp>
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TMainMenu *MainMenu1;
+	TMenuItem *File1;
+	TMenuItem *Save1;
+	TMenuItem *Load1;
+	TSaveDialog *SaveDialog1;
+	TOpenDialog *OpenDialog1;
+	TBitBtn *BitBtn1;
+	TImage *Image1;
+	TImage *Image2;
+	TImage *Button1;
+	TImage *Button2;
+	TImage *Image9;
+	TImage *Button3;
+	TLabel *Label1;
+	TLabel *Label2;
+	TLabel *Label3;
+	TTimer *Timer1;
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall Save1Click(TObject *Sender);
+	void __fastcall Load1Click(TObject *Sender);
+	void __fastcall Button1MouseEnter(TObject *Sender);
+	void __fastcall Button2MouseEnter(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+bool isFirst,isSecond,isThird;
+int First,Second,Third;
+	__fastcall TForm1(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif

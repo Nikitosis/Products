@@ -27,7 +27,7 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 
 void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на кнопку настройки
 {
-	TButton *btn = dynamic_cast<TButton *>(Sender);       //переводим Sender в TButton
+	TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);       //переводим Sender в TButton
 	int num=btn->Tag;
 	Form5->Image1->Picture=Images[num]->Picture;
 	Form5->Edit1->Text=Labeles[(num)*5]->Caption;
@@ -75,6 +75,8 @@ void __fastcall TForm2::FormCreate(TObject *Sender)
 memset(Form2->IsDel,false,100*sizeof(bool));
 ProductsA=0;
 ProductsDel=0;
+SettingsNum=-1;
+PictureNum=0;
 }
 //---------------------------------------------------------------------------
 
@@ -82,8 +84,31 @@ ProductsDel=0;
 
 void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
 {
-Form1->Visible=true;
+//Form1->Visible=true;
 Form5->Close();
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm2::Timer1Timer(TObject *Sender)
+{
+	if(SettingsNum>=0)
+	{
+	   AnsiString s=ExtractFilePath(Application->ExeName);
+	   s+="/SettingButtons/"+IntToStr(PictureNum)+".bmp";
+	   Form2->Buttons[SettingsNum]->Glyph->LoadFromFile(s);
+	   PictureNum++;
+	   PictureNum%=3;
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm2::FormMouseEnter(TObject *Sender)
+{
+SettingsNum=-1;
+PictureNum=0;
+}
+//---------------------------------------------------------------------------
+
 

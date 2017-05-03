@@ -109,6 +109,7 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Panels[n]->Left=0;
 	Form2->Panels[n]->Width=Form2->ScrollBox1->Width-4;
 	Form2->Panels[n]->Height=Form2->PanelH;
+	Form2->Panels[n]->OnMouseEnter=Form2->OnMouseEnter;
 
 	Form2->ScrollBox1->VertScrollBar->Position=k;
 
@@ -180,13 +181,15 @@ if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кн
 	Form2->Labeles[n*5+4]->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
    //	Form2->Labeles[n*5+4]->Caption=Edit;
 
-	Form2->Buttons[n]=new TButton(Form2);
+	Form2->Buttons[n]=new TBitBtn(Form2);
 	Form2->Buttons[n]->Parent=Form2->Panels[n];
 	Form2->Buttons[n]->Left=820;
 	Form2->Buttons[n]->Height=Form2->PanelH-1;
 	Form2->Buttons[n]->Width=100;
 	Form2->Buttons[n]->Tag=n;
 	Form2->Buttons[n]->OnClick=Form2->PropClick;
+	Form2->Buttons[n]->Glyph=BitBtn1->Glyph;
+	Form2->Buttons[n]->OnMouseEnter=SettingsEnter;
 
 	TImage *line=new TImage(Form2);               //рисуем линии
 	line->Parent=Form2->Panels[n];
@@ -349,4 +352,15 @@ void __fastcall TForm5::FormClose(TObject *Sender, TCloseAction &Action)
 Form2->Show();
 }
 //---------------------------------------------------------------------------
-
+void __fastcall TForm5::SettingsEnter(TObject *Sender)
+{
+	TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
+	if(Form2->SettingsNum>=0)
+	{
+	   AnsiString s=ExtractFilePath(Application->ExeName);
+	   s+="/SettingButtons/"+IntToStr(0)+".bmp";
+	   Form2->Buttons[Form2->SettingsNum]->Glyph->LoadFromFile(s);
+	   Form2->PictureNum=0;
+	}
+	Form2->SettingsNum=btn->Tag;
+}

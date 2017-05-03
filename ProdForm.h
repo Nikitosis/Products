@@ -11,6 +11,7 @@
 #include <jpeg.hpp>
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
+#include <Buttons.hpp>
 //---------------------------------------------------------------------------
 class TForm5 : public TForm
 {
@@ -24,17 +25,19 @@ __published:	// IDE-managed Components
 	TEdit *Edit2;
 	TEdit *Edit3;
 	TEdit *Edit4;
-	TButton *Button2;
-	TButton *Button3;
 	TOpenPictureDialog *OpenPictureDialog1;
-	TButton *Button1;
 	TImage *Image2;
-	TButton *Button4;
+	TBitBtn *BitBtn1;
+	TBitBtn *Button2;
+	TBitBtn *Button3;
+	TBitBtn *Button4;
+	TBitBtn *Button1;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall Edit2Change(TObject *Sender);
+	void __fastcall SettingsEnter(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations

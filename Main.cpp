@@ -47,17 +47,11 @@ Form6->Hide();
 Form8->Hide();
 Form3->Show();
 
-Form3->Panel1->Visible=false;
-Form3->Panel2->Visible=false;
-Form3->Panel3->Visible=false;
-Form3->Label8->Visible=false;
-Form3->Label9->Visible=false;
-Form3->Label10->Visible=false;
+
+Form3->Label11->Visible=false;
 
 Form3->IsRecommend=false;
-for(int i=0;i<Form3->MealsA;i++)
-	if(Form3->IsDelMeal[i]==false)
-		Form3->RecomPanel[i]->Visible=false;
+Form3->RecomPanel->Visible=false;
 }
 //---------------------------------------------------------------------------
 
@@ -294,11 +288,11 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  Form3->IsRight[i][j]=b;
 		}
 
-      for(int i=0;i<99;i++)
+	  for(int i=0;i<99;i++)
 		for(int j=0;j<99;j++)
 		{
 			fin>>s;
-            Form3->Weights[i][j]=s.c_str();
+			Form3->Weights[i][j]=s.c_str();
 		}
 		/////////////////////////////////////////////////////////     открываем Products
 	    n;
@@ -311,7 +305,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 		  getline(fin,s);
 		  Form2->Labeles[i*5]->Caption=s.c_str();
 
-          getline(fin,s);
+		  getline(fin,s);
 		  Form2->Labeles[i*5+1]->Caption=s.c_str();
 
 		  getline(fin,s);
@@ -337,7 +331,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 					//Form2->Label1->Font->Color=StringToColor("0x000605FB");
 				}
 		  Form2->Images[i]->Picture->Graphic=gBitmap;
-		  Form2->Image1->Picture->Graphic=gBitmap;
+		  //Form2->Image1->Picture->Graphic=gBitmap;
 		}
 	   gBitmap->Free();
 
@@ -361,6 +355,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 	Form3->Hide();
 	//Form2->Hide();
 	Form1->Show();
+	Form3->Color=RGB(125,206,38);
 }
 //---------------------------------------------------------------------------
 
@@ -369,4 +364,39 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 
 
+
+
+
+
+
+
+
+
+void __fastcall TForm1::Button1MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button1->Picture->LoadFromFile(s+"/MenuButtons/MouseEnter.png");
+Button2->Picture->LoadFromFile(s+"/MenuButtons/Button.png");
+Button3->Picture->LoadFromFile(s+"/MenuButtons/Button.png");
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button2MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button1->Picture->LoadFromFile(s+"/MenuButtons/Button.png");
+Button2->Picture->LoadFromFile(s+"/MenuButtons/MouseEnter.png");
+Button3->Picture->LoadFromFile(s+"/MenuButtons/Button.png");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button1->Picture->LoadFromFile(s+"/MenuButtons/Button.png");
+Button2->Picture->LoadFromFile(s+"/MenuButtons/Button.png");
+Button3->Picture->LoadFromFile(s+"/MenuButtons/MouseEnter.png");
+}
+//---------------------------------------------------------------------------
 

@@ -1,0 +1,172 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = #1041#1083#1102#1076#1072
+  ClientHeight = 541
+  ClientWidth = 924
+  Color = clBtnFace
+  TransparentColorValue = cl3DLight
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label6: TLabel
+    Left = 694
+    Top = 15
+    Width = 85
+    Height = 21
+    Caption = #1050#1050#1072#1083#1083#1086#1088#1080#1081
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 604
+    Top = 18
+    Width = 76
+    Height = 16
+    Caption = #1059#1075#1083#1077#1074#1086#1076#1086#1074'('#1075')'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 536
+    Top = 18
+    Width = 55
+    Height = 16
+    Caption = #1046#1080#1088#1086#1074'('#1075')'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 464
+    Top = 18
+    Width = 57
+    Height = 16
+    Caption = #1041#1077#1083#1082#1086#1074'('#1075')'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 341
+    Top = 18
+    Width = 93
+    Height = 18
+    Caption = #1048#1079#1086#1073#1088#1072#1078#1077#1085#1080#1077
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 126
+    Top = 15
+    Width = 75
+    Height = 21
+    Caption = #1053#1072#1079#1074#1072#1085#1080#1077
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 834
+    Top = 15
+    Width = 60
+    Height = 21
+    Caption = #1052#1072#1089#1072'('#1075')'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
+  object ScrollBox1: TScrollBox
+    Left = 8
+    Top = 48
+    Width = 910
+    Height = 401
+    HorzScrollBar.Visible = False
+    VertScrollBar.Smooth = True
+    VertScrollBar.Tracking = True
+    Color = clBtnFace
+    ParentColor = False
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Tag = -1
+    Left = 6
+    Top = 455
+    Width = 910
+    Height = 81
+    Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object RecomPanel: TPanel
+    Left = 6
+    Top = 0
+    Width = 910
+    Height = 17
+    ParentBackground = False
+    TabOrder = 2
+    Visible = False
+    object Label11: TLabel
+      Left = 335
+      Top = 0
+      Width = 284
+      Height = 16
+      Caption = #1042' '#1089#1091#1084#1084#1077' '#1084#1077#1085#1100#1096#1077' '#1082#1082#1072#1083','#1095#1077#1084' '#1074#1072#1096#1072' '#1089#1091#1090#1086#1095#1085#1072#1103' '#1085#1086#1088#1084#1072
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 128
+    Top = 65528
+    object File1: TMenuItem
+      Caption = 'File'
+      object Save1: TMenuItem
+        Caption = 'Save'
+        OnClick = Save1Click
+      end
+      object Load1: TMenuItem
+        Caption = 'Load'
+        OnClick = Load1Click
+      end
+    end
+  end
+end

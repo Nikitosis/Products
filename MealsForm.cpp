@@ -110,15 +110,18 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Labeles[n * 5 + 4]->Font->Size = 10;
 		Form3->Labeles[n * 5 + 4]->Caption = Label12->Caption;
 
-		Form3->Buttons[n] = new TButton(Form3);
+		Form3->Buttons[n] = new TBitBtn(Form3);
 		Form3->Buttons[n]->Parent = Form3->Panels[n];
 		Form3->Buttons[n]->Left = 793;
 		Form3->Buttons[n]->Height = Form3->PanelH - 1;
 		Form3->Buttons[n]->Width = 110;
 		Form3->Buttons[n]->Tag = n;
 		Form3->Buttons[n]->OnClick = Form3->PropClick;
+		Form3->Buttons[n]->Glyph=BitBtn1->Glyph;
+		Form3->Buttons[n]->OnMouseEnter=SettingsEnter;
 
-		Form3->RecomPanel[n] = new TPanel(Form3); // лини€ дл€ обозначени€,какое блюдо по каллорийности в реккомендаци€х
+
+		/*Form3->RecomPanel[n] = new TPanel(Form3); // лини€ дл€ обозначени€,какое блюдо по каллорийности в реккомендаци€х
 		Form3->RecomPanel[n]->Parent = Form3->Panels[n];
 		Form3->RecomPanel[n]->Left = 0;
 		Form3->RecomPanel[n]->Height = 10;
@@ -127,7 +130,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->RecomPanel[n]->Tag = n;
 		Form3->RecomPanel[n]->Visible=false;
 		Form3->RecomPanel[n]->Color = clLime;
-		Form3->RecomPanel[n]->ParentBackground=false;
+		Form3->RecomPanel[n]->ParentBackground=false;   */
 
 		TImage *line2 = new TImage(Form3);
 		line2->Parent = Form3->Panels[n];
@@ -227,12 +230,12 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		{
 			int kal=StrToInt(Label12->Caption);
 			if(Form4->BMR-kal>400)   //если меньше
-					Form3->RecomPanel[n]->Color=clHighlight;
+					Form3->RecomPanel->Color=clHighlight;
 					else
 					if(Form4->BMR-kal<-400)  //если больше
-						Form3->RecomPanel[n]->Color=RGB(247,192,25);
+						Form3->RecomPanel->Color=RGB(247,192,25);
 						else
-						Form3->RecomPanel[n]->Color=RGB(25,247,83);     //если идеально
+						Form3->RecomPanel->Color=RGB(25,247,83);     //если идеально
 		}
 	}
 
@@ -323,4 +326,15 @@ void __fastcall TForm6::FormClose(TObject *Sender, TCloseAction &Action)
 Form3->Visible=true;
 }
 //---------------------------------------------------------------------------
-
+void __fastcall TForm6::SettingsEnter(TObject *Sender)
+{
+	TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
+	if(Form3->SettingsNum>=0)
+	{
+	   AnsiString s=ExtractFilePath(Application->ExeName);
+	   s+="/SettingButtons/"+IntToStr(0)+".bmp";
+	   Form3->Buttons[Form3->SettingsNum]->Glyph->LoadFromFile(s);
+	   Form3->PictureNum=0;
+	}
+	Form3->SettingsNum=btn->Tag;
+}
