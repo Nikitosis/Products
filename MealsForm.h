@@ -12,6 +12,7 @@
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
 #include <Buttons.hpp>
+#include <pngimage.hpp>
 //---------------------------------------------------------------------------
 class TForm6 : public TForm
 {

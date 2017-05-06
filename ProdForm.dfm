@@ -5,7 +5,7 @@ object Form5: TForm5
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1087#1088#1086#1076#1091#1082#1090#1072
   ClientHeight = 510
   ClientWidth = 703
-  Color = clBtnFace
+  Color = 8310264
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

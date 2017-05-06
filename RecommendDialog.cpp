@@ -27,6 +27,7 @@ Close();
 //---------------------------------------------------------------------------
 void __fastcall TForm8::Button2Click(TObject *Sender)
 {
+WatchedRecom=true;
 Form3->IsRecommend=true;
 Form3->Button1->Visible=false;
 Form3->Label8->Visible=false;
@@ -117,6 +118,7 @@ Form3->ShowModal();
 
 void __fastcall TForm8::FormClose(TObject *Sender, TCloseAction &Action)
 {
+	if(WatchedRecom)   //если заходили в посмотреть рекоммендованные
 	for(int i=0;i<Form3->MealsA;i++)
 		if(Form3->IsDelMeal[i]==false)
 		{
@@ -161,7 +163,7 @@ void __fastcall TForm8::MassChange(TObject *Sender)
 		kpergramm=StrToFloat(Form3->Labeles[num*5+4]->Caption)/sum;
 		bpergramm=StrToFloat(Form3->Labeles[num*5+1]->Caption)/sum;
 		zpergramm=StrToFloat(Form3->Labeles[num*5+2]->Caption)/sum;
-		upergramm=StrToFloat(Form3->Labeles[num*5+2]->Caption)/sum;
+		upergramm=StrToFloat(Form3->Labeles[num*5+3]->Caption)/sum;
 	}
 	else
 	{
@@ -188,23 +190,26 @@ void __fastcall TForm8::MassChange(TObject *Sender)
 		int kal=0;
 			for(int j=0;j<Form3->MealsA;j++)
 				if(!Form3->IsDelMeal[j] && LWeights[j]->Text!="")
-					kal+=StrToInt(LWeights[j]->Text);
+					kal+=StrToInt(LKal[j]->Caption);
 
 			if(BMR-kal>400)   //если меньше
 			{
 				Form3->RecomPanel->Color=clHighlight;
-				Form3->Label11->Caption="В сумме меньше ккал,чем ваша суточная норма";
+				Form3->Label11->Caption="В сумме меньше ккал,чем ваша суточная норма ("+IntToStr(kal) + "ккал)";
+				Form3->Label11->Font->Color=clWhite;
 			}
 				else
 				if(BMR-kal<-400)  //если больше
 				{
 					Form3->RecomPanel->Color=RGB(247,192,25);
-					Form3->Label11->Caption="В сумме больше ккал,чем ваша суточная норма";
+					Form3->Label11->Caption="В сумме больше ккал,чем ваша суточная норма ("+IntToStr(kal) + "ккал)";
+					Form3->Label11->Font->Color=clWhite;
 				}
 					else
 					{
 					Form3->RecomPanel->Color=RGB(25,247,83);     //если идеально
-					Form3->Label11->Caption="В сумме рекомендованное кол-во ккалорий";
+					Form3->Label11->Caption="В сумме рекомендованное кол-во ккалорий (" +IntToStr(kal) + "ккал)";
+					Form3->Label11->Font->Color=clBlack;
 					}
 
 }

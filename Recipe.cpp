@@ -25,3 +25,27 @@ Memo1->Text=text;
 Form7->Close();
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm7::Button1MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button1->Picture->LoadFromFile(s+"/RecipeButton/Grey.png");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm7::Image1MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button1->Picture->LoadFromFile(s+"/RecipeButton/White.png");
+Button2->Picture->LoadFromFile(s+"/RecipeButton/White.png");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm7::Button2MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button2->Picture->LoadFromFile(s+"/RecipeButton/Grey.png");
+}
+//---------------------------------------------------------------------------
+
+

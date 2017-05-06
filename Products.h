@@ -38,6 +38,7 @@ __published:	// IDE-managed Components
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormMouseEnter(TObject *Sender);
+	void __fastcall Button1MouseEnter(TObject *Sender);
 private:	// User declarations
 public:	 int ProductsA;
 TPanel *Panels[100];

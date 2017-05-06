@@ -106,9 +106,20 @@ void __fastcall TForm2::Timer1Timer(TObject *Sender)
 
 void __fastcall TForm2::FormMouseEnter(TObject *Sender)
 {
-SettingsNum=-1;
-PictureNum=0;
+	SettingsNum=-1;
+	PictureNum=0;
+	AnsiString s=ExtractFilePath(Application->ExeName);
+	s+="/MenuButtons/Button.png";
+	Button1->Picture->LoadFromFile(s);
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm2::Button1MouseEnter(TObject *Sender)
+{
+	AnsiString s=ExtractFilePath(Application->ExeName);
+	s+="/MenuButtons/MouseEnter.png";
+	Button1->Picture->LoadFromFile(s);
+}
+//---------------------------------------------------------------------------
 

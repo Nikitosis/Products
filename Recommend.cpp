@@ -48,6 +48,7 @@ void __fastcall TForm4::Button1Click(TObject *Sender) {
 			"Ваше рекомендуемое количество ккал в день: " + FloatToStr(BMR);
 		Form8->BMR = BMR;
 		Form8->ShowModal();
+		Form8->WatchedRecom=false;
 	}
 
 }
@@ -57,3 +58,18 @@ void __fastcall TForm4::FormClose(TObject *Sender, TCloseAction &Action) {
 	Form1->Show();
 }
 // ---------------------------------------------------------------------------
+
+void __fastcall TForm4::Button1MouseEnter(TObject *Sender)
+{
+	AnsiString s=ExtractFilePath(Application->ExeName);
+	Button1->Picture->LoadFromFile(s+"/RecomButton/MouseEnter.bmp");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::FormMouseEnter(TObject *Sender)
+{
+	AnsiString s=ExtractFilePath(Application->ExeName);
+	Button1->Picture->LoadFromFile(s+"/RecomButton/Button.bmp");
+}
+//---------------------------------------------------------------------------
+

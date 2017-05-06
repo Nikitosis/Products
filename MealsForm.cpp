@@ -223,7 +223,8 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Labeles[n * 5 + 3]->Caption = Label11->Caption;
 		Form3->Labeles[n * 5 + 4]->Caption = Label12->Caption;
 		for (int i = 0; i < Form2->ProductsA; i++)
-			Form3->Weights[n][i] = Form3->EditsHave[i]->Text;
+			if(Form3->NeedToDelete[i])
+				Form3->Weights[n][Form3->PanelsHave[i]->Tag] = Form3->EditsHave[i]->Text;
 
 
 		if (Form3->IsRecommend) // Если мы в рекомендациях ,то смотрим на ккалории и задаем панели цвет
@@ -250,7 +251,9 @@ void __fastcall TForm6::Button3Click(TObject *Sender) {
 			Form3->IsLeft[num][i] = Form3->LeftWas[i];
 			Form3->IsRight[num][i] = Form3->RightWas[i];
 		}
+		Form3->PropClick(Form3->Buttons[num]);
 	}
+	Form3->EditsHaveChange(Form3->EditsHave[0]);
 	Close();
 }
 

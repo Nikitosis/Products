@@ -7,7 +7,9 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-//---------------------------------------------------------------------------
+#include <ExtCtrls.hpp>
+
+#include <Graphics.hpp>//---------------------------------------------------------------------------
 class TForm4 : public TForm
 {
 __published:	// IDE-managed Components
@@ -21,9 +23,12 @@ __published:	// IDE-managed Components
 	TEdit *Edit3;
 	TLabel *Label5;
 	TComboBox *ComboBox2;
-	TButton *Button1;
+	TImage *Button1;
+	TLabel *Label6;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall Button1MouseEnter(TObject *Sender);
+	void __fastcall FormMouseEnter(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 double BMR;

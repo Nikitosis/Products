@@ -348,10 +348,10 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 
 	   }
 	}
-	Form3->Close();
-	Form2->Close();
-	Form8->Close();
-	Form4->Close();
+	Form3->Hide();
+	Form2->Hide();
+	Form8->Hide();
+	Form4->Hide();
 	Form3->Hide();
 	//Form2->Hide();
 	Form1->Show();

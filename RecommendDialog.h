@@ -25,6 +25,7 @@ TLabel *LBel[100];
 TLabel *LZh[100];
 TLabel *LUgl[100];
 TLabel *LKal[100];
+bool WatchedRecom;
 	__fastcall TForm8(TComponent* Owner);
 	void __fastcall TForm8::MassChange(TObject *Sender);
 };
