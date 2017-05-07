@@ -245,15 +245,16 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm6::Button3Click(TObject *Sender) {
-	if (Form3->PropNum != -1) {
+	if (Form3->PropNum != 99) {
 		int num = Form3->PropNum;
 		for (int i = 0; i < Form2->ProductsA; i++) {
 			Form3->IsLeft[num][i] = Form3->LeftWas[i];
 			Form3->IsRight[num][i] = Form3->RightWas[i];
 		}
 		Form3->PropClick(Form3->Buttons[num]);
+		if(Form3->ProductsHave+Form3->ProductsUse>0)
+			Form3->EditsHaveChange(Form3->EditsHave[0]);
 	}
-	Form3->EditsHaveChange(Form3->EditsHave[0]);
 	Close();
 }
 
@@ -341,3 +342,92 @@ void __fastcall TForm6::SettingsEnter(TObject *Sender)
 	}
 	Form3->SettingsNum=btn->Tag;
 }
+//---------------------------------------------------------------------------
+void __fastcall TForm6::Button10Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form6->Components[FocusIndex]->ClassName();
+if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  AnsiString s=edit->Text;
+	  s.Delete(start+1,edit->SelLength);    //если выделено,то заменяем
+	  s.Insert(button->Caption,start+1);    //вставляем букву
+	  edit->SetFocus();
+	  edit->Text=s;
+	  edit->SelStart=start+1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm6::FormShow(TObject *Sender)
+{
+FocusIndex=8;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::Button10MouseEnter(TObject *Sender)
+{
+for(int i=0;i<Form6->ComponentCount-1;i++)
+	{
+	   if(Form6->ActiveControl==Form6->Components[i])
+		FocusIndex=i;
+	}
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::Button7Click(TObject *Sender)
+{
+  TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
+  AnsiString s=Form6->Components[FocusIndex]->ClassName();
+if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  if(edit->SelLength!=0)
+		start++;
+	  AnsiString s=edit->Text;
+	  int length=edit->SelLength;
+	  if(length==0)
+		length=1;
+	  s.Delete(start,length);
+	  edit->SetFocus();
+	  edit->Text=s;
+	  if(start!=0)
+		 edit->SelStart=start-1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TForm6::Button6Click(TObject *Sender)
+{
+for(int i=0;i<Form6->ComponentCount-1;i++)
+{
+  if(Form6->Components[i]->ClassName()=="TButton")
+  {
+	TButton *button = (TButton*)Form6->Components[i];
+	if(button->Caption.Length()==1)
+		if(button->Caption==button->Caption.UpperCase())
+			button->Caption=button->Caption.LowerCase();
+			else
+			button->Caption=button->Caption.UpperCase();
+  }
+}
+TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+edit->SetFocus();
+edit->SelLength=0;
+edit->SelStart=100;
+}
+//---------------------------------------------------------------------------
+

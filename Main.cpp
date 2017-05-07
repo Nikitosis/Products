@@ -400,3 +400,28 @@ Button3->Picture->LoadFromFile(s+"/MenuButtons/MouseEnter.png");
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+setlocale(LC_ALL,"rus");
+AnsiString s=ExtractFilePath(Application->ExeName);
+s+="/Fonts/segoepr.ttf";
+AddFontResource(s.c_str());
+
+IsKeyboard=false;
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N2Click(TObject *Sender)
+{
+IsKeyboard=true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N3Click(TObject *Sender)
+{
+IsKeyboard=false;
+}
+//---------------------------------------------------------------------------
+
+

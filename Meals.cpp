@@ -147,6 +147,7 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 			n++;
 		}
 
+   Form6->Edit1->SetFocus();
 }
 
 // ---------------------------------------------------------------------------
@@ -333,8 +334,8 @@ void __fastcall TForm3::PropClickNum(int num)
 	}
 
 
-
 	Form6->Show();
+	Form6->Edit1->SetFocus();
 }
 
 void __fastcall TForm3::EditsHaveChange(TObject *Sender)
