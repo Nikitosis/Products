@@ -89,6 +89,7 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->EditsHave[n]->Text="0";
 	Form3->EditsHave[n]->MaxLength=6;
 	Form3->EditsHave[n]->OnChange=Form3->EditsHaveChange;
+    Form3->EditsHave[n]->OnClick=Form3->EditsClick;
 
 	Form3->ButtonsHave[n] = new TBitBtn(Form6);
 	Form3->ButtonsHave[n]->Parent = Form3->PanelsHave[n];
@@ -354,7 +355,7 @@ if(btn->Parent->Parent==Form6->ScrollBox2)
 			{
 				if(IsRight[num][PanelsHave[i]->Tag] && !EditsHave[i]->Text.IsEmpty())
 					{
-					  int k=PanelsHave[n]->Tag;
+					  int k=PanelsHave[i]->Tag;
 					  sum1+=StrToInt(Form2->Labeles[k*5+1]->Caption)*StrToInt(Form3->EditsHave[i]->Text);
 					  sum2+=StrToInt(Form2->Labeles[k*5+2]->Caption)*StrToInt(Form3->EditsHave[i]->Text);
 					  sum3+=StrToInt(Form2->Labeles[k*5+3]->Caption)*StrToInt(Form3->EditsHave[i]->Text);
@@ -461,5 +462,21 @@ void __fastcall TForm3::Button1MouseEnter(TObject *Sender)
 	Button1->Picture->LoadFromFile(s);
 }
 //---------------------------------------------------------------------------
-
+void __fastcall TForm3::EditsClick(TObject *Sender)
+{
+TEdit *edt = dynamic_cast<TEdit *>(Sender);
+for(int i=0;i<Form6->ComponentCount-1;i++)
+{
+	if(Form6->Components[i]->ClassName()=="TButton")
+	{
+		TButton *btn =(TButton *) Form6->Components[i];
+		if(!(btn->Name=="Backspace"
+		|| btn->Caption=="0" || btn->Caption=="1" || btn->Caption=="2"
+		|| btn->Caption=="3" || btn->Caption=="4" || btn->Caption=="5"
+		|| btn->Caption=="6" || btn->Caption=="7" || btn->Caption=="8"
+		|| btn->Caption=="9"))
+			btn->Enabled=false;
+	}
+}
+}
 

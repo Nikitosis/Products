@@ -78,6 +78,8 @@ Form4->ComboBox2->Text="Уровень активности";
 
 void __fastcall TForm1::Save1Click(TObject *Sender)
 {
+SaveDialog1->Filter="Products|*.prd";
+SaveDialog1->DefaultExt="prd";
 	  if(SaveDialog1->Execute())
 	  {
 		   ofstream fout(SaveDialog1->FileName.c_str());
@@ -203,6 +205,8 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 
 void __fastcall TForm1::Load1Click(TObject *Sender)
 {
+OpenDialog1->Filter="Products|*.prd";
+OpenDialog1->DefaultExt="prd";
 	if(OpenDialog1->Execute())
 	{
 	ifstream fin(OpenDialog1->FileName.c_str());

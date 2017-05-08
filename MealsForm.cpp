@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+п»ї// ---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
@@ -24,7 +24,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		int n = Form3->MealsA - 1;
 		int k;
 		k = Form3->ScrollBox1->VertScrollBar->Position;
-		// нужно обязательно,иначе появл. пропуски
+		// РЅСѓР¶РЅРѕ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ,РёРЅР°С‡Рµ РїРѕСЏРІР». РїСЂРѕРїСѓСЃРєРё
 		Form3->ScrollBox1->VertScrollBar->Position = 0;
 
 		Form3->Panels[n] = new TPanel(Form3);
@@ -121,7 +121,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		Form3->Buttons[n]->OnMouseEnter=SettingsEnter;
 
 
-		/*Form3->RecomPanel[n] = new TPanel(Form3); // линия для обозначения,какое блюдо по каллорийности в реккомендациях
+		/*Form3->RecomPanel[n] = new TPanel(Form3); // Р»РёРЅРёСЏ РґР»СЏ РѕР±РѕР·РЅР°С‡РµРЅРёСЏ,РєР°РєРѕРµ Р±Р»СЋРґРѕ РїРѕ РєР°Р»Р»РѕСЂРёР№РЅРѕСЃС‚Рё РІ СЂРµРєРєРѕРјРµРЅРґР°С†РёСЏС…
 		Form3->RecomPanel[n]->Parent = Form3->Panels[n];
 		Form3->RecomPanel[n]->Left = 0;
 		Form3->RecomPanel[n]->Height = 10;
@@ -200,17 +200,17 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		for (int i = 0; i < Form2->ProductsA; i++)
 			Form3->Weights[n][i] = Form3->EditsHave[i]->Text;
 
-		/*if (Form3->IsRecommend) // Если мы в рекомендациях ,то смотрим на ккалории и задаем панели цвет
+		/*if (Form3->IsRecommend) // Р•СЃР»Рё РјС‹ РІ СЂРµРєРѕРјРµРЅРґР°С†РёСЏС… ,С‚Рѕ СЃРјРѕС‚СЂРёРј РЅР° РєРєР°Р»РѕСЂРёРё Рё Р·Р°РґР°РµРј РїР°РЅРµР»Рё С†РІРµС‚
 		{
 			Form3->RecomPanel[n]->Height=10;
 			int kal=StrToInt(Label12->Caption);
-			if(Form4->BMR-kal>400)   //если меньше
+			if(Form4->BMR-kal>400)   //РµСЃР»Рё РјРµРЅСЊС€Рµ
 					Form3->RecomPanel[n]->Color=clHighlight;
 					else
-					if(Form4->BMR-kal<-400)  //если больше
+					if(Form4->BMR-kal<-400)  //РµСЃР»Рё Р±РѕР»СЊС€Рµ
 						Form3->RecomPanel[n]->Color=RGB(247,192,25);
 						else
-						Form3->RecomPanel[n]->Color=RGB(25,247,83);     //если идеально
+						Form3->RecomPanel[n]->Color=RGB(25,247,83);     //РµСЃР»Рё РёРґРµР°Р»СЊРЅРѕ
 		}     */
 	}
 	else {
@@ -227,16 +227,16 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 				Form3->Weights[n][Form3->PanelsHave[i]->Tag] = Form3->EditsHave[i]->Text;
 
 
-		if (Form3->IsRecommend) // Если мы в рекомендациях ,то смотрим на ккалории и задаем панели цвет
+		if (Form3->IsRecommend) // Р•СЃР»Рё РјС‹ РІ СЂРµРєРѕРјРµРЅРґР°С†РёСЏС… ,С‚Рѕ СЃРјРѕС‚СЂРёРј РЅР° РєРєР°Р»РѕСЂРёРё Рё Р·Р°РґР°РµРј РїР°РЅРµР»Рё С†РІРµС‚
 		{
 			int kal=StrToInt(Label12->Caption);
-			if(Form4->BMR-kal>400)   //если меньше
+			if(Form4->BMR-kal>400)   //РµСЃР»Рё РјРµРЅСЊС€Рµ
 					Form3->RecomPanel->Color=clHighlight;
 					else
-					if(Form4->BMR-kal<-400)  //если больше
+					if(Form4->BMR-kal<-400)  //РµСЃР»Рё Р±РѕР»СЊС€Рµ
 						Form3->RecomPanel->Color=RGB(247,192,25);
 						else
-						Form3->RecomPanel->Color=RGB(25,247,83);     //если идеально
+						Form3->RecomPanel->Color=RGB(25,247,83);     //РµСЃР»Рё РёРґРµР°Р»СЊРЅРѕ
 		}
 	}
 
@@ -266,7 +266,7 @@ void __fastcall TForm6::Button1Click(TObject *Sender) {
 }
 // ---------------------------------------------------------------------------
 
-void __fastcall TForm6::Button4Click(TObject *Sender) // удаляем meals
+void __fastcall TForm6::Button4Click(TObject *Sender) // СѓРґР°Р»СЏРµРј meals
 {
 	Form3->Panels[Form3->PropNum]->Free();
 	for (int i = 0; i < Form3->MealsA; i++)
@@ -345,15 +345,15 @@ void __fastcall TForm6::SettingsEnter(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm6::Button10Click(TObject *Sender)
 {
-TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+TButton *button = dynamic_cast<TButton *>(Sender);         //Р±СѓРєРІС‹+С†РёС„СЂС‹
 AnsiString s=Form6->Components[FocusIndex]->ClassName();
 if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 	{
 	  TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
 	  int start=edit->SelStart;
 	  AnsiString s=edit->Text;
-	  s.Delete(start+1,edit->SelLength);    //если выделено,то заменяем
-	  s.Insert(button->Caption,start+1);    //вставляем букву
+	  s.Delete(start+1,edit->SelLength);    //РµСЃР»Рё РІС‹РґРµР»РµРЅРѕ,С‚Рѕ Р·Р°РјРµРЅСЏРµРј
+	  s.Insert(button->Caption,start+1);    //РІСЃС‚Р°РІР»СЏРµРј Р±СѓРєРІСѓ
 	  edit->SetFocus();
 	  edit->Text=s;
 	  edit->SelStart=start+1;
@@ -367,7 +367,7 @@ if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 
 void __fastcall TForm6::FormShow(TObject *Sender)
 {
-FocusIndex=8;
+FocusIndex=22;
 }
 //---------------------------------------------------------------------------
 
@@ -375,7 +375,7 @@ void __fastcall TForm6::Button10MouseEnter(TObject *Sender)
 {
 for(int i=0;i<Form6->ComponentCount-1;i++)
 	{
-	   if(Form6->ActiveControl==Form6->Components[i])
+	   if(Form6->ActiveControl==Form6->Components[i] && Form6->Components[i]->ClassName()=="TEdit")
 		FocusIndex=i;
 	}
 
@@ -428,6 +428,98 @@ TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
 edit->SetFocus();
 edit->SelLength=0;
 edit->SelStart=100;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::Button118Click(TObject *Sender)
+{
+if(Button53->Caption=="Sym")
+	Button53->Caption="ABC";
+	else
+	Button53->Caption="Sym";
+int foc=FocusIndex;
+setlocale(LC_ALL,"rus");
+char capt[]={'Р№','С†','Сѓ','Рє','Рµ','РЅ','Рі','С€','С‰','Р·','С…','С—',
+'С„','С–','РІ','Р°','Рї','СЂ','Рѕ','Р»','Рґ','Р¶','С”','СЏ','С‡','СЃ','Рј','Рё','С‚','СЊ','Р±','СЋ'};
+char symb[]={'+','x','Г·','=','%','_','/','\\','{','}','#','$',
+'/','|','^','~','*','(',')','-','\"','\'',':',';','!','?',',','.','[',']','<','>'};
+
+for(int i=0;i<Form6->ComponentCount-1;i++)
+{
+	if(Components[i]->ClassName()=="TButton")
+		{
+			TButton *btn= (TButton*)Components[i];
+			int charnum=-1,symnum=-1;
+			AnsiString s=btn->Caption;
+			for(int i=0;i<32;i++)
+			{
+				AnsiString c=capt[i];
+				if(btn->Caption.LowerCase()==c)
+					charnum=i;
+				if(btn->Caption.LowerCase()==symb[i])
+					symnum=i;
+			}
+			if(charnum!=-1)
+			{
+				btn->Caption=symb[charnum];
+			}
+			if(symnum!=-1)
+			{
+				AnsiString c=capt[symnum];
+				btn->Caption=c;
+			}
+        }
+}
+FocusIndex=foc;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm6::Button133Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //Р±СѓРєРІС‹+С†РёС„СЂС‹
+AnsiString s=Form6->Components[FocusIndex]->ClassName();
+if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  edit->SetFocus();
+	  edit->SelStart=start+1;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::Button134Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //Р±СѓРєРІС‹+С†РёС„СЂС‹
+AnsiString s=Form6->Components[FocusIndex]->ClassName();
+if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  edit->SetFocus();
+	  if(start!=0)
+	 	 edit->SelStart=start-1;
+    }
+}
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm6::Edit1Click(TObject *Sender)
+{
+for(int i=0;i<Form6->ComponentCount-1;i++)
+{
+	if(Components[i]->ClassName()=="TButton")
+	{
+		TButton *btn=(TButton*)Components[i];
+		if(btn->Parent==Panel4 && btn->Enabled==false)
+			{
+                btn->Enabled=true;
+            }
+    }
+}
 }
 //---------------------------------------------------------------------------
 

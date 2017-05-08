@@ -75,6 +75,7 @@ bool NeedToDelete[100];
 	void __fastcall TForm3::PropClick(TObject *Sender);
 		void __fastcall TForm3::PropClickNum(int num);
 	void __fastcall TForm3::EditsHaveChange(TObject *Sender);
+	void __fastcall TForm3::EditsClick(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;
