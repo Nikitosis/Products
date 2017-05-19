@@ -73,3 +73,69 @@ void __fastcall TForm4::FormMouseEnter(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm4::Button6Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form4->Components[FocusIndex]->ClassName();
+if(Form4->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form4->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  AnsiString s=edit->Text;
+	  s.Delete(start+1,edit->SelLength);    //если выделено,то заменяем
+	  s.Insert(button->Caption,start+1);    //вставляем букву
+	  edit->SetFocus();
+	  edit->Text=s;
+	  edit->SelStart=start+1;
+	  edit->SelLength=0;
+	}
+}
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm4::FormShow(TObject *Sender)
+{
+FocusIndex=1;
+if(Form1->IsKeyboard)
+	Height=476;
+	else
+	Height=390;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::Button6MouseEnter(TObject *Sender)
+{
+for(int i=0;i<Form4->ComponentCount-1;i++)
+	{
+	   if(Form4->ActiveControl==Form4->Components[i] && Form4->Components[i]->ClassName()=="TEdit")
+		FocusIndex=i;
+	}
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::BackspaceClick(TObject *Sender)
+{
+ TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
+  AnsiString s=Form4->Components[FocusIndex]->ClassName();
+if(Form4->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form4->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  if(edit->SelLength!=0)
+		start++;
+	  AnsiString s=edit->Text;
+	  int length=edit->SelLength;
+	  if(length==0)
+		length=1;
+	  s.Delete(start,length);
+	  edit->SetFocus();
+	  edit->Text=s;
+	  if(start!=0)
+		 edit->SelStart=start-1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+

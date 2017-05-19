@@ -13,6 +13,7 @@
 #include <ExtDlgs.hpp>
 #include <Buttons.hpp>
 #include <pngimage.hpp>
+#include <Graphics.hpp>
 //---------------------------------------------------------------------------
 class TForm6 : public TForm
 {
@@ -37,7 +38,6 @@ __published:	// IDE-managed Components
 	TLabel *Label14;
 	TLabel *Label15;
 	TLabel *Label16;
-	TButton *Button5;
 	TPanel *Panel1;
 	TPanel *Panel2;
 	TImage *Image2;
@@ -100,6 +100,7 @@ __published:	// IDE-managed Components
 	TButton *Button52;
 	TButton *Button51;
 	TButton *Button50;
+	TImage *Button5;
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);

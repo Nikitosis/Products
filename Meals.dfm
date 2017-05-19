@@ -1,9 +1,9 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  BorderStyle = bsSingle
+  BorderStyle = bsToolWindow
   Caption = #1041#1083#1102#1076#1072
-  ClientHeight = 541
+  ClientHeight = 524
   ClientWidth = 924
   Color = 2543229
   TransparentColorValue = cl3DLight
@@ -15,9 +15,11 @@ object Form3: TForm3
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnMouseEnter = FormMouseEnter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label6: TLabel
@@ -379,6 +381,147 @@ object Form3: TForm3
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+  end
+  object Panel4: TPanel
+    Left = 126
+    Top = 455
+    Width = 633
+    Height = 58
+    ParentCustomHint = False
+    Align = alCustom
+    BiDiMode = bdLeftToRight
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentBackground = False
+    ParentDoubleBuffered = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 2
+    object Button10: TButton
+      Left = 215
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '4'
+      TabOrder = 0
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button6: TButton
+      Left = 14
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '0'
+      TabOrder = 1
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button7: TButton
+      Left = 64
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '1'
+      TabOrder = 2
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button8: TButton
+      Left = 114
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '2'
+      TabOrder = 3
+      OnClick = Button6Click
+    end
+    object Button9: TButton
+      Left = 165
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '3'
+      TabOrder = 4
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button11: TButton
+      Left = 265
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '5'
+      TabOrder = 5
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button12: TButton
+      Left = 315
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '6'
+      TabOrder = 6
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button13: TButton
+      Left = 365
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '7'
+      TabOrder = 7
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button14: TButton
+      Left = 415
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '8'
+      TabOrder = 8
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button15: TButton
+      Left = 465
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '9'
+      TabOrder = 9
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Backspace: TButton
+      Left = 514
+      Top = 9
+      Width = 95
+      Height = 33
+      Align = alCustom
+      TabOrder = 10
+      OnClick = BackspaceClick
+      OnMouseEnter = Button6MouseEnter
     end
   end
   object MainMenu1: TMainMenu

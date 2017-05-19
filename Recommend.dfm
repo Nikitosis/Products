@@ -1,10 +1,10 @@
 object Form4: TForm4
   Left = 0
   Top = 0
-  BorderStyle = bsSingle
-  Caption = #1056#1072#1089#1095#1077#1090' '#1082#1072#1083#1086#1088#1080#1081
-  ClientHeight = 369
-  ClientWidth = 342
+  BorderStyle = bsToolWindow
+  Caption = #1056#1086#1079#1088#1072#1093#1091#1085#1086#1082' '#1082#1072#1083#1086#1088#1110#1081
+  ClientHeight = 452
+  ClientWidth = 410
   Color = 6349220
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -13,12 +13,14 @@ object Form4: TForm4
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnClose = FormClose
   OnMouseEnter = FormMouseEnter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 52
+    Left = 94
     Top = 29
     Width = 35
     Height = 21
@@ -31,11 +33,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 47
-    Top = 80
-    Width = 40
+    Left = 89
+    Top = 77
+    Width = 35
     Height = 21
-    Caption = #1056#1086#1089#1090':'
+    Caption = #1056#1110#1089#1090':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 7298835
     Font.Height = -17
@@ -44,11 +46,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 54
+    Left = 83
     Top = 120
-    Width = 33
+    Width = 41
     Height = 21
-    Caption = #1042#1077#1089':'
+    Caption = #1042#1072#1075#1072':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 7298835
     Font.Height = -17
@@ -57,11 +59,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 23
-    Top = 165
-    Width = 67
+    Left = 96
+    Top = 162
+    Width = 28
     Height = 21
-    Caption = #1042#1086#1079#1088#1072#1089#1090':'
+    Caption = #1042#1110#1082':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 7298835
     Font.Height = -17
@@ -70,11 +72,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 74
+    Left = 138
     Top = 211
-    Width = 159
+    Width = 138
     Height = 21
-    Caption = #1059#1088#1086#1074#1077#1085#1100' '#1072#1082#1090#1080#1074#1085#1086#1089#1090#1080
+    Caption = #1056#1110#1074#1077#1085#1100' '#1072#1082#1090#1080#1074#1085#1086#1089#1090#1110
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 7298835
     Font.Height = -17
@@ -83,7 +85,7 @@ object Form4: TForm4
     ParentFont = False
   end
   object Button1: TImage
-    Left = 115
+    Left = 157
     Top = 265
     Width = 108
     Height = 94
@@ -3847,8 +3849,8 @@ object Form4: TForm4
     OnMouseEnter = Button1MouseEnter
   end
   object Label6: TLabel
-    Left = 125
-    Top = 304
+    Left = 167
+    Top = 303
     Width = 87
     Height = 18
     Caption = #1056#1086#1079#1088#1072#1093#1091#1074#1072#1090#1080
@@ -3863,7 +3865,7 @@ object Form4: TForm4
     OnClick = Button1Click
   end
   object ComboBox1: TComboBox
-    Left = 96
+    Left = 138
     Top = 29
     Width = 145
     Height = 21
@@ -3880,7 +3882,7 @@ object Form4: TForm4
       #1046#1077#1085#1089#1082#1080#1081)
   end
   object Edit1: TEdit
-    Left = 96
+    Left = 138
     Top = 80
     Width = 145
     Height = 21
@@ -3895,7 +3897,7 @@ object Form4: TForm4
     TabOrder = 1
   end
   object Edit2: TEdit
-    Left = 96
+    Left = 138
     Top = 123
     Width = 145
     Height = 21
@@ -3910,7 +3912,7 @@ object Form4: TForm4
     TabOrder = 2
   end
   object Edit3: TEdit
-    Left = 96
+    Left = 138
     Top = 165
     Width = 145
     Height = 21
@@ -3925,7 +3927,7 @@ object Form4: TForm4
     TabOrder = 3
   end
   object ComboBox2: TComboBox
-    Left = 23
+    Left = 65
     Top = 238
     Width = 289
     Height = 21
@@ -3936,12 +3938,154 @@ object Form4: TForm4
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    Text = #1059#1088#1086#1074#1077#1085#1100' '#1072#1082#1090#1080#1074#1085#1086#1089#1090#1080
+    Text = #1056#1110#1074#1077#1085#1100' '#1072#1082#1090#1080#1074#1085#1086#1089#1090#1110
     Items.Strings = (
-      #1084#1080#1085#1080#1084#1072#1083#1100#1085#1099#1081' '#1091#1088#1086#1074#1077#1085#1100' ('#1085#1080#1082#1072#1082#1080#1093' '#1092#1080#1079#1080#1095#1077#1089#1082#1080#1093' '#1085#1072#1075#1088#1091#1079#1086#1082')'
-      #1085#1080#1079#1082#1080#1081' ('#1092#1080#1079#1080#1095#1077#1089#1082#1080#1077' '#1085#1072#1075#1088#1091#1079#1082#1080' 1-3 '#1088#1072#1079#1072' '#1074' '#1085#1077#1076#1077#1083#1102')'
-      #1089#1088#1077#1076#1085#1080#1081' (3-5 '#1076#1085#1077#1081' '#1074' '#1085#1077#1076#1077#1083#1102')'
-      #1074#1099#1089#1086#1082#1080#1081' (6-7 '#1088#1072#1079' '#1074' '#1085#1077#1076#1077#1083#1102')'
-      #1086#1095#1077#1085#1100' '#1074#1099#1089#1086#1082#1080#1081' ('#1090#1088#1077#1085#1080#1088#1086#1074#1082#1080' '#1095#1072#1097#1077', '#1095#1077#1084' '#1088#1072#1079' '#1074' '#1076#1077#1085#1100')')
+      #1084#1110#1085#1110#1084#1072#1083#1100#1085#1080#1081' '#1088#1110#1074#1077#1085#1100' ('#1085#1077#1084#1072#1108' '#1092#1110#1079#1080#1095#1085#1080#1093' '#1085#1072#1074#1072#1085#1090#1072#1078#1077#1085#1100')'
+      #1085#1080#1079#1100#1082#1080#1081' ('#1092#1110#1079#1080#1095#1085#1110' '#1085#1072#1074#1072#1085#1090#1072#1078#1077#1085#1085#1103' 1-3 '#1088#1072#1079#1072' '#1074' '#1085#1077#1076#1110#1083#1102')'
+      #1089#1077#1088#1077#1076#1085#1110#1081' (3-5 '#1088#1072#1079#1110#1074' '#1091' '#1085#1077#1076#1110#1083#1102')'
+      #1074#1080#1089#1086#1082#1080#1081' (6-7 '#1088#1072#1079#1110#1074' '#1091' '#1085#1077#1076#1110#1083#1102')'
+      #1076#1091#1078#1077' '#1074#1080#1089#1086#1082#1080#1081' ('#1090#1088#1077#1085#1091#1074#1072#1085#1085#1103' '#1095#1072#1089#1090#1110#1096#1077', '#1085#1110#1078' '#1088#1072#1079' '#1091' '#1076#1077#1085#1100')')
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 393
+    Width = 409
+    Height = 55
+    ParentCustomHint = False
+    Align = alCustom
+    BiDiMode = bdLeftToRight
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentBackground = False
+    ParentDoubleBuffered = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 5
+    object Button10: TButton
+      Left = 144
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '4'
+      TabOrder = 0
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button6: TButton
+      Left = 0
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '0'
+      TabOrder = 1
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button7: TButton
+      Left = 36
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '1'
+      TabOrder = 2
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button8: TButton
+      Left = 72
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '2'
+      TabOrder = 3
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button9: TButton
+      Left = 108
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '3'
+      TabOrder = 4
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button11: TButton
+      Left = 180
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '5'
+      TabOrder = 5
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button12: TButton
+      Left = 216
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '6'
+      TabOrder = 6
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button13: TButton
+      Left = 252
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '7'
+      TabOrder = 7
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button14: TButton
+      Left = 288
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '8'
+      TabOrder = 8
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button15: TButton
+      Left = 324
+      Top = 9
+      Width = 30
+      Height = 33
+      Align = alCustom
+      Caption = '9'
+      TabOrder = 9
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Backspace: TButton
+      Left = 360
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      TabOrder = 10
+      OnClick = BackspaceClick
+      OnMouseEnter = Button6MouseEnter
+    end
   end
 end

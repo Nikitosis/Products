@@ -52,6 +52,7 @@ Form3->Label11->Visible=false;
 
 Form3->IsRecommend=false;
 Form3->RecomPanel->Visible=false;
+Form3->Panel4->Visible=false;
 }
 //---------------------------------------------------------------------------
 
@@ -78,11 +79,14 @@ Form4->ComboBox2->Text="Уровень активности";
 
 void __fastcall TForm1::Save1Click(TObject *Sender)
 {
+
 SaveDialog1->Filter="Products|*.prd";
 SaveDialog1->DefaultExt="prd";
 	  if(SaveDialog1->Execute())
 	  {
-		   ofstream fout(SaveDialog1->FileName.c_str());
+		   ofstream fout;
+		   setlocale(LC_CTYPE, ".1251");
+		   fout.open(SaveDialog1->FileName.c_str());
 
 		   Graphics::TBitmap*   gBitmap = new Graphics::TBitmap;
 		   Graphics::TBitmap*   gBitmap2 = new Graphics::TBitmap;
@@ -205,11 +209,16 @@ SaveDialog1->DefaultExt="prd";
 
 void __fastcall TForm1::Load1Click(TObject *Sender)
 {
+setlocale(LC_ALL, "rus");
+SetConsoleCP(1251);
 OpenDialog1->Filter="Products|*.prd";
 OpenDialog1->DefaultExt="prd";
 	if(OpenDialog1->Execute())
 	{
-	ifstream fin(OpenDialog1->FileName.c_str());
+
+		ifstream fin;
+		setlocale(LC_CTYPE, ".1251");
+		fin.open(OpenDialog1->FileName.c_str());
 
 		for(int i=0;i<Form2->ProductsA;i++)                      //открываем Products
 		if(Form2->IsDel[i]==false)
@@ -419,13 +428,32 @@ IsKeyboard=false;
 void __fastcall TForm1::N2Click(TObject *Sender)
 {
 IsKeyboard=true;
+N2->Checked=true;
+N3->Checked=false;
+
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::N3Click(TObject *Sender)
 {
 IsKeyboard=false;
+N2->Checked=false;
+N3->Checked=true;
+Form3->Panel4->Visible=false;     //выключаем клавы
+Form6->Panel4->Visible=false;
+Form5->Panel4->Visible=false;
+Form4->Panel4->Visible=false;
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TForm1::FormShow(TObject *Sender)
+{
+Form3->Panel4->Visible=true;     //выключаем клавы
+Form6->Panel4->Visible=true;
+Form5->Panel4->Visible=true;
+Form4->Panel4->Visible=true;
+}
+//---------------------------------------------------------------------------
 

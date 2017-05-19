@@ -1,9 +1,9 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  BorderStyle = bsSingle
-  Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1087#1088#1086#1076#1091#1082#1090#1072
-  ClientHeight = 510
+  BorderStyle = bsToolWindow
+  Caption = #1053#1072#1083#1072#1096#1090#1091#1074#1072#1085#1085#1103' '#1087#1088#1086#1076#1091#1082#1090#1072
+  ClientHeight = 571
   ClientWidth = 703
   Color = 8310264
   Font.Charset = DEFAULT_CHARSET
@@ -12,8 +12,9 @@ object Form5: TForm5
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesigned
+  Position = poScreenCenter
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
@@ -618,11 +619,11 @@ object Form5: TForm5
     Stretch = True
   end
   object Label1: TLabel
-    Left = 264
-    Top = 64
-    Width = 185
+    Left = 290
+    Top = 59
+    Width = 152
     Height = 24
-    Caption = #1053#1072#1079#1074#1072#1085#1080#1077' '#1087#1088#1086#1076#1091#1082#1090#1072':'
+    Caption = #1053#1072#1079#1074#1072' '#1087#1088#1086#1076#1091#1082#1090#1072':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -631,11 +632,11 @@ object Form5: TForm5
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 245
-    Top = 120
-    Width = 249
+    Left = 251
+    Top = 122
+    Width = 237
     Height = 24
-    Caption = #1041#1077#1083#1082#1086#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
+    Caption = #1041#1110#1083#1082#1110#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -646,9 +647,9 @@ object Form5: TForm5
   object Label4: TLabel
     Left = 249
     Top = 184
-    Width = 245
+    Width = 239
     Height = 24
-    Caption = #1046#1080#1088#1086#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
+    Caption = #1046#1080#1088#1110#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -657,11 +658,11 @@ object Form5: TForm5
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 215
+    Left = 205
     Top = 243
-    Width = 279
+    Width = 283
     Height = 24
-    Caption = #1059#1075#1083#1077#1074#1086#1076#1086#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
+    Caption = #1042#1091#1075#1083#1077#1074#1086#1076#1110#1074'('#1075' '#1074' 100'#1075' '#1087#1088#1086#1076#1091#1082#1090#1072'):'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -670,8 +671,8 @@ object Form5: TForm5
     ParentFont = False
   end
   object Image2: TImage
-    Left = 72
-    Top = 400
+    Left = 64
+    Top = 264
     Width = 65
     Height = 25
     Picture.Data = {
@@ -1282,6 +1283,7 @@ object Form5: TForm5
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    OnClick = Edit1Click
   end
   object Edit2: TEdit
     Left = 500
@@ -1298,6 +1300,7 @@ object Form5: TForm5
     TabOrder = 1
     Text = '0'
     OnChange = Edit2Change
+    OnClick = Edit2Click
   end
   object Edit3: TEdit
     Left = 500
@@ -1314,6 +1317,7 @@ object Form5: TForm5
     TabOrder = 2
     Text = '0'
     OnChange = Edit2Change
+    OnClick = Edit2Click
   end
   object Edit4: TEdit
     Left = 500
@@ -1330,6 +1334,7 @@ object Form5: TForm5
     TabOrder = 3
     Text = '0'
     OnChange = Edit2Change
+    OnClick = Edit2Click
   end
   object BitBtn1: TBitBtn
     Left = 245
@@ -3464,11 +3469,11 @@ object Form5: TForm5
     Visible = False
   end
   object Button2: TBitBtn
-    Left = 564
-    Top = 456
+    Left = 556
+    Top = 320
     Width = 121
     Height = 33
-    Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+    Caption = #1047#1073#1077#1088#1077#1075#1090#1080
     DoubleBuffered = True
     Glyph.Data = {
       E6040000424DE604000000000000360000002800000014000000140000000100
@@ -3516,11 +3521,11 @@ object Form5: TForm5
     OnClick = Button2Click
   end
   object Button3: TBitBtn
-    Left = 384
-    Top = 456
+    Left = 376
+    Top = 320
     Width = 121
     Height = 33
-    Caption = #1054#1090#1084#1077#1085#1072
+    Caption = #1042#1110#1076#1084#1110#1085#1080#1090#1080
     DoubleBuffered = True
     Glyph.Data = {
       E6040000424DE604000000000000360000002800000014000000140000000100
@@ -3568,11 +3573,11 @@ object Form5: TForm5
     OnClick = Button3Click
   end
   object Button4: TBitBtn
-    Left = 65
-    Top = 456
+    Left = 57
+    Top = 320
     Width = 121
     Height = 33
-    Caption = #1059#1076#1072#1083#1080#1090#1100
+    Caption = #1042#1080#1076#1072#1083#1080#1090#1080
     DoubleBuffered = True
     Glyph.Data = {
       32040000424D3204000000000000360000002800000014000000110000000100
@@ -3618,7 +3623,7 @@ object Form5: TForm5
     Top = 215
     Width = 153
     Height = 33
-    Caption = #1042#1099#1073#1088#1072#1090#1100' '#1080#1079#1086#1073#1088#1072#1078#1077#1085#1080#1077
+    Caption = #1054#1073#1088#1072#1090#1080' '#1079#1086#1073#1088#1072#1078#1077#1085#1085#1103
     DoubleBuffered = True
     Glyph.Data = {
       E6040000424DE604000000000000360000002800000014000000140000000100
@@ -3665,8 +3670,565 @@ object Form5: TForm5
     TabOrder = 8
     OnClick = Button1Click
   end
+  object Panel4: TPanel
+    Left = 25
+    Top = 371
+    Width = 625
+    Height = 195
+    ParentCustomHint = False
+    Align = alCustom
+    BiDiMode = bdLeftToRight
+    DoubleBuffered = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentBackground = False
+    ParentDoubleBuffered = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 9
+    object Button10: TButton
+      Left = 215
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '4'
+      TabOrder = 0
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button6: TButton
+      Left = 14
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '0'
+      TabOrder = 1
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button7: TButton
+      Left = 64
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '1'
+      TabOrder = 2
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button8: TButton
+      Left = 114
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '2'
+      TabOrder = 3
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button9: TButton
+      Left = 165
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '3'
+      TabOrder = 4
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button11: TButton
+      Left = 265
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '5'
+      TabOrder = 5
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button12: TButton
+      Left = 315
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '6'
+      TabOrder = 6
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button13: TButton
+      Left = 365
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '7'
+      TabOrder = 7
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button14: TButton
+      Left = 415
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '8'
+      TabOrder = 8
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button15: TButton
+      Left = 465
+      Top = 9
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = '9'
+      TabOrder = 9
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button27: TButton
+      Left = 564
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1111
+      TabOrder = 10
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button26: TButton
+      Left = 514
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1093
+      TabOrder = 11
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button25: TButton
+      Left = 464
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1079
+      TabOrder = 12
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button24: TButton
+      Left = 414
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1097
+      TabOrder = 13
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button23: TButton
+      Left = 364
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1096
+      TabOrder = 14
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button22: TButton
+      Left = 314
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1075
+      TabOrder = 15
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button21: TButton
+      Left = 264
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1085
+      TabOrder = 16
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button20: TButton
+      Left = 214
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1077
+      TabOrder = 17
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button18: TButton
+      Left = 114
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1091
+      TabOrder = 18
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button17: TButton
+      Left = 64
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1094
+      TabOrder = 19
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button19: TButton
+      Left = 164
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1082
+      TabOrder = 20
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button16: TButton
+      Left = 14
+      Top = 45
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1081
+      TabOrder = 21
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button38: TButton
+      Left = 14
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1092
+      TabOrder = 22
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button37: TButton
+      Left = 64
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1110
+      TabOrder = 23
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button36: TButton
+      Left = 114
+      Top = 81
+      Width = 45
+      Height = 33
+      ParentCustomHint = False
+      Align = alCustom
+      BiDiMode = bdLeftToRight
+      Caption = #1074
+      DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentDoubleBuffered = False
+      ParentFont = False
+      TabOrder = 24
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button35: TButton
+      Left = 164
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1072
+      TabOrder = 25
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button34: TButton
+      Left = 215
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1087
+      TabOrder = 26
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button33: TButton
+      Left = 265
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1088
+      TabOrder = 27
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button32: TButton
+      Left = 315
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1086
+      TabOrder = 28
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button31: TButton
+      Left = 364
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1083
+      TabOrder = 29
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button30: TButton
+      Left = 415
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1076
+      TabOrder = 30
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button29: TButton
+      Left = 465
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1078
+      TabOrder = 31
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button28: TButton
+      Left = 514
+      Top = 81
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1108
+      TabOrder = 32
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Backspace: TButton
+      Left = 514
+      Top = 9
+      Width = 95
+      Height = 33
+      Align = alCustom
+      TabOrder = 33
+      OnClick = BackspaceClick
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button48: TButton
+      Left = 514
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1102
+      TabOrder = 34
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button47: TButton
+      Left = 464
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1073
+      TabOrder = 35
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button46: TButton
+      Left = 414
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1100
+      TabOrder = 36
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button45: TButton
+      Left = 364
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1090
+      TabOrder = 37
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button44: TButton
+      Left = 314
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1080
+      TabOrder = 38
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button42: TButton
+      Left = 264
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1084
+      TabOrder = 39
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button43: TButton
+      Left = 214
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1089
+      TabOrder = 40
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button41: TButton
+      Left = 163
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1095
+      TabOrder = 41
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button40: TButton
+      Left = 113
+      Top = 118
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1103
+      TabOrder = 42
+      OnClick = Button6Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Shift: TButton
+      Left = 14
+      Top = 118
+      Width = 94
+      Height = 33
+      Align = alCustom
+      Caption = 'Button6'
+      TabOrder = 43
+      OnClick = ShiftClick
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button53: TButton
+      Left = 14
+      Top = 155
+      Width = 94
+      Height = 33
+      Align = alCustom
+      Caption = 'Sym'
+      TabOrder = 44
+      OnClick = Button53Click
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button52: TButton
+      Left = 114
+      Top = 155
+      Width = 345
+      Height = 33
+      Align = alCustom
+      Caption = ' '
+      TabOrder = 45
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button51: TButton
+      Left = 464
+      Top = 155
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1102
+      TabOrder = 46
+      OnMouseEnter = Button6MouseEnter
+    end
+    object Button50: TButton
+      Left = 514
+      Top = 155
+      Width = 45
+      Height = 33
+      Align = alCustom
+      Caption = #1102
+      TabOrder = 47
+      OnMouseEnter = Button6MouseEnter
+    end
+  end
   object OpenPictureDialog1: TOpenPictureDialog
-    Left = 24
-    Top = 400
+    Left = 16
+    Top = 264
   end
 end

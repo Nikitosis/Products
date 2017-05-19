@@ -9,6 +9,7 @@
 #include "Meals.h"
 #include "MealsForm.h"
 #include "Products.h"
+#include "Main.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -27,6 +28,11 @@ Close();
 //---------------------------------------------------------------------------
 void __fastcall TForm8::Button2Click(TObject *Sender)
 {
+if(Form1->IsKeyboard)     //клавиатура
+	Form3->Panel4->Visible=true;
+	else
+	Form3->Panel4->Visible=false;
+
 WatchedRecom=true;
 Form3->IsRecommend=true;
 Form3->Button1->Visible=false;
@@ -105,7 +111,7 @@ for(int i=0;i<Form3->MealsA;i++)
 			Form3->Labeles[i*5+4]->Visible=false;
 
 			Form3->Label11->Visible=true;  //подсказки
-			Form3->Label11->Caption="В сумме меньше ккал,чем ваша суточная норма";
+			Form3->Label11->Caption="В сумі меньше ккал,ніж ваша денна норма";
 
 
 
@@ -195,20 +201,20 @@ void __fastcall TForm8::MassChange(TObject *Sender)
 			if(BMR-kal>400)   //если меньше
 			{
 				Form3->RecomPanel->Color=clHighlight;
-				Form3->Label11->Caption="В сумме меньше ккал,чем ваша суточная норма ("+IntToStr(kal) + "ккал)";
+				Form3->Label11->Caption="В сумі меньше ккал,ніж ваша денна норма ("+IntToStr(kal) + "ккал)";
 				Form3->Label11->Font->Color=clWhite;
 			}
 				else
 				if(BMR-kal<-400)  //если больше
 				{
 					Form3->RecomPanel->Color=RGB(247,192,25);
-					Form3->Label11->Caption="В сумме больше ккал,чем ваша суточная норма ("+IntToStr(kal) + "ккал)";
+					Form3->Label11->Caption="В сумі більше ккал,ніж ваша денна норма ("+IntToStr(kal) + "ккал)";
 					Form3->Label11->Font->Color=clWhite;
 				}
 					else
 					{
 					Form3->RecomPanel->Color=RGB(25,247,83);     //если идеально
-					Form3->Label11->Caption="В сумме рекомендованное кол-во ккалорий (" +IntToStr(kal) + "ккал)";
+					Form3->Label11->Caption="В сумі рекомендована кількість ккалорій (" +IntToStr(kal) + "ккал)";
 					Form3->Label11->Font->Color=clBlack;
 					}
 

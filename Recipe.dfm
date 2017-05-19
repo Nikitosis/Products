@@ -1,10 +1,10 @@
 object Form7: TForm7
   Left = 0
   Top = 0
-  BorderStyle = bsSingle
-  Caption = #1054#1087#1080#1089#1072#1085#1080#1077' '#1073#1083#1102#1076#1072
-  ClientHeight = 379
-  ClientWidth = 453
+  BorderStyle = bsToolWindow
+  Caption = #1054#1087#1080#1089' '#1073#1083#1102#1076#1072
+  ClientHeight = 338
+  ClientWidth = 447
   Color = 15000730
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -13,6 +13,7 @@ object Form7: TForm7
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -33,6 +34,7 @@ object Form7: TForm7
     Top = -26
     Width = 617
     Height = 499
+    ParentShowHint = False
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000005140000
       03BD08020000007C477CA3000000097048597300002E2300002E230178A53F76
@@ -38782,6 +38784,7 @@ object Form7: TForm7
       152B56AC58B162C58A152B567E402C3C5BB162C58A152B56AC58B162C58A152B
       3F20169EAD58B162C58A152B56AC58B162C58A951F90FF079F6A3AC205B73AAC
       0000000049454E44AE426082}
+    ShowHint = False
     Stretch = True
     OnMouseEnter = Image1MouseEnter
   end

@@ -108,8 +108,46 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 // ---------------------------------------------------------------------------
 void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 
+  memset(LeftWas,false,100*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
+  memset(RightWas,false,100*sizeof(bool));
 
-	Form6->Label5->Caption="0";        //обнул. витамины
+	WasDeleted=-1;
+	int num=99;
+	PropNum=99;
+	ProductsHave = 0;
+	ProductsUse = 0;
+
+	  for(int i=0;i<100;i++)
+	{
+		IsRight[num][i]=false;
+		IsLeft[num][i]=true;
+	}
+
+   for(int i=0;i<Form2->ProductsA;i++)
+	{
+		if(NeedToDelete[i])
+		{
+			PanelsHave[i]->Free();
+			NeedToDelete[i]=false;
+		}
+	}
+
+	int n=0;
+	for (int i = 0; i < Form2->ProductsA; i++)
+		if (Form2->IsDel[i] == false)
+		{
+			AddLeft(i);
+			NeedToDelete[n]=true;
+			if(IsRight[num][i])
+			{
+				IsRight[num][i]==false;
+				IsLeft[num][i]=true;
+				AddClickF(n);
+			}
+			n++;
+		}
+	//PanelsHave[1]->Visible=false;
+	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
 	Form6->Label6->Caption="0";
 	Form6->Label7->Caption="0";
 	Form6->Label8->Caption="0";
@@ -117,38 +155,11 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Label10->Caption="0";
 	Form6->Label11->Caption="0";
 	Form6->Label12->Caption="0";
-	Form6->Image1->Picture=Form6->Image2->Picture;
 
 
-	Form6->Edit1->Text="";
-	Form7->Memo1->Lines->Text="";
-	Form6->Button4->Visible=false;       //кнопка удалить
 
-	for (int i = 0; i < ProductsHave+ProductsUse; i++)
-		PanelsHave[i]->Free();
-
-	ProductsHave = 0;
-	ProductsUse = 0;
-	PropNum=99;             //99-номер,если нажали на добавить
 	Form6->Show();
-
-	int m = Form2->ProductsA;
-	for(int i=0;i<Form2->ProductsA;i++)
-	{
-		IsLeft[99][i]=false;
-		IsRight[99][i]=false;
-	}
-
-	int n=0;
-	for (int i = 0; i < Form2->ProductsA; i++)
-		if (Form2->IsDel[i] == false) {
-			AddLeft(i);
-			IsLeft[99][n]=true;
-			NeedToDelete[i]=true;
-			n++;
-		}
-
-   Form6->Edit1->SetFocus();
+	Form6->Edit1->SetFocus();
 }
 
 // ---------------------------------------------------------------------------
@@ -274,7 +285,7 @@ void __fastcall TForm3::PropClickNum(int num)
 			PanelsHave[i]->Free();
 			NeedToDelete[i]=false;
 		}
-    }
+	}
 	WasDeleted=-1;
 	PropNum=num;
 	ProductsHave = 0;
@@ -479,4 +490,67 @@ for(int i=0;i<Form6->ComponentCount-1;i++)
 	}
 }
 }
+
+void __fastcall TForm3::Button6Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form3->Components[FocusIndex]->ClassName();
+if(Form3->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form3->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  AnsiString s=edit->Text;
+	  s.Delete(start+1,edit->SelLength);    //если выделено,то заменяем
+	  s.Insert(button->Caption,start+1);    //вставляем букву
+	  edit->SetFocus();
+	  edit->Text=s;
+	  edit->SelStart=start+1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button6MouseEnter(TObject *Sender)
+{
+for(int i=0;i<Form3->ComponentCount-1;i++)
+	{
+	   if(Form3->ActiveControl==Form3->Components[i] && Form3->Components[i]->ClassName()=="TEdit")
+		FocusIndex=i;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::FormShow(TObject *Sender)
+{
+if(Form1->IsKeyboard)
+	Height=641;
+	else
+	Height=571;
+FocusIndex=0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::BackspaceClick(TObject *Sender)
+{
+  TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
+  AnsiString s=Form3->Components[FocusIndex]->ClassName();
+if(Form3->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form3->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  if(edit->SelLength!=0)
+		start++;
+	  AnsiString s=edit->Text;
+	  int length=edit->SelLength;
+	  if(length==0)
+		length=1;
+	  s.Delete(start,length);
+	  edit->SetFocus();
+	  edit->Text=s;
+	  if(start!=0)
+		 edit->SelStart=start-1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
 
