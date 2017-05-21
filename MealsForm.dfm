@@ -701,7 +701,7 @@ object Form6: TForm6
   object Label8: TLabel
     Left = 685
     Top = 136
-    Width = 14
+    Width = 6
     Height = 13
     Caption = '0'
     Visible = False

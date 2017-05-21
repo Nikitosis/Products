@@ -20,7 +20,7 @@ __fastcall TForm6::TForm6(TComponent* Owner) : TForm(Owner) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm6::Button2Click(TObject *Sender) {
-	if (Form3->PropNum == 99) {
+	if (Form3->PropNum == 199) {
 		Form3->MealsA++;
 		int n = Form3->MealsA - 1;
 		int k;
@@ -246,7 +246,7 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 
 // ---------------------------------------------------------------------------
 void __fastcall TForm6::Button3Click(TObject *Sender) {
-	if (Form3->PropNum != 99) {
+	if (Form3->PropNum != 199) {
 		int num = Form3->PropNum;
 		for (int i = 0; i < Form2->ProductsA; i++) {
 			Form3->IsLeft[num][i] = Form3->LeftWas[i];

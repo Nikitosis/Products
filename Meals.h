@@ -60,31 +60,31 @@ __published:	// IDE-managed Components
 	void __fastcall BackspaceClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-TPanel *Panels[100];                   //для каждой Meals
-TImage *Images[100];
-TMemo *Memos[100];
-TLabel *Labeles[300];
-TBitBtn *Buttons[100];
+TPanel *Panels[200];                   //для каждой Meals
+TImage *Images[200];
+TMemo *Memos[200];
+TLabel *Labeles[600];
+TBitBtn *Buttons[200];
 int MealsA,MealsDel,PanelH,PanelHaveH;          //колво прод. колво удаленных, высота панели в Meals,высота панели в MealsForm
 int ProductsHave,ProductsUse;           //кол-во продуктов слева и справа соотв.
 int PropNum;    //номер нажатой кнопки настроек
-TPanel *PanelsHave[100];       //для каждой MealsForm
+TPanel *PanelsHave[200];       //для каждой MealsForm
 //TPanel *RecomPanel[100];
-TLabel *LabelesHave[100];
-TImage *ImagesHave[100];
-TEdit *EditsHave[100];
-TBitBtn *ButtonsHave[100];
+TLabel *LabelesHave[200];
+TImage *ImagesHave[200];
+TEdit *EditsHave[200];
+TBitBtn *ButtonsHave[200];
 
 bool IsRecommend;
-bool IsLeft[100][100];
-bool IsRight[100][100];       //сохраняют,с какой стороны находится продукт
-bool LeftWas[100];
-bool RightWas[100];
-bool IsDelMeal[100];
-AnsiString Weights[100][100];
+bool IsLeft[200][200];
+bool IsRight[200][200];       //сохраняют,с какой стороны находится продукт
+bool LeftWas[200];
+bool RightWas[200];
+bool IsDelMeal[200];
+AnsiString Weights[200][200];
 int SettingsNum,PictureNum;
 int WasDeleted;
-bool NeedToDelete[100];
+bool NeedToDelete[200];
 int FocusIndex;
 	__fastcall TForm3(TComponent* Owner);
 	void __fastcall TForm3::AddClick(TObject *Sender);

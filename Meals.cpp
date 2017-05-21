@@ -19,13 +19,13 @@ TForm3 *Form3;
 
 // ---------------------------------------------------------------------------
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
-	memset(IsLeft, false, 10000 * sizeof(bool));
-	memset(IsRight, false, 10000 * sizeof(bool));
-	memset(IsDelMeal,false,100*sizeof(bool));
+	memset(IsLeft, false, 40000 * sizeof(bool));
+	memset(IsRight, false, 40000 * sizeof(bool));
+	memset(IsDelMeal,false,200*sizeof(bool));
 	PanelH = 100;
 	PanelHaveH = 50;
-	for(int i=0;i<100;i++)
-	for(int j=0;j<100;j++)
+	for(int i=0;i<200;i++)
+	for(int j=0;j<200;j++)
 	Weights[i][j]="0";
 }
 
@@ -108,16 +108,16 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 // ---------------------------------------------------------------------------
 void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 
-  memset(LeftWas,false,100*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
-  memset(RightWas,false,100*sizeof(bool));
+  memset(LeftWas,false,200*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
+  memset(RightWas,false,200*sizeof(bool));
 
 	WasDeleted=-1;
-	int num=99;
-	PropNum=99;
+	int num=199;
+	PropNum=199;
 	ProductsHave = 0;
 	ProductsUse = 0;
 
-	  for(int i=0;i<100;i++)
+	  for(int i=0;i<200;i++)
 	{
 		IsRight[num][i]=false;
 		IsLeft[num][i]=true;
@@ -262,8 +262,8 @@ void __fastcall TForm3::PropClickNum(int num)
   Form6->Button4->Visible=true;    //кнопка удалить
 
 
-  memset(LeftWas,false,100*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
-  memset(RightWas,false,100*sizeof(bool));
+  memset(LeftWas,false,200*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
+  memset(RightWas,false,200*sizeof(bool));
 
   Form6->Edit1->Text=Form3->Labeles[num*5]->Caption;
   Form6->Image1->Picture=Images[num]->Picture;
@@ -421,7 +421,7 @@ MealsDel=0;
 IsRecommend=false;
 SettingsNum=-1;
 PictureNum=0;
-memset(NeedToDelete,0,100*sizeof(bool));
+memset(NeedToDelete,0,200*sizeof(bool));
 }
 //---------------------------------------------------------------------------
 
@@ -522,10 +522,6 @@ for(int i=0;i<Form3->ComponentCount-1;i++)
 
 void __fastcall TForm3::FormShow(TObject *Sender)
 {
-if(Form1->IsKeyboard)
-	Height=641;
-	else
-	Height=571;
 FocusIndex=0;
 }
 //---------------------------------------------------------------------------

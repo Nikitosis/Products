@@ -20,11 +20,11 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 double BMR;
-TEdit *LWeights[100];
-TLabel *LBel[100];
-TLabel *LZh[100];
-TLabel *LUgl[100];
-TLabel *LKal[100];
+TEdit *LWeights[200];
+TLabel *LBel[200];
+TLabel *LZh[200];
+TLabel *LUgl[200];
+TLabel *LKal[200];
 bool WatchedRecom;
 	__fastcall TForm8(TComponent* Owner);
 	void __fastcall TForm8::MassChange(TObject *Sender);

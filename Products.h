@@ -41,12 +41,12 @@ __published:	// IDE-managed Components
 	void __fastcall Button1MouseEnter(TObject *Sender);
 private:	// User declarations
 public:	 int ProductsA;
-TPanel *Panels[100];
+TPanel *Panels[200];
 int PanelH;	// User declarations
-TImage *Images[100];
-TLabel *Labeles[300];
-TBitBtn *Buttons[100];
-bool IsDel[100];
+TImage *Images[200];
+TLabel *Labeles[600];
+TBitBtn *Buttons[200];
+bool IsDel[200];
 int PropNum,ProductsDel;
 int SettingsNum,PictureNum;
 	__fastcall TForm2(TComponent* Owner);

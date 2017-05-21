@@ -98,7 +98,7 @@ __published:	// IDE-managed Components
 	void __fastcall BackspaceClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	AnsiString Masses[300];
+	AnsiString Masses[600];
 	int FocusIndex;
 	__fastcall TForm5(TComponent* Owner);
 };

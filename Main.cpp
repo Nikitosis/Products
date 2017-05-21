@@ -130,19 +130,30 @@ SaveDialog1->DefaultExt="prd";
 							fout<<s.c_str()<<endl;
 						}
 		   }
-
-		   for(int i=0;i<99;i++)
-		   for(int j=0;j<99;j++)
-		   fout<<Form3->IsLeft[i][j]<<" ";
+		   for(int i=0;i<199;i++)       //удалены продукты
+			fout<<Form2->IsDel[i]<<" ";
 		   fout<<endl;
 
-		   for(int i=0;i<99;i++)
-		   for(int j=0;j<99;j++)
-		   fout<<Form3->IsRight[i][j]<<" ";
+		   for(int i=0;i<199;i++)    //удалены блюда
+			fout<<Form3->IsDelMeal[i]<<" ";
 		   fout<<endl;
 
-		   for(int i=0;i<99;i++)
-		   for(int j=0;j<99;j++)
+		   for(int i=0;i<199;i++)
+		   for(int j=0;j<199;j++)
+		   {
+			   fout<<Form3->IsLeft[i][j]<<" ";
+		   }
+		   fout<<endl;
+
+		   for(int i=0;i<199;i++)
+		   for(int j=0;j<199;j++)
+		   {
+			 fout<<Form3->IsRight[i][j]<<" ";
+		   }
+		   fout<<endl;
+
+		   for(int i=0;i<199;i++)
+		   for(int j=0;j<199;j++)
 		   {
 			 AnsiString s;
 			 s=Form3->Weights[i][j].c_str();
@@ -228,14 +239,14 @@ OpenDialog1->DefaultExt="prd";
 		if(Form3->IsDelMeal[i]==false)
 		 Form3->Panels[i]->Free();
 
-		 memset(Form2->IsDel,false,100*sizeof(bool));
-		 memset(Form3->IsDelMeal,false,100*sizeof(bool));
+		 memset(Form2->IsDel,false,200*sizeof(bool));
+		 memset(Form3->IsDelMeal,false,200*sizeof(bool));
 		 Graphics::TBitmap*   gBitmap = new Graphics::TBitmap;
 		 gBitmap->Transparent=false;
 
 		int n;
 		fin>>n;
-		Form3->PropNum=99;
+		Form3->PropNum=199;
 		Form2->ProductsA=0;
 		Form3->MealsA=0;
 		Form2->ProductsDel=0;
@@ -287,26 +298,81 @@ OpenDialog1->DefaultExt="prd";
 		}
 
 					bool b;
-	  for(int i=0;i<99;i++)
-		for(int j=0;j<99;j++)
+		bool DelProd[200];
+		bool DelMeal[200];
+		memset(DelProd,0,200*sizeof(bool));
+		memset(DelMeal,0,200*sizeof(bool));
+		for(int i=0;i<199;i++)
+			fin>>DelProd[i];
+
+		for(int i=0;i<199;i++)
+			fin>>DelMeal[i];
+
+	  int amountml=0; //сколько нашли удаленных блюд
+	  for(int i=0;i<199;i++)
+	  {
+		 if(DelMeal[i])
+			{
+				amountml++;
+            }
+         int amount=0;
+			for(int j=0;j<199;j++)
+			{
+				fin>>b;
+				if(DelProd[j])
+				{
+					amount++;
+					continue;
+				}
+				if(DelMeal[i])
+					continue;
+				Form3->IsLeft[i-amountml][j-amount]=b;
+			}
+	  }
+
+	  amountml=0;
+	  for(int i=0;i<199;i++)
+	  {
+	  	if(DelMeal[i])
+			{
+				amountml++;
+            }
+		int amount=0;
+		for(int j=0;j<199;j++)
 		{
 			fin>>b;
-		 Form3->IsLeft[i][j]=b;
+			if(DelProd[j])
+			  {
+				amount++;
+				continue;
+			  }
+			if(DelMeal[i])
+				continue;
+			Form3->IsRight[i-amountml][j-amount]=b;
 		}
+	  }
 
-	  for(int i=0;i<99;i++)
-		for(int j=0;j<99;j++)
-		{
-			fin>>b;
-		  Form3->IsRight[i][j]=b;
-		}
-
-	  for(int i=0;i<99;i++)
-		for(int j=0;j<99;j++)
+	  amountml=0;
+	  for(int i=0;i<199;i++)
+	  {
+	  	if(DelMeal[i])
+			{
+				amountml++;
+			}
+	  	int amount=0;
+		for(int j=0;j<199;j++)
 		{
 			fin>>s;
-			Form3->Weights[i][j]=s.c_str();
+			if(DelProd[j])
+			  {
+				amount++;
+				continue;
+			  }
+			if(DelMeal[i])
+				continue;
+			Form3->Weights[i-amountml][j-amount]=s.c_str();
 		}
+	  }
 		/////////////////////////////////////////////////////////     открываем Products
 	    n;
 		fin>>n;

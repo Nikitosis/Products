@@ -21,7 +21,7 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 	: TForm(Owner)
 {
 	PanelH=100;
-	memset(IsDel,false,100*sizeof(bool));
+	memset(IsDel,false,200*sizeof(bool));
 }
 //---------------------------------------------------------------------------
 
@@ -72,7 +72,7 @@ Form1->Load1Click(this);
 
 void __fastcall TForm2::FormCreate(TObject *Sender)
 {
-memset(Form2->IsDel,false,100*sizeof(bool));
+memset(Form2->IsDel,false,200*sizeof(bool));
 ProductsA=0;
 ProductsDel=0;
 SettingsNum=-1;
