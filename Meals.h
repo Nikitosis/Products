@@ -45,7 +45,7 @@ __published:	// IDE-managed Components
 	TButton *Button13;
 	TButton *Button14;
 	TButton *Button15;
-	TButton *Backspace;
+	TBitBtn *Backspace;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Save1Click(TObject *Sender);
 	void __fastcall Load1Click(TObject *Sender);

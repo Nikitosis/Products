@@ -46,6 +46,7 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->PanelsHave[n]->Width = Form6->ScrollBox1->Width - 4;
 	Form3->PanelsHave[n]->Tag=num;    //сохраняем привязку к Products(num-номер продукта)
 	Form3->PanelsHave[n]->ParentBackground=false;
+	Form3->PanelsHave[n]->DoubleBuffered=true;
 
 	Form3->LabelesHave[n*4] = new TLabel(Form6);
 	Form3->LabelesHave[n*4]->Parent = Form3->PanelsHave[n];
@@ -173,6 +174,8 @@ void __fastcall TForm3::AddClickF(int num)
 	Form6->ScrollBox1->VertScrollBar->Position = 0;
 	int k1 = Form6->ScrollBox2->VertScrollBar->Position;
 	Form6->ScrollBox2->VertScrollBar->Position = 0;
+
+	Form6->Edit2->Text="";
 
 	if(IsLeft[i][prodnum]==true)
 	{

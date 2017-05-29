@@ -9,7 +9,8 @@
 #include <Forms.hpp>
 #include <ExtCtrls.hpp>
 
-#include <Graphics.hpp>//---------------------------------------------------------------------------
+#include <Graphics.hpp>
+#include <Buttons.hpp>//---------------------------------------------------------------------------
 class TForm4 : public TForm
 {
 __published:	// IDE-managed Components
@@ -36,7 +37,7 @@ __published:	// IDE-managed Components
 	TButton *Button13;
 	TButton *Button14;
 	TButton *Button15;
-	TButton *Backspace;
+	TBitBtn *Backspace;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall Button1MouseEnter(TObject *Sender);

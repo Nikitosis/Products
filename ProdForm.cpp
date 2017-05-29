@@ -549,3 +549,51 @@ if(Form5->Components[FocusIndex]->ClassName()=="TEdit")
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm5::Button52Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form5->Components[FocusIndex]->ClassName();
+if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form5->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  AnsiString s=edit->Text;
+	  s.Delete(start+1,edit->SelLength);    //если выделено,то заменяем
+	  s.Insert(button->Caption,start+1);    //вставляем букву
+	  edit->SetFocus();
+	  edit->Text=s;
+	  edit->SelStart=start+1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm5::Button51Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form5->Components[FocusIndex]->ClassName();
+if(Form5->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form5->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  edit->SetFocus();
+	  if(start!=0)
+	 	 edit->SelStart=start-1;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm5::Button50Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form5->Components[FocusIndex]->ClassName();
+if(Form5->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form5->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  edit->SetFocus();
+	  edit->SelStart=start+1;
+	}
+}
+//---------------------------------------------------------------------------
+

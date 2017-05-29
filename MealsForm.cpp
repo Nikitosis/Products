@@ -383,6 +383,10 @@ if(Form1->IsKeyboard)
 	Panel4->Visible=false;
 	Height=554;
 	}
+Edit2->Text="";
+Edit2->Left=305;
+Edit2->Width=0;
+isExpantion=false;
 }
 //---------------------------------------------------------------------------
 
@@ -393,8 +397,6 @@ for(int i=0;i<Form6->ComponentCount-1;i++)
 	   if(Form6->ActiveControl==Form6->Components[i] && Form6->Components[i]->ClassName()=="TEdit")
 		FocusIndex=i;
 	}
-AnsiString s=ExtractFilePath(Application->ExeName);
-Button5->Picture->LoadFromFile(s+"/RecipeButton/ScrollActive.bmp");
 }
 //---------------------------------------------------------------------------
 
@@ -426,26 +428,6 @@ if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 
 
 
-void __fastcall TForm6::Button6Click(TObject *Sender)
-{
-for(int i=0;i<Form6->ComponentCount-1;i++)
-{
-  if(Form6->Components[i]->ClassName()=="TButton")
-  {
-	TButton *button = (TButton*)Form6->Components[i];
-	if(button->Caption.Length()==1)
-		if(button->Caption==button->Caption.UpperCase())
-			button->Caption=button->Caption.LowerCase();
-			else
-			button->Caption=button->Caption.UpperCase();
-  }
-}
-TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
-edit->SetFocus();
-edit->SelLength=0;
-edit->SelStart=100;
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm6::Button118Click(TObject *Sender)
 {
@@ -538,4 +520,128 @@ for(int i=0;i<Form6->ComponentCount-1;i++)
 }
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm6::Edit2Change(TObject *Sender)     //Фильтр по названиям доступных блюд
+{
+ScrollBox1->VertScrollBar->Position=0;
+int PropNum=Form3->PropNum;
+AnsiString find=Edit2->Text.LowerCase();
+SearchAmount=0;
+for(int i=0;i<Form2->ProductsA;i++)
+	if(Form3->NeedToDelete[i])
+		if(Form3->IsLeft[PropNum][Form3->PanelsHave[i]->Tag])
+			{
+				AnsiString Name=Form3->LabelesHave[i*4]->Caption.LowerCase();
+				int pos=Name.Pos(find);
+				if(pos!=0 || find=="")
+					{
+						Form3->PanelsHave[i]->Top=Form3->PanelHaveH*SearchAmount;
+						Form3->PanelsHave[i]->Visible=true;
+						SearchAmount++;
+					}
+					else
+					{
+                        Form3->PanelsHave[i]->Visible=false;
+                    }
+
+            }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::BitBtn4Click(TObject *Sender)
+{
+if(!isExpantion)
+{
+    Edit2->Left=305-Edit2->Width;
+}
+isExpantion=! isExpantion;
+Timer1->Enabled=true;
+Edit2->Text="";
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm6::Timer1Timer(TObject *Sender)
+{
+if(isExpantion)
+	{
+		if(Edit2->Width<81)
+			{
+			Edit2->Width+=3;
+			Edit2->Left-=3;
+			}
+			else
+			{
+			Timer1->Enabled=false;
+			Edit2->Width=81;
+			Edit2->Left=224;
+			}
+	}
+	else
+	{
+       	if(Edit2->Width>0)
+			Edit2->Width-=3;
+			else
+			{
+			Timer1->Enabled=false;
+			Edit2->Width=0;
+			Edit2->Left=305;
+			}
+    }
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm6::BackspaceClick(TObject *Sender)
+{
+ TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
+  AnsiString s=Form6->Components[FocusIndex]->ClassName();
+if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  if(edit->SelLength!=0)
+		start++;
+	  AnsiString s=edit->Text;
+	  int length=edit->SelLength;
+	  if(length==0)
+		length=1;
+	  s.Delete(start,length);
+	  edit->SetFocus();
+	  edit->Text=s;
+	  if(start!=0)
+		 edit->SelStart=start-1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::ShiftClick(TObject *Sender)
+{
+for(int i=0;i<Form6->ComponentCount-1;i++)
+{
+  if(Form6->Components[i]->ClassName()=="TButton")
+  {
+	TButton *button = (TButton*)Form6->Components[i];
+	if(button->Caption.Length()==1)
+		if(button->Caption==button->Caption.UpperCase())
+			button->Caption=button->Caption.LowerCase();
+			else
+			button->Caption=button->Caption.UpperCase();
+  }
+}
+TEdit *edit = (TEdit*)Form6->Components[FocusIndex];
+edit->SetFocus();
+edit->SelLength=0;
+edit->SelStart=100;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm6::Button5MouseEnter(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+Button5->Picture->LoadFromFile(s+"/RecipeButton/ScrollActive.bmp");
+}
+//---------------------------------------------------------------------------
+
 

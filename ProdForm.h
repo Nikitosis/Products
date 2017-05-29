@@ -66,7 +66,6 @@ __published:	// IDE-managed Components
 	TButton *Button30;
 	TButton *Button29;
 	TButton *Button28;
-	TButton *Backspace;
 	TButton *Button48;
 	TButton *Button47;
 	TButton *Button46;
@@ -76,11 +75,12 @@ __published:	// IDE-managed Components
 	TButton *Button43;
 	TButton *Button41;
 	TButton *Button40;
-	TButton *Shift;
 	TButton *Button53;
 	TButton *Button52;
-	TButton *Button51;
-	TButton *Button50;
+	TBitBtn *Backspace;
+	TBitBtn *BitBtn2;
+	TBitBtn *Button51;
+	TBitBtn *Button50;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
@@ -96,6 +96,9 @@ __published:	// IDE-managed Components
 	void __fastcall Edit2Click(TObject *Sender);
 	void __fastcall Edit1Click(TObject *Sender);
 	void __fastcall BackspaceClick(TObject *Sender);
+	void __fastcall Button52Click(TObject *Sender);
+	void __fastcall Button51Click(TObject *Sender);
+	void __fastcall Button50Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	AnsiString Masses[600];
