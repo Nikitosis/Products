@@ -30,18 +30,18 @@ void __fastcall TForm4::Button1Click(TObject *Sender) {
 		double height = StrToInt(Edit1->Text);
 		double age = StrToInt(Edit3->Text);
 		if (ComboBox1->ItemIndex == 0)
-			BMR = 88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age);
+			BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
 		else
-			BMR = 447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age);
-		if (ComboBox2->ItemIndex == 1)
+			BMR = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+		if (ComboBox2->ItemIndex == 0)
 			BMR *= 1.2;
-		if (ComboBox2->ItemIndex == 2)
+		if (ComboBox2->ItemIndex == 1)
 			BMR *= 1.375;
-		if (ComboBox2->ItemIndex == 3)
+		if (ComboBox2->ItemIndex == 2)
 			BMR *= 1.55;
-		if (ComboBox2->ItemIndex == 4)
+		if (ComboBox2->ItemIndex == 3)
 			BMR *= 1.725;
-		if (ComboBox2->ItemIndex == 5)
+		if (ComboBox2->ItemIndex == 4)
 			BMR *= 1.9;
 		BMR = ceil(BMR);
 		Form8->Label1->Caption =

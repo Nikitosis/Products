@@ -17,6 +17,12 @@
     <Transaction>2017.04.20 15:51:59.644.cpp,C:\My documents\RAD Studio\Projects\Products\Unit8.cpp=C:\My documents\RAD Studio\Projects\Products\RecommendDialog.cpp</Transaction>
     <Transaction>2017.04.20 15:51:59.644.h,C:\My documents\RAD Studio\Projects\Products\Unit8.h=C:\My documents\RAD Studio\Projects\Products\RecommendDialog.h</Transaction>
     <Transaction>2017.04.20 15:51:59.644.dfm,C:\My documents\RAD Studio\Projects\Products\Unit8.dfm=C:\My documents\RAD Studio\Projects\Products\RecommendDialog.dfm</Transaction>
+    <Transaction>2017.05.26 11:27:27.474.cpp,C:\My documents\RAD Studio\Projects\Products\Unit9.cpp=C:\My documents\RAD Studio\Projects\Products\Instruction.cpp</Transaction>
+    <Transaction>2017.05.26 11:27:27.490.h,C:\My documents\RAD Studio\Projects\Products\Unit9.h=C:\My documents\RAD Studio\Projects\Products\Instruction.h</Transaction>
+    <Transaction>2017.05.26 11:27:27.490.dfm,C:\My documents\RAD Studio\Projects\Products\Unit9.dfm=C:\My documents\RAD Studio\Projects\Products\Instruction.dfm</Transaction>
+    <Transaction>2017.05.26 12:25:14.310.cpp,C:\My documents\RAD Studio\Projects\Products\Unit10.cpp=C:\My documents\RAD Studio\Projects\Products\About.cpp</Transaction>
+    <Transaction>2017.05.26 12:25:14.310.h,C:\My documents\RAD Studio\Projects\Products\Unit10.h=C:\My documents\RAD Studio\Projects\Products\About.h</Transaction>
+    <Transaction>2017.05.26 12:25:14.310.dfm,C:\My documents\RAD Studio\Projects\Products\Unit10.dfm=C:\My documents\RAD Studio\Projects\Products\About.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Main.cpp"/>
@@ -53,5 +59,13 @@
     <File Path="RecommendDialog.cpp"/>
     <File Path="RecommendDialog.dfm"/>
     <File Path="RecommendDialog.h"/>
+    <File Path="Instruction.cpp"/>
+    <File Path="Instruction.cpp"/>
+    <File Path="Instruction.dfm"/>
+    <File Path="Instruction.h"/>
+    <File Path="About.cpp"/>
+    <File Path="About.cpp"/>
+    <File Path="About.dfm"/>
+    <File Path="About.h"/>
   </ProjectSortOrder>
 </BorlandProject>

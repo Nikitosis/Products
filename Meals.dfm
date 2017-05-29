@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 0
   Top = 0
   BorderStyle = bsToolWindow
-  Caption = #1041#1083#1102#1076#1072
+  Caption = #1057#1090#1088#1072#1074#1080
   ClientHeight = 524
   ClientWidth = 924
   Color = 2543229

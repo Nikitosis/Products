@@ -155,7 +155,8 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Label10->Caption="0";
 	Form6->Label11->Caption="0";
 	Form6->Label12->Caption="0";
-
+	Form6->Edit1->Text="";
+	Form7->Memo1->Lines->Clear();
 
 
 	Form6->Show();

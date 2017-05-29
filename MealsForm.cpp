@@ -194,8 +194,8 @@ void __fastcall TForm6::Button2Click(TObject *Sender) {
 		line7->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
 
 		for (int i = 0; i < Form2->ProductsA; i++) {
-			Form3->IsLeft[n][i] = Form3->IsLeft[99][i];
-			Form3->IsRight[n][i] = Form3->IsRight[99][i];
+			Form3->IsLeft[n][i] = Form3->IsLeft[199][i];
+			Form3->IsRight[n][i] = Form3->IsRight[199][i];
 		}
 
 		for (int i = 0; i < Form2->ProductsA; i++)

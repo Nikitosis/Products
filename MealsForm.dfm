@@ -2,7 +2,7 @@ object Form6: TForm6
   Left = 0
   Top = 0
   BorderStyle = bsToolWindow
-  Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080' '#1073#1083#1102#1076
+  Caption = #1053#1072#1083#1072#1096#1090#1091#1074#1072#1085#1085#1103' '#1089#1090#1088#1072#1074#1080
   ClientHeight = 737
   ClientWidth = 712
   Color = 8310264
@@ -22,7 +22,7 @@ object Form6: TForm6
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = 24
+    Left = 25
     Top = 8
     Width = 201
     Height = 161
@@ -623,11 +623,11 @@ object Form6: TForm6
     Stretch = True
   end
   object Label1: TLabel
-    Left = 297
+    Left = 321
     Top = 16
-    Width = 151
+    Width = 129
     Height = 24
-    Caption = #1053#1072#1079#1074#1072' '#1087#1088#1086#1076#1091#1082#1090#1091':'
+    Caption = #1053#1072#1079#1074#1072' '#1089#1090#1088#1072#1074#1080':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -20
@@ -649,8 +649,8 @@ object Form6: TForm6
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 25
-    Top = 212
+    Left = 26
+    Top = 219
     Width = 177
     Height = 24
     Caption = #1044#1086#1089#1090#1091#1087#1085#1110' '#1087#1088#1086#1076#1091#1082#1090#1080':'
@@ -662,8 +662,8 @@ object Form6: TForm6
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 384
-    Top = 212
+    Left = 378
+    Top = 219
     Width = 249
     Height = 24
     Caption = #1042#1080#1082#1086#1088#1080#1089#1090#1086#1074#1091#1074#1072#1085#1110' '#1087#1088#1086#1076#1091#1082#1090#1080':'
@@ -683,7 +683,7 @@ object Form6: TForm6
     Visible = False
   end
   object Label6: TLabel
-    Left = 136
+    Left = 137
     Top = 190
     Width = 6
     Height = 13
@@ -691,8 +691,8 @@ object Form6: TForm6
     Visible = False
   end
   object Label7: TLabel
-    Left = 186
-    Top = 190
+    Left = 187
+    Top = 184
     Width = 6
     Height = 13
     Caption = '0'
@@ -6054,8 +6054,8 @@ object Form6: TForm6
     TabOrder = 3
     OnMouseEnter = Panel1MouseEnter
     object Image4: TImage
-      Left = -4
-      Top = -2
+      Left = -8
+      Top = 0
       Width = 337
       Height = 236
       Picture.Data = {
@@ -12308,7 +12308,7 @@ object Form6: TForm6
     OnClick = Button4Click
   end
   object Button1: TBitBtn
-    Left = 49
+    Left = 50
     Top = 175
     Width = 153
     Height = 33

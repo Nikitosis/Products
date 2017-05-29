@@ -14,6 +14,8 @@
 #include "MealsForm.h"
 #include "ProdForm.h"
 #include "RecommendDialog.h"
+#include "Instruction.h"
+#include "About.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -520,6 +522,19 @@ Form3->Panel4->Visible=true;     //выключаем клавы
 Form6->Panel4->Visible=true;
 Form5->Panel4->Visible=true;
 Form4->Panel4->Visible=true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N4Click(TObject *Sender)
+{
+Form9->Show();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::N5Click(TObject *Sender)
+{
+Form10->Show();
 }
 //---------------------------------------------------------------------------
 
