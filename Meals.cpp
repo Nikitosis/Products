@@ -303,6 +303,9 @@ void __fastcall TForm3::CreateNewMeal()       //создаем новое невидимое блюдо(ес
 		line7->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
 
 		Form3->ScrollBox1->VertScrollBar->Position=k;
+
+		for(int i=0;i<Form2->Product.size();i++)
+			Form3->Meal[n].Weight[i]="0";
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -318,26 +321,9 @@ void __fastcall TForm3::AddClickF(int num)
 
 	Form6->Edit2->Text="";
 
-	if(Meal[mealNum].IsLeft[num]==true)
+	if(Meal[mealNum].IsLeft[num]==true)  //если был слева
 	{
-		int amount=StrToInt(Form3->ProdHave[num].Edit->Text);
-		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)+StrToFloat(Form2->Product[num].Protein->Caption)*amount);          //пишем,сколько витаминов
-		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)+StrToFloat(Form2->Product[num].Fat->Caption)*amount);
-		Form6->Label7->Caption=FloatToStr(StrToFloat(Form6->Label7->Caption)+StrToFloat(Form2->Product[num].Carbon->Caption)*amount);
-		Form6->Label8->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)*4+StrToFloat(Form6->Label6->Caption)*9+StrToFloat(Form6->Label7->Caption)*4);
-
-		int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
-		Form6->Label9->Caption=IntToStr(n1);
-
-		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
-		Form6->Label10->Caption=IntToStr(n1);
-
-		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
-		Form6->Label11->Caption=IntToStr(n1);
-
-		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
-		Form6->Label12->Caption=IntToStr(n1);
-
+		ProdHave[num].Edit->Text="0";
 		ProductsUse++;
 		ProductsHave--;
 		Meal[mealNum].IsLeft[num] = false;
@@ -353,19 +339,6 @@ void __fastcall TForm3::AddClickF(int num)
 	else
 	{
 		Form3->ProdHave[num].Edit->Text="0";
-
-		int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
-		Form6->Label9->Caption=IntToStr(n1);
-
-		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
-		Form6->Label10->Caption=IntToStr(n1);
-
-		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
-		Form6->Label11->Caption=IntToStr(n1);
-
-		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
-		Form6->Label12->Caption=IntToStr(n1);
-
 		ProductsUse--;
 		ProductsHave++;
 		Meal[mealNum].IsLeft[num] = true;
@@ -444,12 +417,6 @@ void __fastcall TForm3::PropClickNum(int num)
 	Form6->Label11->Caption="0";
 	Form6->Label12->Caption="0";
 
-	for(int i=0;i<Form2->Product.size()+2;i++)
-	{
-		AnsiString s=Meal[num].Weight[i];
-		int k;
-	}
-
 	for(int i=0;i<Form2->Product.size();i++)
 		 ProdHave[i].Edit->Text=Meal[num].Weight[i];
 
@@ -458,47 +425,23 @@ void __fastcall TForm3::PropClickNum(int num)
 	Form6->Edit1->SetFocus();
 }
 //------------------------------------------------------------------
-void __fastcall TForm3::RecountCal()
+void __fastcall TForm3::RecountCalFromProd(int num)  //пересчет бжу из Products
 {
-    for(int i=0;i<Form3->Meal.size();i++)
-	{
-		Form3->Meal[i].Protein->Caption="0";
-		Form3->Meal[i].Fat->Caption="0";
-		Form3->Meal[i].Carbon->Caption="0";
-		Form3->Meal[i].Calories->Caption="0";
-		Form3->PropClickNum(i);//пересчитываем бжу
-		Form6->Close();
-	}
-}
-//------------------------------------------------------------------
-
-
-void __fastcall TForm3::EditsHaveChange(TObject *Sender)
-{
-TEdit *btn = dynamic_cast<TEdit *>(Sender);
-bool flag=btn->Text.IsEmpty();
-
-int num=PropNum;
-double sum1=0,sum2=0,sum3=0;
-if(btn->Parent->Parent==Form6->ScrollBox2)
-{
+	double sum1=0,sum2=0,sum3=0;
 	for(int i=0;i<Form2->Product.size();i++)
 	{
-		if(Meal[num].IsRight[i] && !ProdHave[i].Edit->Text.IsEmpty())
-				  {
-					  int k=ProdHave[i].Panel->Tag;
-					  sum1+=StrToInt(Form2->Product[k].Protein->Caption)*StrToInt(Form3->ProdHave[i].Edit->Text);
-					  sum2+=StrToInt(Form2->Product[k].Fat->Caption)*StrToInt(Form3->ProdHave[i].Edit->Text);
-					  sum3+=StrToInt(Form2->Product[k].Carbon->Caption)*StrToInt(Form3->ProdHave[i].Edit->Text);
-					}
+		if(Meal[num].IsRight[i])
+			{
+				sum1+=StrToInt(Form2->Product[i].Protein->Caption)*StrToInt(Meal[num].Weight[i]);
+				sum2+=StrToInt(Form2->Product[i].Fat->Caption)*StrToInt(Meal[num].Weight[i]);
+				sum3+=StrToInt(Form2->Product[i].Carbon->Caption)*StrToInt(Meal[num].Weight[i]);
+			}
 	}
-
-Form6->Label5->Caption=FloatToStr(sum1);
-Form6->Label6->Caption=FloatToStr(sum2);
-Form6->Label7->Caption=FloatToStr(sum3);
-Form6->Label8->Caption=FloatToStr(sum1*4+sum2*9+sum3*4);
-
-int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+	Form6->Label5->Caption=FloatToStr(sum1);
+	Form6->Label6->Caption=FloatToStr(sum2);
+	Form6->Label7->Caption=FloatToStr(sum3);
+	Form6->Label8->Caption=FloatToStr(sum1*4+sum2*9+sum3*4);
+	int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
 		Form6->Label9->Caption=IntToStr(n1);
 
 		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
@@ -510,11 +453,53 @@ int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
 		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
 		Form6->Label12->Caption=IntToStr(n1);
 
-Form3->Meal[num].Protein->Caption=Form6->Label9->Caption;
-Form3->Meal[num].Fat->Caption=Form6->Label10->Caption;
-Form3->Meal[num].Carbon->Caption=Form6->Label11->Caption;
-Form3->Meal[num].Calories->Caption=Form6->Label12->Caption;
-    }
+	Form3->Meal[num].Protein->Caption=Form6->Label9->Caption;
+	Form3->Meal[num].Fat->Caption=Form6->Label10->Caption;
+	Form3->Meal[num].Carbon->Caption=Form6->Label11->Caption;
+	Form3->Meal[num].Calories->Caption=Form6->Label12->Caption;
+}
+//------------------------------------------------------------------
+void __fastcall TForm3::RecountCalFromMeal() //Пересчет бжу из MealsForm
+{
+	double sum1=0,sum2=0,sum3=0;
+	int num=Form3->PropNum;
+	for(int i=0;i<Form2->Product.size();i++)
+	{
+		if(Meal[num].IsRight[i] && !ProdHave[i].Edit->Text.IsEmpty())
+			{
+				sum1+=StrToInt(Form2->Product[i].Protein->Caption)*StrToInt(ProdHave[i].Edit->Text);
+				sum2+=StrToInt(Form2->Product[i].Fat->Caption)*StrToInt(ProdHave[i].Edit->Text);
+				sum3+=StrToInt(Form2->Product[i].Carbon->Caption)*StrToInt(ProdHave[i].Edit->Text);
+			}
+	}
+	Form6->Label5->Caption=FloatToStr(sum1);
+	Form6->Label6->Caption=FloatToStr(sum2);
+	Form6->Label7->Caption=FloatToStr(sum3);
+	Form6->Label8->Caption=FloatToStr(sum1*4+sum2*9+sum3*4);
+	int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
+
+	Form3->Meal[num].Protein->Caption=Form6->Label9->Caption;
+	Form3->Meal[num].Fat->Caption=Form6->Label10->Caption;
+	Form3->Meal[num].Carbon->Caption=Form6->Label11->Caption;
+	Form3->Meal[num].Calories->Caption=Form6->Label12->Caption;
+}
+//------------------------------------------------------------------
+
+void __fastcall TForm3::EditsHaveChange(TObject *Sender)
+{
+TEdit *btn = dynamic_cast<TEdit *>(Sender);
+
+RecountCalFromMeal();
 }
 
 //------------------------------------------------------------------------------

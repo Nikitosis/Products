@@ -108,7 +108,8 @@ int FocusIndex;
 	void __fastcall TForm3::EditsHaveChange(TObject *Sender);
 	void __fastcall TForm3::EditsClick(TObject *Sender);
 	void __fastcall TForm3::CreateNewMeal();
-	void __fastcall TForm3::RecountCal();
+	void __fastcall TForm3::RecountCalFromProd(int num);
+	void __fastcall TForm3::RecountCalFromMeal();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;

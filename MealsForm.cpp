@@ -348,14 +348,14 @@ void __fastcall TForm6::Edit2Change(TObject *Sender)     //Фильтр по н�
 {
 ScrollBox1->VertScrollBar->Position=0;
 int PropNum=Form3->PropNum;
-AnsiString find=Edit2->Text.LowerCase();
+AnsiString WordToFind=Edit2->Text.LowerCase();
 SearchAmount=0;
 for(int i=0;i<Form2->Product.size();i++)
 		if(Form3->Meal[PropNum].IsLeft[i])
 			{
-				AnsiString Name=Form3->ProdHave[i].Protein->Caption.LowerCase();
-				int pos=Name.Pos(find);
-				if(pos!=0 || find=="")
+				AnsiString Name=Form3->ProdHave[i].Name->Caption.LowerCase();
+				int pos=Name.Pos(WordToFind);
+				if(pos!=0 || WordToFind=="")
 					{
 						Form3->ProdHave[i].Panel->Top=Form3->PanelHaveH*SearchAmount;
 						Form3->ProdHave[i].Panel->Visible=true;
@@ -364,9 +364,9 @@ for(int i=0;i<Form2->Product.size();i++)
 					else
 					{
 						Form3->ProdHave[i].Panel->Visible=false;
-                    }
+					}
+			}
 
-            }
 }
 //---------------------------------------------------------------------------
 

@@ -39,7 +39,7 @@ int n;
 if(Edit2->Text=="")     //если пустое место в едите
 Edit2->Text='0';
 if(Edit3->Text=="")
-Edit2->Text='0';
+Edit3->Text='0';
 if(Edit4->Text=="")
 Edit4->Text='0';
 while(Edit2->Text[1]=='0')           //удаляем первые нули в массах
@@ -83,7 +83,7 @@ while(Edit4->Text[1]=='0')
 }
 if(Edit4->Text[Edit4->Text.Length()]==',')
 	Edit4->Text=Edit4->Text.Delete(Edit4->Text.Length(),1);
-/////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 
 double sum;
@@ -281,7 +281,8 @@ if(IsNew)     //если мы зашли через кнопку добавит�
 		Form2->Product[n].Calories->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
 	}
 
-Form3->RecountCal(); //пересчитыв калории
+	for(int i=0;i<Form3->Meal.size();i++)  //пересчитыв калории
+		Form3->RecountCalFromProd(i);
 
 Close();
 }
@@ -324,7 +325,8 @@ for(int i=0;i<Form3->Meal.size();i++)
 Form2->Product[num].Panel->Free();
 Form2->Product.erase(Form2->Product.begin()+num);
 
-Form3->RecountCal();//пересчет калорий
+	for(int i=0;i<Form3->Meal.size();i++) //пересчет калорий
+		Form3->RecountCalFromProd(i);
 
 Form3->WasDeleted=-1;
 Form3->Close();
