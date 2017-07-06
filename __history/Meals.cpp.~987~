@@ -1,0 +1,666 @@
+// ---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#include <math.h>
+#include <Buttons.hpp>
+
+#include "RecommendDialog.h"
+#include "Products.h"
+#include "Main.h"
+#include "Meals.h"
+#include "Recommend.h"
+#include "MealsForm.h"
+#include "Recipe.h"
+// ---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm3 *Form3;
+
+// ---------------------------------------------------------------------------
+__fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
+	PanelH = 100;
+	PanelHaveH = 50;
+}
+
+// ---------------------------------------------------------------------------
+void AddLeft(int num) {      //создаем новые панели в левой части
+	Form3->ProductsHave++;
+	int n = Form3->ProdHave.size();
+	int k = Form6->ScrollBox1->VertScrollBar->Position;
+	Form6->ScrollBox1->VertScrollBar->Position = 0;
+
+	int w = Form6->ScrollBox1->Width / 4;
+	// w=round(w);
+
+	TForm3::ProductHave TemporProductHave;
+	Form3->ProdHave.push_back(TemporProductHave);
+
+
+	Form3->ProdHave[n].Panel = new TPanel(Form6);
+	Form3->ProdHave[n].Panel->Parent = Form6->ScrollBox1;
+	Form3->ProdHave[n].Panel->Top = Form3->PanelHaveH * (Form3->ProductsHave-1);
+	Form3->ProdHave[n].Panel->Height = Form3->PanelHaveH;
+	Form3->ProdHave[n].Panel->Width = Form6->ScrollBox1->Width - 4;
+	Form3->ProdHave[n].Panel->Tag=num;    //сохран€ем прив€зку к Products(num-номер продукта)
+	Form3->ProdHave[n].Panel->ParentBackground=false;
+	Form3->ProdHave[n].Panel->DoubleBuffered=true;
+
+	Form3->ProdHave[n].Name = new TLabel(Form6);
+	Form3->ProdHave[n].Name->Parent = Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Name->Top = 5;
+	Form3->ProdHave[n].Name->Left = 15;
+	Form3->ProdHave[n].Name->Caption = Form2->Product[num].Name->Caption;
+	Form3->ProdHave[n].Name->Width = w;
+	Form3->ProdHave[n].Name->Height = 20;
+	Form3->ProdHave[n].Name->WordWrap = true;
+
+
+	Form3->ProdHave[n].Protein=new TLabel(Form6);                     //лейблы хран€т белки,жири,калор.
+	Form3->ProdHave[n].Protein->Parent=Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Protein->Caption=Form2->Product[num].Protein->Caption;
+	Form3->ProdHave[n].Protein->Visible=false;
+
+	Form3->ProdHave[n].Fat=new TLabel(Form6);
+	Form3->ProdHave[n].Fat->Parent=Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Fat->Caption=Form2->Product[num].Fat->Caption;
+	Form3->ProdHave[n].Fat->Visible=false;
+
+	Form3->ProdHave[n].Carbon=new TLabel(Form6);
+	Form3->ProdHave[n].Carbon->Parent=Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Carbon->Caption=Form2->Product[num].Carbon->Caption;
+	Form3->ProdHave[n].Carbon->Visible=false;
+
+	Form3->ProdHave[n].Image = new TImage(Form6);
+	Form3->ProdHave[n].Image->Parent = Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Image->Left = 40 + w;
+	Form3->ProdHave[n].Image->Width = w;
+	Form3->ProdHave[n].Image->Height = 46;
+	Form3->ProdHave[n].Image->Stretch = true;
+	Form3->ProdHave[n].Image->Picture = Form2->Product[num].Image->Picture;
+
+	Form3->ProdHave[n].Edit = new TEdit(Form6);
+	Form3->ProdHave[n].Edit->Parent = Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Edit->Left = 45 + 2 * w;
+	Form3->ProdHave[n].Edit->Top = 15;
+	Form3->ProdHave[n].Edit->Width = w-30;
+	Form3->ProdHave[n].Edit->NumbersOnly=true;
+	Form3->ProdHave[n].Edit->Text="0";
+	Form3->ProdHave[n].Edit->MaxLength=6;
+	Form3->ProdHave[n].Edit->OnChange=Form3->EditsHaveChange;
+    Form3->ProdHave[n].Edit->OnClick=Form3->EditsClick;
+
+	Form3->ProdHave[n].Button = new TBitBtn(Form6);
+	Form3->ProdHave[n].Button->Parent = Form3->ProdHave[n].Panel;
+	Form3->ProdHave[n].Button->Left = 15 + 3 * w;
+	Form3->ProdHave[n].Button->Width = w - 36;
+	Form3->ProdHave[n].Button->Height = Form3->PanelHaveH;
+	Form3->ProdHave[n].Button->Tag = n;
+	Form3->ProdHave[n].Button->OnClick=Form3->AddClick;
+	Form3->ProdHave[n].Button->Glyph=Form6->BitBtn2->Glyph;
+
+	Form6->ScrollBox1->VertScrollBar->Position = k;
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
+	Form3->CreateNewMeal();
+	int num=Meal.size()-1;
+	PropNum=Meal.size()-1;
+	isNew=true;
+	WasDeleted=-1;
+	ProductsHave = 0;
+	ProductsUse = 0;
+
+	  for(int i=0;i<Form2->Product.size();i++)
+	{
+		Meal[num].IsLeft[i]=true;
+		Meal[num].IsRight[i]=false;
+	}
+
+	for (int i = 0; i < Form2->Product.size(); i++)
+	{
+		AddLeft(i);
+	}
+
+	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
+	Form6->Label6->Caption="0";
+	Form6->Label7->Caption="0";
+	Form6->Label8->Caption="0";
+	Form6->Label9->Caption="0";
+	Form6->Label10->Caption="0";
+	Form6->Label11->Caption="0";
+	Form6->Label12->Caption="0";
+	Form6->Button4->Visible=false;
+	Form6->Edit1->Text="";
+	Form7->Memo1->Lines->Clear();
+
+
+	Form6->Show();
+	Form6->Edit1->SetFocus();
+}
+//------------------------------------------------------------------------------------------------------------
+
+void __fastcall TForm3::CreateNewMeal()       //создаем новое невидимое блюдо(если нажмем сохранить,то оно станет видимым)
+{
+	int k = Form3->ScrollBox1->VertScrollBar->Position;
+	// нужно об€зательно,иначе по€вл. пропуски
+	Form3->ScrollBox1->VertScrollBar->Position = 0;
+
+	TForm3::MealStr TemporMeal;         //создаем новый meal(если нажмут отмена,то мы его удалим)
+	Form3->Meal.push_back(TemporMeal);
+	int n=Form3->Meal.size()-1;
+		memset(Form3->Meal[n].Weight,0,200*sizeof(bool));
+		memset(Form3->Meal[n].IsLeft,0,200*sizeof(bool));
+		memset(Form3->Meal[n].IsRight,0,200*sizeof(bool));
+
+		Form3->Meal[n].Panel = new TPanel(Form3);
+		Form3->Meal[n].Panel->Parent = Form3->ScrollBox1;
+		Form3->Meal[n].Panel->Top = (n)* Form3->PanelH;
+		Form3->Meal[n].Panel->Left = 0;
+		Form3->Meal[n].Panel->Width = Form3->ScrollBox1->Width - 4;
+		Form3->Meal[n].Panel->Height = Form3->PanelH;
+		Form3->Meal[n].Panel->Visible=false;
+
+		Form3->ScrollBox1->VertScrollBar->Position = k;
+
+		Form3->Meal[n].Image = new TImage(Form3);
+		Form3->Meal[n].Image->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Image->Left = 327;
+		Form3->Meal[n].Image->Height = Form3->PanelH - 1;
+		Form3->Meal[n].Image->Width = 125;
+		Form3->Meal[n].Image->Stretch = true;
+
+		Form3->Meal[n].Memo = new TMemo(Form3);
+		Form3->Meal[n].Memo->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Memo->Left = 277;
+		Form3->Meal[n].Memo->Height = Form3->PanelH - 1;
+		Form3->Meal[n].Memo->Width = 273;
+		Form3->Meal[n].Memo->ReadOnly = true;
+		Form3->Meal[n].Memo->ScrollBars = ssBoth;
+		Form3->Meal[n].Memo->Visible = false;
+
+
+		Form3->Meal[n].Name = new TLabel(Form3);
+		Form3->Meal[n].Name->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Name->Top = 20;
+		Form3->Meal[n].Name->Left = 10;
+		Form3->Meal[n].Name->WordWrap = true;
+		Form3->Meal[n].Name->AutoSize = false;
+		Form3->Meal[n].Name->Height = 70;
+		Form3->Meal[n].Name->Width = 300;
+		Form3->Meal[n].Name->Font->Size = 14;
+
+
+		Form3->Meal[n].Protein = new TLabel(Form3);
+		Form3->Meal[n].Protein->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Protein->Top = 40;
+		Form3->Meal[n].Protein->Left = 460;
+		Form3->Meal[n].Protein->WordWrap = true;
+		Form3->Meal[n].Protein->AutoSize = false;
+		Form3->Meal[n].Protein->Height = 20;
+		Form3->Meal[n].Protein->Width = 70;
+		Form3->Meal[n].Protein->Font->Size = 10;
+
+		Form3->Meal[n].Fat = new TLabel(Form3);
+		Form3->Meal[n].Fat->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Fat->Top = 40;
+		Form3->Meal[n].Fat->Left = 533;
+		Form3->Meal[n].Fat->WordWrap = true;
+		Form3->Meal[n].Fat->AutoSize = false;
+		Form3->Meal[n].Fat->Height = 20;
+		Form3->Meal[n].Fat->Width = 70;
+		Form3->Meal[n].Fat->Font->Size = 10;
+
+		Form3->Meal[n].Carbon = new TLabel(Form3);
+		Form3->Meal[n].Carbon->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Carbon->Top = 40;
+		Form3->Meal[n].Carbon->Left = 606;
+		Form3->Meal[n].Carbon->WordWrap = true;
+		Form3->Meal[n].Carbon->AutoSize = false;
+		Form3->Meal[n].Carbon->Height = 20;
+		Form3->Meal[n].Carbon->Width = 70;
+		Form3->Meal[n].Carbon->Font->Size = 10;
+
+		Form3->Meal[n].Calories = new TLabel(Form3);
+		Form3->Meal[n].Calories->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].Calories->Top = 40;
+		Form3->Meal[n].Calories->Left = 679;
+		Form3->Meal[n].Calories->WordWrap = true;
+		Form3->Meal[n].Calories->AutoSize = false;
+		Form3->Meal[n].Calories->Height = 20;
+		Form3->Meal[n].Calories->Width = 70;
+		Form3->Meal[n].Calories->Font->Size = 10;
+
+		Form3->Meal[n].SettingButton = new TBitBtn(Form3);
+		Form3->Meal[n].SettingButton->Parent = Form3->Meal[n].Panel;
+		Form3->Meal[n].SettingButton->Left = 793;
+		Form3->Meal[n].SettingButton->Height = Form3->PanelH - 1;
+		Form3->Meal[n].SettingButton->Width = 110;
+		Form3->Meal[n].SettingButton->Tag = n;
+		Form3->Meal[n].SettingButton->OnClick = Form3->PropClick;
+		Form3->Meal[n].SettingButton->Glyph=Form6->BitBtn1->Glyph;
+		Form3->Meal[n].SettingButton->OnMouseEnter=Form6->SettingsEnter;
+
+		TImage *line2 = new TImage(Form3);
+		line2->Parent = Form3->Meal[n].Panel;
+		line2->Left = 327;
+		line2->Width = 2;
+		line2->Height = Form3->PanelH - 1;
+		line2->Picture->Bitmap->Width = 2;
+		line2->Picture->Bitmap->Height = Form3->PanelH - 1;
+		line2->Picture->Bitmap->Canvas->Brush->Color = clBlack;
+		line2->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
+
+		TImage *line3 = new TImage(Form3);
+		line3->Parent = Form3->Meal[n].Panel;
+		line3->Left = 450;
+		line3->Width = 2;
+		line3->Height = Form3->PanelH - 1;
+		line3->Picture->Bitmap->Width = 2;
+		line3->Picture->Bitmap->Height = Form3->PanelH - 1;
+		line3->Picture->Bitmap->Canvas->Brush->Color = clBlack;
+		line3->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
+
+		TImage *line4 = new TImage(Form3);
+		line4->Parent = Form3->Meal[n].Panel;
+		line4->Left = 523;
+		line4->Width = 2;
+		line4->Height = Form3->PanelH - 1;
+		line4->Picture->Bitmap->Width = 2;
+		line4->Picture->Bitmap->Height = Form3->PanelH - 1;
+		line4->Picture->Bitmap->Canvas->Brush->Color = clBlack;
+		line4->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
+
+		TImage *line5 = new TImage(Form3);
+		line5->Parent = Form3->Meal[n].Panel;
+		line5->Left = 596;
+		line5->Width = 2;
+		line5->Height = Form3->PanelH - 1;
+		line5->Picture->Bitmap->Width = 2;
+		line5->Picture->Bitmap->Height = Form3->PanelH - 1;
+		line5->Picture->Bitmap->Canvas->Brush->Color = clBlack;
+		line5->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
+
+		TImage *line6 = new TImage(Form3);
+		line6->Parent = Form3->Meal[n].Panel;
+		line6->Left = 669;
+		line6->Width = 2;
+		line6->Height = Form3->PanelH - 1;
+		line6->Picture->Bitmap->Width = 2;
+		line6->Picture->Bitmap->Height = Form3->PanelH - 1;
+		line6->Picture->Bitmap->Canvas->Brush->Color = clBlack;
+		line6->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
+
+		TImage *line7 = new TImage(Form3);
+		line7->Parent = Form3->Meal[n].Panel;
+		line7->Left = 792;
+		line7->Width = 2;
+		line7->Height = Form3->PanelH - 1;
+		line7->Picture->Bitmap->Width = 2;
+		line7->Picture->Bitmap->Height = Form3->PanelH - 1;
+		line7->Picture->Bitmap->Canvas->Brush->Color = clBlack;
+		line7->Picture->Bitmap->Canvas->FillRect(Rect(0, 0, 2, 100));
+
+		Form3->ScrollBox1->VertScrollBar->Position=k;
+}
+
+// ---------------------------------------------------------------------------------------------------
+void __fastcall TForm3::AddClickF(int num)
+{
+   int mealNum;
+   mealNum=PropNum;
+
+	int k = Form6->ScrollBox1->VertScrollBar->Position;
+	Form6->ScrollBox1->VertScrollBar->Position = 0;
+	int k1 = Form6->ScrollBox2->VertScrollBar->Position;
+	Form6->ScrollBox2->VertScrollBar->Position = 0;
+
+	Form6->Edit2->Text="";
+
+	if(Meal[mealNum].IsLeft[num]==true)
+	{
+		int amount=StrToInt(Form3->ProdHave[num].Edit->Text);
+		Form6->Label5->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)+StrToFloat(Form2->Product[num].Protein->Caption)*amount);          //пишем,сколько витаминов
+		Form6->Label6->Caption=FloatToStr(StrToFloat(Form6->Label6->Caption)+StrToFloat(Form2->Product[num].Fat->Caption)*amount);
+		Form6->Label7->Caption=FloatToStr(StrToFloat(Form6->Label7->Caption)+StrToFloat(Form2->Product[num].Carbon->Caption)*amount);
+		Form6->Label8->Caption=FloatToStr(StrToFloat(Form6->Label5->Caption)*4+StrToFloat(Form6->Label6->Caption)*9+StrToFloat(Form6->Label7->Caption)*4);
+
+		int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
+
+		ProductsUse++;
+		ProductsHave--;
+		Meal[mealNum].IsLeft[num] = false;
+		Meal[mealNum].IsRight[num] = true;
+		ProdHave[num].Panel->Parent=Form6->ScrollBox2; //прив€зка к правому scrollbox
+		for(int j=0;j<ProductsUse+ProductsHave;j++)
+		if(Meal[mealNum].IsLeft[j] && ProdHave[j].Panel->Top > ProdHave[num].Panel->Top)  //измен€ем высоту панелей слева
+			ProdHave[j].Panel->Top-=PanelHaveH;
+
+		ProdHave[num].Panel->Top=(ProductsUse-1)*PanelHaveH;
+		ProdHave[num].Button->Glyph=Form6->BitBtn3->Glyph;
+	}
+	else
+	{
+		Form3->ProdHave[num].Edit->Text="0";
+
+		int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
+
+		ProductsUse--;
+		ProductsHave++;
+		Meal[mealNum].IsLeft[num] = true;
+		Meal[mealNum].IsRight[num] = false;
+		ProdHave[num].Panel->Parent=Form6->ScrollBox1;
+		for(int j=0;j<ProductsUse+ProductsHave;j++)
+		if(Meal[mealNum].IsRight[j] && ProdHave[j].Panel->Top > ProdHave[num].Panel->Top)   //измен€ем высоту панелей справа
+			ProdHave[j].Panel->Top-=PanelHaveH;
+
+		ProdHave[num].Panel->Top=(ProductsHave-1)*PanelHaveH;
+		ProdHave[num].Button->Glyph=Form6->BitBtn2->Glyph;
+	}
+
+	Form6->ScrollBox1->VertScrollBar->Position = k;
+	Form6->ScrollBox2->VertScrollBar->Position = k1;
+}
+void __fastcall TForm3::AddClick(TObject *Sender)
+{
+TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
+int num=btn->Tag;
+AddClickF(num);
+}
+//------------------------------------------------------------------------------
+void __fastcall TForm3::PropClick(TObject *Sender)
+{
+  TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
+  int num=btn->Tag;
+  PropClickNum(num);
+  isNew=false;
+
+}
+//--------------------------------------------------------------------------------------
+void __fastcall TForm3::PropClickNum(int num)
+{
+  Form6->Button4->Visible=true;    //кнопка удалить
+
+  memset(LeftWas,false,200*sizeof(bool));                 //нужно,чтоб при отмене действи€ удал€лись
+  memset(RightWas,false,200*sizeof(bool));
+
+  Form6->Edit1->Text=Form3->Meal[num].Name->Caption;
+  Form6->Image1->Picture=Meal[num].Image->Picture;
+  Form7->Memo1->Lines->Text=Form3->Meal[num].Memo->Lines->Text;
+
+  for(int i=0;i<Form2->Product.size();i++)
+  {
+	  LeftWas[i]=Meal[num].IsLeft[i];
+	  RightWas[i]=Meal[num].IsRight[i];
+  }
+	int n=0;
+	WasDeleted=-1;
+	PropNum=num;
+	ProductsHave = 0;
+	ProductsUse = 0;
+
+	for(int i=0;i<Form2->Product.size();i++)
+	if(!Meal[num].IsRight[i])
+		Meal[num].IsLeft[i]=true;
+
+	for (int i = 0; i < Form2->Product.size(); i++)
+		{
+			AddLeft(i);
+			if(Meal[num].IsRight[i])
+			{
+				Meal[num].IsRight[i]==false;
+				Meal[num].IsLeft[i]=true;
+				AddClickF(i);
+			}
+		}
+
+	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
+	Form6->Label6->Caption="0";
+	Form6->Label7->Caption="0";
+	Form6->Label8->Caption="0";
+	Form6->Label9->Caption="0";
+	Form6->Label10->Caption="0";
+	Form6->Label11->Caption="0";
+	Form6->Label12->Caption="0";
+
+	for(int i=0;i<Form2->Product.size()+2;i++)
+	{
+		AnsiString s=Meal[num].Weight[i];
+		int k;
+	}
+
+	for(int i=0;i<Form2->Product.size();i++)
+		 ProdHave[i].Edit->Text=Meal[num].Weight[i];
+
+
+	Form6->Show();
+	Form6->Edit1->SetFocus();
+}
+//------------------------------------------------------------------
+void __fastcall TForm3::RecountCal()
+{
+    for(int i=0;i<Form3->Meal.size();i++)
+	{
+		Form3->Meal[i].Protein->Caption="0";
+		Form3->Meal[i].Fat->Caption="0";
+		Form3->Meal[i].Carbon->Caption="0";
+		Form3->Meal[i].Calories->Caption="0";
+		Form3->PropClickNum(i);//пересчитываем бжу
+		Form6->Close();
+	}
+}
+//------------------------------------------------------------------
+
+
+void __fastcall TForm3::EditsHaveChange(TObject *Sender)
+{
+TEdit *btn = dynamic_cast<TEdit *>(Sender);
+bool flag=btn->Text.IsEmpty();
+
+int num=PropNum;
+double sum1=0,sum2=0,sum3=0;
+if(btn->Parent->Parent==Form6->ScrollBox2)
+{
+	for(int i=0;i<Form2->Product.size();i++)
+	{
+		if(Meal[num].IsRight[i] && !ProdHave[i].Edit->Text.IsEmpty())
+				  {
+					  int k=ProdHave[i].Panel->Tag;
+					  sum1+=StrToInt(Form2->Product[k].Protein->Caption)*StrToInt(Form3->ProdHave[i].Edit->Text);
+					  sum2+=StrToInt(Form2->Product[k].Fat->Caption)*StrToInt(Form3->ProdHave[i].Edit->Text);
+					  sum3+=StrToInt(Form2->Product[k].Carbon->Caption)*StrToInt(Form3->ProdHave[i].Edit->Text);
+					}
+	}
+
+Form6->Label5->Caption=FloatToStr(sum1);
+Form6->Label6->Caption=FloatToStr(sum2);
+Form6->Label7->Caption=FloatToStr(sum3);
+Form6->Label8->Caption=FloatToStr(sum1*4+sum2*9+sum3*4);
+
+int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+		Form6->Label9->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		Form6->Label10->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		Form6->Label11->Caption=IntToStr(n1);
+
+		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		Form6->Label12->Caption=IntToStr(n1);
+
+Form3->Meal[num].Protein->Caption=Form6->Label9->Caption;
+Form3->Meal[num].Fat->Caption=Form6->Label10->Caption;
+Form3->Meal[num].Carbon->Caption=Form6->Label11->Caption;
+Form3->Meal[num].Calories->Caption=Form6->Label12->Caption;
+    }
+}
+
+//------------------------------------------------------------------------------
+
+void __fastcall TForm3::Save1Click(TObject *Sender)
+{
+Form1->Save1Click(this);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Load1Click(TObject *Sender)
+{
+Form1->Load1Click(this);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::FormCreate(TObject *Sender)
+{
+IsRecommend=false;
+SettingsNum=-1;
+PictureNum=0;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::FormClose(TObject *Sender, TCloseAction &Action)
+{
+if(IsRecommend==false)
+{
+	Form1->Show();
+	Form6->Hide();
+}
+else
+{
+	Form8->Close();
+	Form3->Label11->Font->Color=clWhite;
+}
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::Timer1Timer(TObject *Sender)
+{
+if(SettingsNum>=0)
+	{
+	   AnsiString s=ExtractFilePath(Application->ExeName);
+	   s+="/SettingButtons/"+IntToStr(PictureNum)+".bmp";
+	   Form3->Meal[SettingsNum].SettingButton->Glyph->LoadFromFile(s);
+	   PictureNum++;
+	   PictureNum%=3;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::FormMouseEnter(TObject *Sender)
+{
+	SettingsNum=-1;
+	PictureNum=0;
+	AnsiString s=ExtractFilePath(Application->ExeName);
+	s+="/MenuButtons/Button.png";
+	Button1->Picture->LoadFromFile(s);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button1MouseEnter(TObject *Sender)
+{
+	AnsiString s=ExtractFilePath(Application->ExeName);
+	s+="/MenuButtons/MouseEnter.png";
+	Button1->Picture->LoadFromFile(s);
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm3::EditsClick(TObject *Sender)
+{
+TEdit *edt = dynamic_cast<TEdit *>(Sender);
+for(int i=0;i<Form6->ComponentCount-1;i++)
+{
+	if(Form6->Components[i]->ClassName()=="TButton")
+	{
+		TButton *btn =(TButton *) Form6->Components[i];
+		if(!(btn->Name=="Backspace"
+		|| btn->Caption=="0" || btn->Caption=="1" || btn->Caption=="2"
+		|| btn->Caption=="3" || btn->Caption=="4" || btn->Caption=="5"
+		|| btn->Caption=="6" || btn->Caption=="7" || btn->Caption=="8"
+		|| btn->Caption=="9"))
+			btn->Enabled=false;
+	}
+}
+}
+
+void __fastcall TForm3::Button6Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form3->Components[FocusIndex]->ClassName();
+if(Form3->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form3->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  AnsiString s=edit->Text;
+	  s.Delete(start+1,edit->SelLength);    //если выделено,то замен€ем
+	  s.Insert(button->Caption,start+1);    //вставл€ем букву
+	  edit->SetFocus();
+	  edit->Text=s;
+	  edit->SelStart=start+1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button6MouseEnter(TObject *Sender)
+{
+for(int i=0;i<Form3->ComponentCount-1;i++)
+	{
+	   if(Form3->ActiveControl==Form3->Components[i] && Form3->Components[i]->ClassName()=="TEdit")
+		FocusIndex=i;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::FormShow(TObject *Sender)
+{
+FocusIndex=0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::BackspaceClick(TObject *Sender)
+{
+  TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
+  AnsiString s=Form3->Components[FocusIndex]->ClassName();
+if(Form3->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form3->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  if(edit->SelLength!=0)
+		start++;
+	  AnsiString s=edit->Text;
+	  int length=edit->SelLength;
+	  if(length==0)
+		length=1;
+	  s.Delete(start,length);
+	  edit->SetFocus();
+	  edit->Text=s;
+	  if(start!=0)
+		 edit->SelStart=start-1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+

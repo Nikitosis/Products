@@ -14,14 +14,12 @@
 TForm2 *Form2;
 
 
-const int PanelH=100;
 
 //---------------------------------------------------------------------------
 __fastcall TForm2::TForm2(TComponent* Owner)
 	: TForm(Owner)
 {
 	PanelH=100;
-	memset(IsDel,false,200*sizeof(bool));
 }
 //---------------------------------------------------------------------------
 
@@ -29,17 +27,18 @@ void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на
 {
 	TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);       //переводим Sender в TButton
 	int num=btn->Tag;
-	Form5->Image1->Picture=Images[num]->Picture;
-	Form5->Edit1->Text=Labeles[(num)*5]->Caption;
-	Form5->Edit2->Text=Labeles[(num)*5+1]->Caption;
-	Form5->Edit3->Text=Labeles[(num)*5+2]->Caption;
-	Form5->Edit4->Text=Labeles[(num)*5+3]->Caption;
+	Form5->Image1->Picture=Product[num].Image->Picture;
+	Form5->Edit1->Text=Product[num].Name->Caption;
+	Form5->Edit2->Text=Product[num].Protein->Caption;
+	Form5->Edit3->Text=Product[num].Carbon->Caption;
+	Form5->Edit4->Text=Product[num].Calories->Caption;
 	PropNum=num;
 	Form5->Button4->Visible=true;
 
 	Form5->Edit2->Text=Form5->Masses[num*3];
 	Form5->Edit3->Text=Form5->Masses[num*3+1];
 	Form5->Edit4->Text=Form5->Masses[num*3+2];
+	Form5->IsNew=false;
     Form5->Show();
 }
 void __fastcall TForm2::Button1Click(TObject *Sender)
@@ -51,6 +50,7 @@ void __fastcall TForm2::Button1Click(TObject *Sender)
 	Form5->Edit4->Text="0";
 	Form5->Image1->Picture=Form5->Image2->Picture;
 	Form5->Button4->Visible=false;
+	Form5->IsNew=true;
 	Form5->Show();
 }
 //---------------------------------------------------------------------------
@@ -72,9 +72,6 @@ Form1->Load1Click(this);
 
 void __fastcall TForm2::FormCreate(TObject *Sender)
 {
-memset(Form2->IsDel,false,200*sizeof(bool));
-ProductsA=0;
-ProductsDel=0;
 SettingsNum=-1;
 PictureNum=0;
 }
@@ -84,7 +81,6 @@ PictureNum=0;
 
 void __fastcall TForm2::FormClose(TObject *Sender, TCloseAction &Action)
 {
-//Form1->Visible=true;
 Form5->Close();
 }
 //---------------------------------------------------------------------------
@@ -95,7 +91,7 @@ void __fastcall TForm2::Timer1Timer(TObject *Sender)
 	{
 	   AnsiString s=ExtractFilePath(Application->ExeName);
 	   s+="/SettingButtons/"+IntToStr(PictureNum)+".bmp";
-	   Form2->Buttons[SettingsNum]->Glyph->LoadFromFile(s);
+	   Form2->Product[SettingsNum].SettingButton->Glyph->LoadFromFile(s);
 	   PictureNum++;
 	   PictureNum%=3;
 	}

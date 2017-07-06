@@ -98,9 +98,15 @@ void __fastcall TForm4::FormShow(TObject *Sender)
 {
 FocusIndex=1;
 if(Form1->IsKeyboard)
+	{
 	Height=476;
+	Panel4->Visible=true;
+	}
 	else
+	{
 	Height=390;
+	Panel4->Visible=false;
+	}
 }
 //---------------------------------------------------------------------------
 

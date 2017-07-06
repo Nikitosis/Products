@@ -39,14 +39,13 @@ Form3->Button1->Visible=false;
 Form3->Label8->Visible=false;
 Form3->RecomPanel->Visible=true;
 Form3->RecomPanel->Color=clHighlight;
-for(int i=0;i<Form3->MealsA;i++)
+for(int i=0;i<Form3->Meal.size();i++)
 	{
-		if(Form3->IsDelMeal[i]==false)
 		{
 
 
 			LWeights[i]=new TEdit(Form3);             //маса блюда
-			LWeights[i]->Parent=Form3->Panels[i];
+			LWeights[i]->Parent=Form3->Meal[i].Panel;
 			LWeights[i]->Left = 803;
 			LWeights[i]->Top=40;
 			LWeights[i]->Width=40;
@@ -60,7 +59,7 @@ for(int i=0;i<Form3->MealsA;i++)
 			LWeights[i]->OnChange=MassChange;
 
 			LBel[i] = new TLabel(Form3);
-			LBel[i]->Parent = Form3->Panels[i];
+			LBel[i]->Parent = Form3->Meal[i].Panel;
 			LBel[i]->Top = 40;
 			LBel[i]->Left = 460;
 			LBel[i]->WordWrap = true;
@@ -71,7 +70,7 @@ for(int i=0;i<Form3->MealsA;i++)
 			LBel[i]->Caption = "0";
 
 			LZh[i] = new TLabel(Form3);
-			LZh[i]->Parent = Form3->Panels[i];
+			LZh[i]->Parent = Form3->Meal[i].Panel;
 			LZh[i]->Top = 40;
 			LZh[i]->Left = 533;
 			LZh[i]->WordWrap = true;
@@ -82,7 +81,7 @@ for(int i=0;i<Form3->MealsA;i++)
 			LZh[i]->Caption = "0";
 
 			LUgl[i] = new TLabel(Form3);
-			LUgl[i]->Parent = Form3->Panels[i];
+			LUgl[i]->Parent = Form3->Meal[i].Panel;
 			LUgl[i]->Top = 40;
 			LUgl[i]->Left = 606;
 			LUgl[i]->WordWrap = true;
@@ -93,7 +92,7 @@ for(int i=0;i<Form3->MealsA;i++)
 			LUgl[i]->Caption = "0";
 
 			LKal[i] = new TLabel(Form3);
-			LKal[i]->Parent = Form3->Panels[i];
+			LKal[i]->Parent = Form3->Meal[i].Panel;
 			LKal[i]->Top = 40;
 			LKal[i]->Left = 679;
 			LKal[i]->WordWrap = true;
@@ -104,11 +103,11 @@ for(int i=0;i<Form3->MealsA;i++)
 			LKal[i]->Caption = "0";
 
 			Form3->Label3->Visible=true;  //слово маса
-			Form3->Buttons[i]->Visible=false;
-			Form3->Labeles[i*5+1]->Visible=false;
-			Form3->Labeles[i*5+2]->Visible=false;
-			Form3->Labeles[i*5+3]->Visible=false;
-			Form3->Labeles[i*5+4]->Visible=false;
+			Form3->Meal[i].SettingButton->Visible=false;
+			Form3->Meal[i].Protein->Visible=false;
+			Form3->Meal[i].Fat->Visible=false;
+			Form3->Meal[i].Carbon->Visible=false;
+			Form3->Meal[i].Calories->Visible=false;
 
 			Form3->Label11->Visible=true;  //подсказки
 			Form3->Label11->Caption="В сумі меньше ккал,ніж ваша денна норма";
@@ -125,8 +124,7 @@ Form3->ShowModal();
 void __fastcall TForm8::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	if(WatchedRecom)   //если заходили в посмотреть рекоммендованные
-	for(int i=0;i<Form3->MealsA;i++)
-		if(Form3->IsDelMeal[i]==false)
+	for(int i=0;i<Form3->Meal.size();i++)
 		{
 			LWeights[i]->Free();
 			LBel[i]->Free();
@@ -134,12 +132,12 @@ void __fastcall TForm8::FormClose(TObject *Sender, TCloseAction &Action)
 			LUgl[i]->Free();
 			LKal[i]->Free();
 
-			Form3->Labeles[i*5+1]->Visible=true;
-			Form3->Labeles[i*5+2]->Visible=true;
-			Form3->Labeles[i*5+3]->Visible=true;
-			Form3->Labeles[i*5+4]->Visible=true;
+			Form3->Meal[i].Protein->Visible=true;
+			Form3->Meal[i].Fat->Visible=true;
+			Form3->Meal[i].Carbon->Visible=true;
+			Form3->Meal[i].Calories->Visible=true;
 
-			Form3->Buttons[i]->Visible=true;
+			Form3->Meal[i].SettingButton->Visible=true;
 		}
 	Form3->Label3->Visible=false;
 	Form3->Button1->Visible=true;
@@ -155,10 +153,10 @@ void __fastcall TForm8::MassChange(TObject *Sender)
 	int num=btn->Tag;
 
 	double sum=0;
-	for(int i=0;i<Form2->ProductsA;i++)
+	for(int i=0;i<Form2->Product.size();i++)
 	{
-		if(!Form2->IsDel[i] && Form3->IsRight[num][i])
-            sum+=StrToInt(Form3->Weights[num][i]);
+		if(Form3->Meal[num].IsRight[i])
+            sum+=StrToInt(Form3->Meal[num].Weight[i]);
 	}
 	double kpergramm;
 	double bpergramm;
@@ -166,10 +164,10 @@ void __fastcall TForm8::MassChange(TObject *Sender)
 	double upergramm;
 	if(sum!=0)
 	{
-		kpergramm=StrToFloat(Form3->Labeles[num*5+4]->Caption)/sum;
-		bpergramm=StrToFloat(Form3->Labeles[num*5+1]->Caption)/sum;
-		zpergramm=StrToFloat(Form3->Labeles[num*5+2]->Caption)/sum;
-		upergramm=StrToFloat(Form3->Labeles[num*5+3]->Caption)/sum;
+		kpergramm=StrToFloat(Form3->Meal[num].Calories->Caption)/sum;
+		bpergramm=StrToFloat(Form3->Meal[num].Protein->Caption)/sum;
+		zpergramm=StrToFloat(Form3->Meal[num].Fat->Caption)/sum;
+		upergramm=StrToFloat(Form3->Meal[num].Carbon->Caption)/sum;
 	}
 	else
 	{
@@ -194,8 +192,8 @@ void __fastcall TForm8::MassChange(TObject *Sender)
 	LKal[num]->Caption=FloatToStr(ceil(kpergramm));
 
 		int kal=0;
-			for(int j=0;j<Form3->MealsA;j++)
-				if(!Form3->IsDelMeal[j] && LWeights[j]->Text!="")
+			for(int j=0;j<Form3->Meal.size();j++)
+				if(LWeights[j]->Text!="")
 					kal+=StrToInt(LKal[j]->Caption);
 
 			if(BMR-kal>400)   //если меньше

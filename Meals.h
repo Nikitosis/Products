@@ -13,6 +13,7 @@
 #include <Menus.hpp>
 #include <ExtCtrls.hpp>
 #include <pngimage.hpp>
+#include <vector>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
@@ -60,39 +61,54 @@ __published:	// IDE-managed Components
 	void __fastcall BackspaceClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-TPanel *Panels[200];                   //для каждой Meals
-TImage *Images[200];
-TMemo *Memos[200];
-TLabel *Labeles[600];
-TBitBtn *Buttons[200];
-int MealsA,MealsDel,PanelH,PanelHaveH;          //колво прод. колво удаленных, высота панели в Meals,высота панели в MealsForm
+struct MealStr{
+	TPanel* Panel;
+	TImage* Image;
+	TMemo* Memo;
+	TLabel* Name;
+	TLabel* Protein;
+	TLabel* Fat;
+	TLabel* Carbon;
+	TLabel* Calories;
+	TBitBtn* SettingButton;
+	bool IsLeft[200];
+	bool IsRight[200];
+	AnsiString Weight[200];
+};
+struct ProductHave{
+	TPanel* Panel;
+	TImage* Image;
+	TLabel* Name;
+	TLabel* Protein;
+	TLabel* Fat;
+	TLabel* Carbon;
+	TEdit* Edit;
+	TBitBtn* Button;
+};
+std::vector<MealStr> Meal;
+std::vector<ProductHave> ProdHave;
+int PanelH,PanelHaveH;          //колво прод. колво удаленных, высота панели в Meals,высота панели в MealsForm
 int ProductsHave,ProductsUse;           //кол-во продуктов слева и справа соотв.
 int PropNum;    //номер нажатой кнопки настроек
-TPanel *PanelsHave[200];       //для каждой MealsForm
-//TPanel *RecomPanel[100];
-TLabel *LabelesHave[200];
-TImage *ImagesHave[200];
-TEdit *EditsHave[200];
-TBitBtn *ButtonsHave[200];
 
+bool IsNew; //новое ли блюдо
 bool IsRecommend;
-bool IsLeft[200][200];
-bool IsRight[200][200];       //сохраняют,с какой стороны находится продукт
 bool LeftWas[200];
 bool RightWas[200];
-bool IsDelMeal[200];
-AnsiString Weights[200][200];
+bool IsSaved;
+bool IsDel;
 int SettingsNum,PictureNum;
 int WasDeleted;
-bool NeedToDelete[200];
 int FocusIndex;
 	__fastcall TForm3(TComponent* Owner);
 	void __fastcall TForm3::AddClick(TObject *Sender);
 	void __fastcall TForm3::AddClickF(int num);
 	void __fastcall TForm3::PropClick(TObject *Sender);
-		void __fastcall TForm3::PropClickNum(int num);
+	void __fastcall TForm3::PropClickNum(int num);
 	void __fastcall TForm3::EditsHaveChange(TObject *Sender);
 	void __fastcall TForm3::EditsClick(TObject *Sender);
+	void __fastcall TForm3::CreateNewMeal();
+	void __fastcall TForm3::RecountCal();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;

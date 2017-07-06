@@ -1398,16 +1398,16 @@ object Form3: TForm3
     end
   end
   object MainMenu1: TMainMenu
-    Left = 128
+    Left = 24
     Top = 65528
     object File1: TMenuItem
-      Caption = 'File'
+      Caption = #1060#1072#1081#1083
       object Save1: TMenuItem
-        Caption = 'Save'
+        Caption = #1047#1073#1077#1088#1077#1075#1090#1080
         OnClick = Save1Click
       end
       object Load1: TMenuItem
-        Caption = 'Load'
+        Caption = #1047#1072#1074#1072#1085#1090#1072#1078#1080#1090#1080
         OnClick = Load1Click
       end
     end

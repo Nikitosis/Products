@@ -12,6 +12,7 @@
 #include <math.h>
 #include "Math.hpp"
 #include "Main.h"
+#include <vector>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -34,7 +35,7 @@ void __fastcall TForm5::Button2Click(TObject *Sender)
 {
 int n;
 
-///////////
+/////////////////////////Проверка на символы(посмотреть!!)
 if(Edit2->Text=="")     //если пустое место в едите
 Edit2->Text='0';
 if(Edit3->Text=="")
@@ -82,118 +83,119 @@ while(Edit4->Text[1]=='0')
 }
 if(Edit4->Text[Edit4->Text.Length()]==',')
 	Edit4->Text=Edit4->Text.Delete(Edit4->Text.Length(),1);
-////////////
+/////////////////////////////////////////
 
 
 double sum;
-//sum=Edit2->Text.ToDouble()+Edit3->Text.ToDouble()+Edit4->Text.ToDouble();
-//if(sum==0)           //чтоб не было деления на ноль
- //	sum=1;
 sum=100;
 if(StrToFloat(Edit2->Text)+StrToFloat(Edit3->Text)+StrToFloat(Edit4->Text)>100)   //если сумма бжу > массы продукта
 {
 	ShowMessage("Максимальная сумма белков,жиров и углеводов-100г");
 	return;
 }
-if(Button4->Visible==false)     //если кнопка удалить невидима(мы зашли через кнопку добавить)
+if(IsNew)     //если мы зашли через кнопку добавить
 {
 
-	Form2->ProductsA++;
-	n=Form2->ProductsA-1;
+	n=Form2->Product.size();
 	int k;
 	k=Form2->ScrollBox1->VertScrollBar->Position;  //нужно обязательно,иначе появл. пропуски
 	Form2->ScrollBox1->VertScrollBar->Position=0;
 
-	Form2->Panels[n]=new TPanel(Form2);
-	Form2->Panels[n]->Parent=Form2->ScrollBox1;
-	Form2->Panels[n]->Top=(Form2->ProductsA-1-Form2->ProductsDel)*Form2->PanelH;
-	Form2->Panels[n]->Left=0;
-	Form2->Panels[n]->Width=Form2->ScrollBox1->Width-4;
-	Form2->Panels[n]->Height=Form2->PanelH;
-	Form2->Panels[n]->OnMouseEnter=Form2->OnMouseEnter;
+	TForm2::Prod TemporProd;   //временная переменная
+	Form2->Product.push_back(TemporProd);
+
+	Form2->Product[n].Panel=new TPanel(Form2);
+	Form2->Product[n].Panel->Parent=Form2->ScrollBox1;
+	Form2->Product[n].Panel->Top=(n)*Form2->PanelH;
+	Form2->Product[n].Panel->Left=0;
+	Form2->Product[n].Panel->Width=Form2->ScrollBox1->Width-4;
+	Form2->Product[n].Panel->Height=Form2->PanelH;
+	Form2->Product[n].Panel->OnMouseEnter=Form2->OnMouseEnter;
+	Form2->Product[n].Panel->Visible=true;
 
 	Form2->ScrollBox1->VertScrollBar->Position=k;
 
 
-	Form2->Images[n]=new TImage(Form2);
-	Form2->Images[n]->Parent=Form2->Panels[n];
-	Form2->Images[n]->Left=300;
-	Form2->Images[n]->Height=Form2->PanelH-1;
-	Form2->Images[n]->Width=125;
-	Form2->Images[n]->Picture=Image1->Picture;
-	Form2->Images[n]->Stretch=true;
+	Form2->Product[n].Image=new TImage(Form2);
+	Form2->Product[n].Image->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].Image->Left=300;
+	Form2->Product[n].Image->Height=Form2->PanelH-1;
+	Form2->Product[n].Image->Width=125;
+	Form2->Product[n].Image->Picture=Image1->Picture;
+	Form2->Product[n].Image->Stretch=true;
 
-	Form2->Labeles[n*5]=new TLabel(Form2);
-	Form2->Labeles[n*5]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5]->Top=20;
-	Form2->Labeles[n*5]->Left=10;
-	Form2->Labeles[n*5]->WordWrap=true;
-	Form2->Labeles[n*5]->AutoSize=false;
-	Form2->Labeles[n*5]->Height=80;
-	Form2->Labeles[n*5]->Width=270;
-	Form2->Labeles[n*5]->Font->Size=14;
-	Form2->Labeles[n*5]->Caption=Edit1->Text;
+	Form2->Product[n].Name=new TLabel(Form2);
+	Form2->Product[n].Name->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].Name->Top=20;
+	Form2->Product[n].Name->Left=10;
+	Form2->Product[n].Name->WordWrap=true;
+	Form2->Product[n].Name->AutoSize=false;
+	Form2->Product[n].Name->Height=80;
+	Form2->Product[n].Name->Width=270;
+	Form2->Product[n].Name->Font->Size=14;
+	Form2->Product[n].Name->Caption=Edit1->Text;
 
-	Form2->Labeles[n*5+1]=new TLabel(Form2);
-	Form2->Labeles[n*5+1]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+1]->Top=20;
-	Form2->Labeles[n*5+1]->Left=440;
-	Form2->Labeles[n*5+1]->WordWrap=true;
-	Form2->Labeles[n*5+1]->AutoSize=false;
-	Form2->Labeles[n*5+1]->Height=40;
-	Form2->Labeles[n*5+1]->Width=50;
-	Form2->Labeles[n*5+1]->Font->Size=10;
-	Form2->Labeles[n*5+1]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
+	Form2->Product[n].Protein=new TLabel(Form2);
+	Form2->Product[n].Protein->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].Protein->Top=20;
+	Form2->Product[n].Protein->Left=440;
+	Form2->Product[n].Protein->WordWrap=true;
+	Form2->Product[n].Protein->AutoSize=false;
+	Form2->Product[n].Protein->Height=40;
+	Form2->Product[n].Protein->Width=50;
+	Form2->Product[n].Protein->Font->Size=10;
+	Form2->Product[n].Protein->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
 
-	Form2->Labeles[n*5+2]=new TLabel(Form2);
-	Form2->Labeles[n*5+2]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+2]->Top=20;
-	Form2->Labeles[n*5+2]->Left=533;
-	Form2->Labeles[n*5+2]->WordWrap=true;
-	Form2->Labeles[n*5+2]->AutoSize=false;
-	Form2->Labeles[n*5+2]->Height=20;
-	Form2->Labeles[n*5+2]->Width=50;
-	Form2->Labeles[n*5+2]->Font->Size=10;
-	Form2->Labeles[n*5+2]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
+	Form2->Product[n].Fat=new TLabel(Form2);
+	Form2->Product[n].Fat->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].Fat->Top=20;
+	Form2->Product[n].Fat->Left=533;
+	Form2->Product[n].Fat->WordWrap=true;
+	Form2->Product[n].Fat->AutoSize=false;
+	Form2->Product[n].Fat->Height=20;
+	Form2->Product[n].Fat->Width=50;
+	Form2->Product[n].Fat->Font->Size=10;
+	Form2->Product[n].Fat->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
 
-	Form2->Labeles[n*5+3]=new TLabel(Form2);
-	Form2->Labeles[n*5+3]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+3]->Top=20;
-	Form2->Labeles[n*5+3]->Left=625;
-	Form2->Labeles[n*5+3]->WordWrap=true;
-	Form2->Labeles[n*5+3]->AutoSize=false;
-	Form2->Labeles[n*5+3]->Height=20;
-	Form2->Labeles[n*5+3]->Width=50;
-	Form2->Labeles[n*5+3]->Font->Size=10;
-	Form2->Labeles[n*5+3]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit4->Text)/sum*1000,0));
+	Form2->Product[n].Carbon=new TLabel(Form2);
+	Form2->Product[n].Carbon->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].Carbon->Top=20;
+	Form2->Product[n].Carbon->Left=625;
+	Form2->Product[n].Carbon->WordWrap=true;
+	Form2->Product[n].Carbon->AutoSize=false;
+	Form2->Product[n].Carbon->Height=20;
+	Form2->Product[n].Carbon->Width=50;
+	Form2->Product[n].Carbon->Font->Size=10;
+	Form2->Product[n].Carbon->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit4->Text)/sum*1000,0));
 
-	Form2->Labeles[n*5+4]=new TLabel(Form2);
-	Form2->Labeles[n*5+4]->Parent=Form2->Panels[n];
-	Form2->Labeles[n*5+4]->Top=20;
-	Form2->Labeles[n*5+4]->Left=719;
-	Form2->Labeles[n*5+4]->WordWrap=true;
-	Form2->Labeles[n*5+4]->AutoSize=false;
-	Form2->Labeles[n*5+4]->Height=20;
-	Form2->Labeles[n*5+4]->Width=50;
-	Form2->Labeles[n*5+4]->Font->Size=10;
-	double n1=StrToInt(Form2->Labeles[n*5+1]->Caption)*0.004;
-	double n2=StrToInt(Form2->Labeles[n*5+2]->Caption)*0.009;
-	double n3=StrToInt(Form2->Labeles[n*5+3]->Caption)*0.004;
-	Form2->Labeles[n*5+4]->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
+	Form2->Product[n].Calories=new TLabel(Form2);
+	Form2->Product[n].Calories->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].Calories->Top=20;
+	Form2->Product[n].Calories->Left=719;
+	Form2->Product[n].Calories->WordWrap=true;
+	Form2->Product[n].Calories->AutoSize=false;
+	Form2->Product[n].Calories->Height=20;
+	Form2->Product[n].Calories->Width=50;
+	Form2->Product[n].Calories->Font->Size=10;
+	double n1=StrToInt(Form2->Product[n].Protein->Caption)*0.004;
+	double n2=StrToInt(Form2->Product[n].Fat->Caption)*0.009;
+	double n3=StrToInt(Form2->Product[n].Carbon->Caption)*0.004;
+	Form2->Product[n].Calories->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
    //	Form2->Labeles[n*5+4]->Caption=Edit;
 
-	Form2->Buttons[n]=new TBitBtn(Form2);
-	Form2->Buttons[n]->Parent=Form2->Panels[n];
-	Form2->Buttons[n]->Left=820;
-	Form2->Buttons[n]->Height=Form2->PanelH-1;
-	Form2->Buttons[n]->Width=100;
-	Form2->Buttons[n]->Tag=n;
-	Form2->Buttons[n]->OnClick=Form2->PropClick;
-	Form2->Buttons[n]->Glyph=BitBtn1->Glyph;
-	Form2->Buttons[n]->OnMouseEnter=SettingsEnter;
+	Form2->Product[n].SettingButton=new TBitBtn(Form2);
+	Form2->Product[n].SettingButton->Parent=Form2->Product[n].Panel;
+	Form2->Product[n].SettingButton->Left=820;
+	Form2->Product[n].SettingButton->Height=Form2->PanelH-1;
+	Form2->Product[n].SettingButton->Width=100;
+	Form2->Product[n].SettingButton->Tag=n;
+	Form2->Product[n].SettingButton->OnClick=Form2->PropClick;
+	Form2->Product[n].SettingButton->Glyph=BitBtn1->Glyph;
+	Form2->Product[n].SettingButton->OnMouseEnter=SettingsEnter;
+
 
 	TImage *line=new TImage(Form2);               //рисуем линии
-	line->Parent=Form2->Panels[n];
+	line->Parent=Form2->Product[n].Panel;
 	line->Left=300;
 	line->Width=2;
 	line->Height=Form2->PanelH-1;
@@ -203,7 +205,7 @@ if(Button4->Visible==false)     //если кнопка удалить неви�
 	line->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 	TImage *line2=new TImage(Form2);
-	line2->Parent=Form2->Panels[n];
+	line2->Parent=Form2->Product[n].Panel;
 	line2->Left=427;
 	line2->Width=2;
 	line2->Height=Form2->PanelH-1;
@@ -213,7 +215,7 @@ if(Button4->Visible==false)     //если кнопка удалить неви�
 	line2->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 	TImage *line3=new TImage(Form2);
-	line3->Parent=Form2->Panels[n];
+	line3->Parent=Form2->Product[n].Panel;
 	line3->Left=520;
 	line3->Width=2;
 	line3->Height=Form2->PanelH-1;
@@ -223,7 +225,7 @@ if(Button4->Visible==false)     //если кнопка удалить неви�
 	line3->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 	TImage *line4=new TImage(Form2);
-	line4->Parent=Form2->Panels[n];
+	line4->Parent=Form2->Product[n].Panel;
 	line4->Left=613;
 	line4->Width=2;
 	line4->Height=Form2->PanelH-1;
@@ -233,7 +235,7 @@ if(Button4->Visible==false)     //если кнопка удалить неви�
 	line4->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 	TImage *line5=new TImage(Form2);
-	line5->Parent=Form2->Panels[n];
+	line5->Parent=Form2->Product[n].Panel;
 	line5->Left=706;
 	line5->Width=2;
 	line5->Height=Form2->PanelH-1;
@@ -243,7 +245,7 @@ if(Button4->Visible==false)     //если кнопка удалить неви�
 	line5->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 
 	TImage *line6=new TImage(Form2);
-	line6->Parent=Form2->Panels[n];
+	line6->Parent=Form2->Product[n].Panel;
 	line6->Left=819;
 	line6->Width=2;
 	line6->Height=Form2->PanelH-1;
@@ -253,27 +255,33 @@ if(Button4->Visible==false)     //если кнопка удалить неви�
 	line6->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
 	Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем
 	Masses[n*3+1]=Edit3->Text;
-   	Masses[n*3+2]=Edit4->Text;
+	Masses[n*3+2]=Edit4->Text;
+
+	for(int i=0;i<Form3->Meal.size();i++)   //добавляем веса во все блюда(чтоб не было ошибки при загрузке сохр)
+		Form3->Meal[i].Weight[n]='0';
 }
 	else
 	{
 
-        n=Form2->PropNum;
-		Form2->Images[n]->Picture=Image1->Picture;
-		Form2->Labeles[n*5]->Caption=Edit1->Text;
+		n=Form2->PropNum;
+		Form2->Product[n].Image->Picture=Image1->Picture;
+		Form2->Product[n].Name->Caption=Edit1->Text;
 
 		Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем
 		Masses[n*3+1]=Edit3->Text;
 		Masses[n*3+2]=Edit4->Text;
 
-		Form2->Labeles[n*5+1]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
-		Form2->Labeles[n*5+2]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
-		Form2->Labeles[n*5+3]->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit4->Text)/sum*1000,0));
-		double n1=StrToInt(Form2->Labeles[n*5+1]->Caption)*0.004;
-		double n2=StrToInt(Form2->Labeles[n*5+2]->Caption)*0.009;
-		double n3=StrToInt(Form2->Labeles[n*5+3]->Caption)*0.004;
-		Form2->Labeles[n*5+4]->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
-    }
+		Form2->Product[n].Protein->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
+		Form2->Product[n].Fat->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
+		Form2->Product[n].Carbon->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit4->Text)/sum*1000,0));
+
+		double n1=StrToInt(Form2->Product[n].Protein->Caption)*0.004;
+		double n2=StrToInt(Form2->Product[n].Fat->Caption)*0.009;
+		double n3=StrToInt(Form2->Product[n].Carbon->Caption)*0.004;
+		Form2->Product[n].Calories->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
+	}
+
+Form3->RecountCal(); //пересчитыв калории
 
 Close();
 }
@@ -289,42 +297,34 @@ Close();
 
 
 
-void __fastcall TForm5::Button4Click(TObject *Sender)
+void __fastcall TForm5::Button4Click(TObject *Sender)//удаление продукта
 {
 int num=Form2->PropNum;
-int n=Form2->ProductsA-1;
-for(int i=num+1;i<n+1;i++)
-{
-	if(Form2->IsDel[i]==false)
-		Form2->Panels[i]->Top-=Form2->PanelH;
-}
-Form2->Panels[num]->Free();
-Form2->IsDel[num]=true;
-Form2->ProductsDel++;
-Form3->WasDeleted=num;
-
-for(int i=0;i<Form3->ProductsHave+Form3->ProductsUse;i++)
-if(Form3->PanelsHave[i]->Tag==num)
-{
-	for(int j=0;j<Form2->ProductsA;j++)
+int n=Form2->Product.size();
+for(int i=num+1;i<n;i++)
 	{
-		Form3->IsLeft[j][num]=false;
-		Form3->IsRight[j][num]=false;
+		Form2->Product[i].Panel->Top-=Form2->PanelH;
+		Form2->Product[i].SettingButton->Tag--;
 	}
-}
-/*for(int i=0;i<Form2->ProductsA;i++)
-	if(Form2->Panels[i]->Tag==num)
-		Form2->Panels[i]->Free();  */
-for(int i=0;i<Form3->MealsA;i++)
-if(Form3->IsDelMeal[i]==false)
+
+for(int i=0;i<Form3->Meal.size();i++)
 {
-	Form3->Labeles[i*5+1]->Caption="0";
-	Form3->Labeles[i*5+2]->Caption="0";
-	Form3->Labeles[i*5+3]->Caption="0";
-	Form3->Labeles[i*5+4]->Caption="0";
-	Form3->PropClickNum(i);
-	Form6->Close();
+	for(int j=num;j<n-1;j++)
+		{
+			Form3->Meal[i].IsLeft[j]=Form3->Meal[i].IsLeft[j+1];
+			Form3->Meal[i].IsRight[j]=Form3->Meal[i].IsRight[j+1];
+			Form3->Meal[i].Weight[j]=Form3->Meal[i].Weight[j+1];
+		}
+	Form3->Meal[i].IsLeft[n-1]=false;
+	Form3->Meal[i].IsRight[n-1]=false;
+	Form3->Meal[i].Weight[n-1]="0";
 }
+
+
+Form2->Product[num].Panel->Free();
+Form2->Product.erase(Form2->Product.begin()+num);
+
+Form3->RecountCal();//пересчет калорий
 
 Form3->WasDeleted=-1;
 Form3->Close();
@@ -363,14 +363,12 @@ Form2->Show();
 void __fastcall TForm5::SettingsEnter(TObject *Sender)
 {
 	TBitBtn *btn = dynamic_cast<TBitBtn *>(Sender);
-	if(Form2->SettingsNum>=0)
-	{
 	   AnsiString s=ExtractFilePath(Application->ExeName);
 	   s+="/SettingButtons/"+IntToStr(0)+".bmp";
-	   Form2->Buttons[Form2->SettingsNum]->Glyph->LoadFromFile(s);
+	   Form2->Product[btn->Tag].SettingButton->Glyph->LoadFromFile(s);
+	   //Form2->Buttons[Form2->SettingsNum]->Glyph->LoadFromFile(s);
 	   Form2->PictureNum=0;
-	}
-	Form2->SettingsNum=btn->Tag;
+	   Form2->SettingsNum=btn->Tag;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm5::Button6MouseEnter(TObject *Sender)
