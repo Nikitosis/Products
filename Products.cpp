@@ -20,6 +20,7 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 	: TForm(Owner)
 {
 	PanelH=100;
+	isExpantion=false;
 }
 //---------------------------------------------------------------------------
 
@@ -35,15 +36,14 @@ void __fastcall TForm2::PropClick(TObject *Sender)                //при клике на
 	PropNum=num;
 	Form5->Button4->Visible=true;
 
-	Form5->Edit2->Text=Form5->Masses[num*3];
-	Form5->Edit3->Text=Form5->Masses[num*3+1];
-	Form5->Edit4->Text=Form5->Masses[num*3+2];
+	Form5->Edit2->Text=Form2->Product[num].MassProtein;
+	Form5->Edit3->Text=Form2->Product[num].MassFat;
+	Form5->Edit4->Text=Form2->Product[num].MassCarbon;
 	Form5->IsNew=false;
     Form5->Show();
 }
 void __fastcall TForm2::Button1Click(TObject *Sender)
 {
-
 	Form5->Edit1->Text="";
 	Form5->Edit2->Text="0";
 	Form5->Edit3->Text="0";
@@ -116,6 +116,74 @@ void __fastcall TForm2::Button1MouseEnter(TObject *Sender)
 	AnsiString s=ExtractFilePath(Application->ExeName);
 	s+="/MenuButtons/MouseEnter.png";
 	Button1->Picture->LoadFromFile(s);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm2::BitBtn4Click(TObject *Sender)
+{
+if(!isExpantion)
+{
+	Edit1->Left=211;
+}
+isExpantion=! isExpantion;
+Timer2->Enabled=true;
+Edit1->Text="";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Timer2Timer(TObject *Sender)
+{
+if(isExpantion)
+	{
+		if(Edit1->Width<100)
+			{
+			Edit1->Width+=3;
+			Edit1->Left=111;
+			}
+			else
+			{
+			Timer2->Enabled=false;
+			Edit1->Width=100;
+			}
+	}
+	else
+	{
+		if(Edit1->Width>0)
+		{
+			Edit1->Width-=3;
+			Edit1->Left=111;
+		}
+			else
+			{
+			Timer2->Enabled=false;
+			Edit1->Width=0;
+			}
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::Edit1Change(TObject *Sender)
+{
+ScrollBox1->VertScrollBar->Position=0;
+AnsiString WordToFind=Edit1->Text.LowerCase();
+int SearchAmount=0;
+for(int i=0;i<Form2->Product.size();i++)
+	{
+	AnsiString Name=Form2->Product[i].Name->Caption.LowerCase();
+	int pos=Name.Pos(WordToFind);
+	if(pos!=0 || WordToFind=="")
+		{
+		Form2->Product[i].Panel->Top=Form2->PanelH*SearchAmount;
+		Form2->Product[i].Panel->Visible=true;
+		SearchAmount++;
+		}
+	else
+		{
+		Form2->Product[i].Panel->Visible=false;
+		}
+}
+
 }
 //---------------------------------------------------------------------------
 

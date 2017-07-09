@@ -23,6 +23,9 @@
     <Transaction>2017.05.26 12:25:14.310.cpp,C:\My documents\RAD Studio\Projects\Products\Unit10.cpp=C:\My documents\RAD Studio\Projects\Products\About.cpp</Transaction>
     <Transaction>2017.05.26 12:25:14.310.h,C:\My documents\RAD Studio\Projects\Products\Unit10.h=C:\My documents\RAD Studio\Projects\Products\About.h</Transaction>
     <Transaction>2017.05.26 12:25:14.310.dfm,C:\My documents\RAD Studio\Projects\Products\Unit10.dfm=C:\My documents\RAD Studio\Projects\Products\About.dfm</Transaction>
+    <Transaction>2017.07.07 17:40:25.623.cpp,E:\NIKITA\Rad Stud\Projects\Products\Unit11.cpp=E:\NIKITA\Rad Stud\Projects\Products\RecommendMeals.cpp</Transaction>
+    <Transaction>2017.07.07 17:40:25.631.h,E:\NIKITA\Rad Stud\Projects\Products\Unit11.h=E:\NIKITA\Rad Stud\Projects\Products\RecommendMeals.h</Transaction>
+    <Transaction>2017.07.07 17:40:25.631.dfm,E:\NIKITA\Rad Stud\Projects\Products\Unit11.dfm=E:\NIKITA\Rad Stud\Projects\Products\RecommendMeals.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Main.cpp"/>
@@ -59,6 +62,10 @@
     <File Path="RecommendDialog.cpp"/>
     <File Path="RecommendDialog.dfm"/>
     <File Path="RecommendDialog.h"/>
+    <File Path="RecommendMeals.cpp"/>
+    <File Path="RecommendMeals.cpp"/>
+    <File Path="RecommendMeals.dfm"/>
+    <File Path="RecommendMeals.h"/>
     <File Path="Instruction.cpp"/>
     <File Path="Instruction.cpp"/>
     <File Path="Instruction.dfm"/>

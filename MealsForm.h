@@ -136,7 +136,6 @@ private:	// User declarations
 public:		// User declarations
 bool onScroll1,onScroll2;
 int FocusIndex;
-int SearchAmount; //сколько у нас подходят под фильтр
 bool isExpantion; // расширение для фильтра
 	__fastcall TForm6(TComponent* Owner);
 };

@@ -101,7 +101,6 @@ __published:	// IDE-managed Components
 	void __fastcall Button50Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	AnsiString Masses[600];
 	int FocusIndex;
 	bool IsNew;
 	__fastcall TForm5(TComponent* Owner);

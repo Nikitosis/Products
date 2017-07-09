@@ -21,6 +21,7 @@ TForm3 *Form3;
 __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 	PanelH = 100;
 	PanelHaveH = 50;
+	isExpantion=false;
 }
 
 // ---------------------------------------------------------------------------
@@ -432,6 +433,7 @@ void __fastcall TForm3::RecountCalFromProd(int num)  //пересчет бжу из Products
 	{
 		if(Meal[num].IsRight[i])
 			{
+				AnsiString s=Meal[num].Weight[i];
 				sum1+=StrToInt(Form2->Product[i].Protein->Caption)*StrToInt(Meal[num].Weight[i]);
 				sum2+=StrToInt(Form2->Product[i].Fat->Caption)*StrToInt(Meal[num].Weight[i]);
 				sum3+=StrToInt(Form2->Product[i].Carbon->Caption)*StrToInt(Meal[num].Weight[i]);
@@ -518,28 +520,12 @@ Form1->Load1Click(this);
 
 void __fastcall TForm3::FormCreate(TObject *Sender)
 {
-IsRecommend=false;
 SettingsNum=-1;
 PictureNum=0;
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm3::FormClose(TObject *Sender, TCloseAction &Action)
-{
-if(IsRecommend==false)
-{
-	Form1->Show();
-	Form6->Hide();
-}
-else
-{
-	Form8->Close();
-	Form3->Label11->Font->Color=clWhite;
-}
-
-}
-//---------------------------------------------------------------------------
 
 
 void __fastcall TForm3::Timer1Timer(TObject *Sender)
@@ -646,6 +632,72 @@ if(Form3->Components[FocusIndex]->ClassName()=="TEdit")
 		 edit->SelStart=start-1;
 	  edit->SelLength=0;
 	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::BitBtn4Click(TObject *Sender)
+{
+if(!isExpantion)
+{
+	Edit1->Left=211;
+}
+isExpantion=! isExpantion;
+Timer2->Enabled=true;
+Edit1->Text="";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Timer2Timer(TObject *Sender)
+{
+if(isExpantion)
+	{
+		if(Edit1->Width<100)
+			{
+			Edit1->Width+=3;
+			Edit1->Left=111;
+			}
+			else
+			{
+			Timer2->Enabled=false;
+			Edit1->Width=100;
+			}
+	}
+	else
+	{
+		if(Edit1->Width>0)
+		{
+			Edit1->Width-=3;
+			Edit1->Left=111;
+		}
+			else
+			{
+			Timer2->Enabled=false;
+			Edit1->Width=0;
+			}
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Edit1Change(TObject *Sender)
+{
+ScrollBox1->VertScrollBar->Position=0;
+AnsiString WordToFind=Edit1->Text.LowerCase();
+int SearchAmount=0;
+for(int i=0;i<Form3->Meal.size();i++)
+	{
+	AnsiString Name=Form3->Meal[i].Name->Caption.LowerCase();
+	int pos=Name.Pos(WordToFind);
+	if(pos!=0 || WordToFind=="")
+		{
+		Form3->Meal[i].Panel->Top=Form3->PanelH*SearchAmount;
+		Form3->Meal[i].Panel->Visible=true;
+		SearchAmount++;
+		}
+	else
+		{
+		Form3->Meal[i].Panel->Visible=false;
+		}
+}
 }
 //---------------------------------------------------------------------------
 

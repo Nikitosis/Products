@@ -31,6 +31,9 @@ __published:	// IDE-managed Components
 	TImage *Button1;
 	TLabel *Label3;
 	TTimer *Timer1;
+	TBitBtn *BitBtn4;
+	TEdit *Edit1;
+	TTimer *Timer2;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall PropClick(TObject *Sender);
 	void __fastcall Save1Click(TObject *Sender);
@@ -40,6 +43,9 @@ __published:	// IDE-managed Components
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormMouseEnter(TObject *Sender);
 	void __fastcall Button1MouseEnter(TObject *Sender);
+	void __fastcall BitBtn4Click(TObject *Sender);
+	void __fastcall Timer2Timer(TObject *Sender);
+	void __fastcall Edit1Change(TObject *Sender);
 private:	// User declarations
 
 public:
@@ -52,11 +58,15 @@ struct Prod{
 	TLabel* Carbon;
 	TLabel* Calories;
 	TBitBtn* SettingButton;
+	AnsiString MassProtein;
+	AnsiString MassFat;
+	AnsiString MassCarbon;
 };
 int PanelH;
 std::vector<Prod> Product;
 int PropNum;
 int SettingsNum,PictureNum;
+bool isExpantion; //открытие фильтра
 	__fastcall TForm2(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

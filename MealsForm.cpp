@@ -193,6 +193,7 @@ if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 
 void __fastcall TForm6::FormShow(TObject *Sender)
 {
+Form3->Edit1->Text="";
 Edit1->OnClick(Sender);
 FocusIndex=22;
 
@@ -349,7 +350,7 @@ void __fastcall TForm6::Edit2Change(TObject *Sender)     //Фильтр по н�
 ScrollBox1->VertScrollBar->Position=0;
 int PropNum=Form3->PropNum;
 AnsiString WordToFind=Edit2->Text.LowerCase();
-SearchAmount=0;
+int SearchAmount=0;
 for(int i=0;i<Form2->Product.size();i++)
 		if(Form3->Meal[PropNum].IsLeft[i])
 			{

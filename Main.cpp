@@ -14,6 +14,7 @@
 #include "MealsForm.h"
 #include "ProdForm.h"
 #include "RecommendDialog.h"
+#include "RecommendMeals.h"
 #include "Instruction.h"
 #include "About.h"
 #include <limits>
@@ -47,12 +48,6 @@ void __fastcall TForm1::Button2Click(TObject *Sender) {
 	Form6->Hide();
 	Form8->Hide();
 	Form3->Show();
-
-	Form3->Label11->Visible = false;
-
-	Form3->IsRecommend = false;
-	Form3->RecomPanel->Visible = false;
-	Form3->Panel4->Visible = false;
 }
 // ---------------------------------------------------------------------------
 
@@ -77,6 +72,7 @@ void __fastcall TForm1::Button3Click(TObject *Sender) {
 
 void __fastcall TForm1::Save1Click(TObject *Sender) {
 
+	ios_base::sync_with_stdio(0);
 	SaveDialog1->Filter = "Products|*.prd";
 	SaveDialog1->DefaultExt = "prd";
 	if (SaveDialog1->Execute())
@@ -129,22 +125,6 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 				fout<<endl;
 			}
 
-		for (int i = 0; i < Form3->Meal.size(); i++)   // IsLeft
-			for (int j = 0; j < Form2->Product.size(); j++) {
-				fout << Form3->Meal[i].IsLeft[j] << endl;
-			}
-
-		for (int i = 0; i < Form3->Meal.size(); i++)   // IsRight
-			for (int j = 0; j < Form2->Product.size(); j++) {
-				fout << Form3->Meal[i].IsRight[j] << endl;
-			}
-
-		for (int i = 0; i < Form3->Meal.size(); i++)  //Weight
-			for (int j = 0; j < Form2->Product.size(); j++) {
-				AnsiString s;
-				s = Form3->Meal[i].Weight[j].c_str();
-				fout << s.c_str() << " ";
-			}
 		fout << endl;
 		//////////////////////////////////////////Products
 
@@ -183,24 +163,41 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 		gBitmap2->Free(); // освобождаем память битмапов
 		gBitmap->Free();
 
-		for (int i = 0; i < Form2->Product.size(); i++) {
-			 {
+		for (int i = 0; i < Form2->Product.size(); i++)
+		{
 				AnsiString s;
-				s = Form5->Masses[i * 3].c_str();
+				s = Form2->Product[i].MassProtein.c_str();
 				fout << s.c_str() << endl;
 
-				s = Form5->Masses[i * 3 + 1].c_str();
+				s = Form2->Product[i].MassFat.c_str();
 				fout << s.c_str() << endl;
 
-				s = Form5->Masses[i * 3 + 2].c_str();
+				s = Form2->Product[i].MassCarbon.c_str();
 				fout << s.c_str() << endl;
-			}
 		}
+
+		for (int i = 0; i < Form3->Meal.size(); i++)   // IsLeft
+			for (int j = 0; j < Form2->Product.size(); j++) {
+				fout << Form3->Meal[i].IsLeft[j] << endl;
+			}
+
+		for (int i = 0; i < Form3->Meal.size(); i++)   // IsRight
+			for (int j = 0; j < Form2->Product.size(); j++) {
+				fout << Form3->Meal[i].IsRight[j] << endl;
+			}
+
+		for (int i = 0; i < Form3->Meal.size(); i++)  //Weight
+			for (int j = 0; j < Form2->Product.size(); j++) {
+				AnsiString s;
+				s = Form3->Meal[i].Weight[j].c_str();
+				fout << s.c_str() << " ";
+			}
 	}
 }
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::Load1Click(TObject *Sender) {
+	ios_base::sync_with_stdio(0);
 	setlocale(LC_ALL, "rus");
 	SetConsoleCP(1251);
 	OpenDialog1->Filter = "Products|*.prd";
@@ -271,26 +268,11 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			Form3->Meal[i].Image->Picture->Graphic = gBitmap;
 		}
 
-		for(int i=0;i<MealNum;i++)      // IsLeft
-			for(int j=0;j<ProdNum;j++)
-				fin>>Form3->Meal[i].IsLeft[j];
-
-		for(int i=0;i<MealNum;i++)      // IsRight
-			for(int j=0;j<ProdNum;j++)
-				fin>>Form3->Meal[i].IsRight[j];
-
-		for(int i=0;i<MealNum;i++)      // Weight
-			for(int j=0;j<ProdNum;j++)
-			{
-				fin>>s;
-				Form3->Meal[i].Weight[j]=s.c_str();
-			}
-		if(MealNum==0 || ProdNum==0)
+		//if(MealNum==0 || ProdNum==0)
 			fin.ignore(numeric_limits<streamsize>::max(), '\n');  //Очищаем буфер
 
 		////////////////Products
 		Form5->Button4->Visible = false;
-		//getline(fin, s);
 		for (int i = 0; i < ProdNum; i++)  //Создаем продукт и присваиваем ему необходимое
 		{
 			fin.ignore(numeric_limits<streamsize>::max(), '\n');  //Очищаем буфер
@@ -326,26 +308,43 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 		gBitmap->Free();
 
         getline(fin,s);
-		for (int i = 0; i < Form2->Product.size(); i++) // массы б/ж/у для каждого products
+		for (int i = 0; i < ProdNum; i++) // массы б/ж/у для каждого products
 		{
 			getline(fin, s);
-			Form5->Masses[i * 3] = s.c_str();
+			Form2->Product[i].MassProtein = s.c_str();
 
 			getline(fin, s);
-			Form5->Masses[i * 3 + 1] = s.c_str();
+			Form2->Product[i].MassFat = s.c_str();
 
 			getline(fin, s);
-			Form5->Masses[i * 3 + 2] = s.c_str();
-
+			Form2->Product[i].MassCarbon = s.c_str();
 		}
+
+		for(int i=0;i<MealNum;i++)      // IsLeft
+			for(int j=0;j<ProdNum;j++)
+				fin>>Form3->Meal[i].IsLeft[j];
+
+		for(int i=0;i<MealNum;i++)      // IsRight
+			for(int j=0;j<ProdNum;j++)
+				fin>>Form3->Meal[i].IsRight[j];
+
+		for(int i=0;i<MealNum;i++)      // Weight
+			for(int j=0;j<ProdNum;j++)
+			{
+				fin>>s;
+				Form3->Meal[i].Weight[j]=s.c_str();
+			}
+
+		for(int i=0;i<MealNum;i++)
+			Form3->RecountCalFromProd(i);
 	}
+
 	Form3->Hide();
 	Form2->Hide();
 	Form8->Hide();
 	Form4->Hide();
 	Form3->Hide();
 	Form1->Show();
-	Form3->Color = RGB(125, 206, 38);
 }
 // ---------------------------------------------------------------------------
 
@@ -397,7 +396,7 @@ void __fastcall TForm1::N3Click(TObject *Sender) {
 	IsKeyboard = false;
 	N2->Checked = false;
 	N3->Checked = true;
-	Form3->Panel4->Visible = false; // выключаем клавы
+	Form11->Panel4->Visible = false; // выключаем клавы
 	Form6->Panel4->Visible = false;
 	Form5->Panel4->Visible = false;
 	Form4->Panel4->Visible = false;
@@ -405,10 +404,10 @@ void __fastcall TForm1::N3Click(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TForm1::FormShow(TObject *Sender) {
-	Form3->Panel4->Visible = true; // выключаем клавы
-	Form6->Panel4->Visible = true;
-	Form5->Panel4->Visible = true;
-	Form4->Panel4->Visible = true;
+	Form11->Panel4->Visible = false; // выключаем клавы
+	Form6->Panel4->Visible = false;
+	Form5->Panel4->Visible = false;
+	Form4->Panel4->Visible = false;
 }
 // ---------------------------------------------------------------------------
 

@@ -14,6 +14,7 @@ USEFORM("Recipe.cpp", Form7);
 USEFORM("MealsForm.cpp", Form6);
 USEFORM("Instruction.cpp", Form9);
 USEFORM("About.cpp", Form10);
+USEFORM("RecommendMeals.cpp", Form11);
 //---------------------------------------------------------------------------
 WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -31,6 +32,7 @@ WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->CreateForm(__classid(TForm8), &Form8);
 		Application->CreateForm(__classid(TForm9), &Form9);
 		Application->CreateForm(__classid(TForm10), &Form10);
+		Application->CreateForm(__classid(TForm11), &Form11);
 		Application->Run();
 	}
 	catch (Exception &exception)

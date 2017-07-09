@@ -48,7 +48,6 @@ void __fastcall TForm4::Button1Click(TObject *Sender) {
 			"Ваше рекомендуемое количество ккал в день: " + FloatToStr(BMR);
 		Form8->BMR = BMR;
 		Form8->ShowModal();
-		Form8->WatchedRecom=false;
 	}
 
 }

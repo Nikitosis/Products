@@ -253,9 +253,9 @@ if(IsNew)     //если мы зашли через кнопку добавит�
 	line6->Picture->Bitmap->Height=Form2->PanelH-1;
 	line6->Picture->Bitmap->Canvas->Brush->Color=clBlack;
 	line6->Picture->Bitmap->Canvas->FillRect(Rect(0,0,2,100));
-	Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем
-	Masses[n*3+1]=Edit3->Text;
-	Masses[n*3+2]=Edit4->Text;
+	Form2->Product[n].MassProtein=Edit2->Text;        //массы белков углеводов запоминаем
+	Form2->Product[n].MassFat=Edit3->Text;
+	Form2->Product[n].MassCarbon=Edit4->Text;
 
 	for(int i=0;i<Form3->Meal.size();i++)   //добавляем веса во все блюда(чтоб не было ошибки при загрузке сохр)
 		Form3->Meal[i].Weight[n]='0';
@@ -267,9 +267,9 @@ if(IsNew)     //если мы зашли через кнопку добавит�
 		Form2->Product[n].Image->Picture=Image1->Picture;
 		Form2->Product[n].Name->Caption=Edit1->Text;
 
-		Masses[n*3]=Edit2->Text;        //массы белков углеводов запоминаем
-		Masses[n*3+1]=Edit3->Text;
-		Masses[n*3+2]=Edit4->Text;
+		Form2->Product[n].MassProtein=Edit2->Text;        //массы белков углеводов запоминаем
+		Form2->Product[n].MassFat=Edit3->Text;
+		Form2->Product[n].MassCarbon=Edit4->Text;
 
 		Form2->Product[n].Protein->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit2->Text)/sum*1000,0));
 		Form2->Product[n].Fat->Caption=FloatToStr(SimpleRoundTo(StrToFloat(Edit3->Text)/sum*1000,0));
@@ -306,6 +306,7 @@ for(int i=num+1;i<n;i++)
 	{
 		Form2->Product[i].Panel->Top-=Form2->PanelH;
 		Form2->Product[i].SettingButton->Tag--;
+
 	}
 
 for(int i=0;i<Form3->Meal.size();i++)
@@ -406,6 +407,7 @@ if(Form5->Components[FocusIndex]->ClassName()=="TEdit")
 
 void __fastcall TForm5::FormShow(TObject *Sender)
 {
+Form2->Edit1->Text="";
 FocusIndex=6;
 Edit1->OnClick(Sender);
 if(Button53->Caption=="ABC")
