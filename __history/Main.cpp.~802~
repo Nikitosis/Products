@@ -268,13 +268,11 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			Form3->Meal[i].Image->Picture->Graphic = gBitmap;
 		}
 
-		s=" ";
-		while(s==" ");
-			fin>>s;
+		//if(MealNum==0 || ProdNum==0)
+			fin.ignore(numeric_limits<streamsize>::max(), '\n');  //Очищаем буфер
 
 		////////////////Products
 		Form5->Button4->Visible = false;
-		//getline(fin, s);
 		for (int i = 0; i < ProdNum; i++)  //Создаем продукт и присваиваем ему необходимое
 		{
 			fin.ignore(numeric_limits<streamsize>::max(), '\n');  //Очищаем буфер
@@ -309,9 +307,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 		}
 		gBitmap->Free();
 
-		s=" ";
-		while(s==" ");
-			fin>>s;
+        getline(fin,s);
 		for (int i = 0; i < ProdNum; i++) // массы б/ж/у для каждого products
 		{
 			getline(fin, s);

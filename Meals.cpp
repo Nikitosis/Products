@@ -151,9 +151,9 @@ void __fastcall TForm3::CreateNewMeal()       //создаем новое невидимое блюдо(ес
 	TForm3::MealStr TemporMeal;         //создаем новый meal(если нажмут отмена,то мы его удалим)
 	Form3->Meal.push_back(TemporMeal);
 	int n=Form3->Meal.size()-1;
-		memset(Form3->Meal[n].Weight,0,200*sizeof(bool));
-		memset(Form3->Meal[n].IsLeft,0,200*sizeof(bool));
-		memset(Form3->Meal[n].IsRight,0,200*sizeof(bool));
+		memset(Form3->Meal[n].Weight,0,1000*sizeof(bool));
+		memset(Form3->Meal[n].IsLeft,0,1000*sizeof(bool));
+		memset(Form3->Meal[n].IsRight,0,1000*sizeof(bool));
 
 		Form3->Meal[n].Panel = new TPanel(Form3);
 		Form3->Meal[n].Panel->Parent = Form3->ScrollBox1;
@@ -376,8 +376,8 @@ void __fastcall TForm3::PropClickNum(int num)
   Form3->IsNew=false;
   Form6->Button4->Visible=true;    //кнопка удалить
 
-  memset(LeftWas,false,200*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
-  memset(RightWas,false,200*sizeof(bool));
+  memset(LeftWas,false,1000*sizeof(bool));                 //нужно,чтоб при отмене действия удалялись
+  memset(RightWas,false,1000*sizeof(bool));
 
   Form6->Edit1->Text=Form3->Meal[num].Name->Caption;
   Form6->Image1->Picture=Meal[num].Image->Picture;

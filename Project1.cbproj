@@ -61,78 +61,78 @@
 			<ILINK_TranslatedLibraryPath>$(BDS)\lib\$(LANGDIR)\release;$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
 		</PropertyGroup>
 		<ItemGroup>
-			<CppCompile Include="Products.cpp">
-				<Form>Form2</Form>
-				<DependentOn>Products.h</DependentOn>
-				<BuildOrder>4</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Recommend.cpp">
-				<Form>Form4</Form>
-				<DependentOn>Recommend.h</DependentOn>
-				<BuildOrder>5</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Meals.cpp">
-				<Form>Form3</Form>
-				<DependentOn>Meals.h</DependentOn>
-				<BuildOrder>3</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="RecommendDialog.cpp">
-				<Form>Form8</Form>
-				<DependentOn>RecommendDialog.h</DependentOn>
-				<BuildOrder>9</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="ProdForm.cpp">
-				<Form>Form5</Form>
-				<DependentOn>ProdForm.h</DependentOn>
-				<BuildOrder>6</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Project1.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Main.cpp">
-				<Form>Form1</Form>
-				<DependentOn>Main.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Recipe.cpp">
-				<Form>Form7</Form>
-				<DependentOn>Recipe.h</DependentOn>
-				<BuildOrder>8</BuildOrder>
-			</CppCompile>
-			<ResFiles Include="Project1.res">
-				<BuildOrder>1</BuildOrder>
-			</ResFiles>
 			<CppCompile Include="MealsForm.cpp">
 				<Form>Form6</Form>
 				<DependentOn>MealsForm.h</DependentOn>
 				<BuildOrder>7</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="Instruction.cpp">
-				<Form>Form9</Form>
-				<DependentOn>Instruction.h</DependentOn>
-				<BuildOrder>10</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="About.cpp">
-				<Form>Form10</Form>
-				<DependentOn>About.h</DependentOn>
-				<BuildOrder>11</BuildOrder>
+			<ResFiles Include="Project1.res">
+				<BuildOrder>1</BuildOrder>
+			</ResFiles>
+			<CppCompile Include="Recipe.cpp">
+				<Form>Form7</Form>
+				<DependentOn>Recipe.h</DependentOn>
+				<BuildOrder>8</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="RecommendMeals.cpp">
 				<Form>Form11</Form>
 				<DependentOn>RecommendMeals.h</DependentOn>
 				<BuildOrder>12</BuildOrder>
 			</CppCompile>
-			<FormResources Include="Products.dfm"/>
-			<FormResources Include="Recommend.dfm"/>
-			<FormResources Include="Meals.dfm"/>
-			<FormResources Include="RecommendDialog.dfm"/>
-			<FormResources Include="ProdForm.dfm"/>
-			<FormResources Include="Main.dfm"/>
-			<FormResources Include="Recipe.dfm"/>
+			<CppCompile Include="About.cpp">
+				<Form>Form10</Form>
+				<DependentOn>About.h</DependentOn>
+				<BuildOrder>11</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Instruction.cpp">
+				<Form>Form9</Form>
+				<DependentOn>Instruction.h</DependentOn>
+				<BuildOrder>10</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Main.cpp">
+				<Form>Form1</Form>
+				<DependentOn>Main.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Meals.cpp">
+				<Form>Form3</Form>
+				<DependentOn>Meals.h</DependentOn>
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Recommend.cpp">
+				<Form>Form4</Form>
+				<DependentOn>Recommend.h</DependentOn>
+				<BuildOrder>5</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Products.cpp">
+				<Form>Form2</Form>
+				<DependentOn>Products.h</DependentOn>
+				<BuildOrder>4</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Project1.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="ProdForm.cpp">
+				<Form>Form5</Form>
+				<DependentOn>ProdForm.h</DependentOn>
+				<BuildOrder>6</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="RecommendDialog.cpp">
+				<Form>Form8</Form>
+				<DependentOn>RecommendDialog.h</DependentOn>
+				<BuildOrder>9</BuildOrder>
+			</CppCompile>
 			<FormResources Include="MealsForm.dfm"/>
-			<FormResources Include="Instruction.dfm"/>
-			<FormResources Include="About.dfm"/>
+			<FormResources Include="Recipe.dfm"/>
 			<FormResources Include="RecommendMeals.dfm"/>
+			<FormResources Include="About.dfm"/>
+			<FormResources Include="Instruction.dfm"/>
+			<FormResources Include="Main.dfm"/>
+			<FormResources Include="Meals.dfm"/>
+			<FormResources Include="Recommend.dfm"/>
+			<FormResources Include="Products.dfm"/>
+			<FormResources Include="ProdForm.dfm"/>
+			<FormResources Include="RecommendDialog.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

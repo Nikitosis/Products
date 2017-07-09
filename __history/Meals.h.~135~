@@ -30,28 +30,16 @@ __published:	// IDE-managed Components
 	TMenuItem *Save1;
 	TMenuItem *Load1;
 	TLabel *Label3;
-	TPanel *RecomPanel;
-	TLabel *Label11;
 	TImage *Button1;
 	TLabel *Label8;
 	TTimer *Timer1;
-	TPanel *Panel4;
-	TButton *Button10;
-	TButton *Button6;
-	TButton *Button7;
-	TButton *Button8;
-	TButton *Button9;
-	TButton *Button11;
-	TButton *Button12;
-	TButton *Button13;
-	TButton *Button14;
-	TButton *Button15;
-	TBitBtn *Backspace;
+	TBitBtn *BitBtn4;
+	TEdit *Edit1;
+	TTimer *Timer2;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Save1Click(TObject *Sender);
 	void __fastcall Load1Click(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall FormMouseEnter(TObject *Sender);
 	void __fastcall Button1MouseEnter(TObject *Sender);
@@ -59,6 +47,9 @@ __published:	// IDE-managed Components
 	void __fastcall Button6MouseEnter(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall BackspaceClick(TObject *Sender);
+	void __fastcall BitBtn4Click(TObject *Sender);
+	void __fastcall Timer2Timer(TObject *Sender);
+	void __fastcall Edit1Change(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 struct MealStr{
@@ -92,13 +83,13 @@ int ProductsHave,ProductsUse;           //кол-во продуктов слева и справа соотв.
 int PropNum;    //номер нажатой кнопки настроек
 
 bool IsNew; //новое ли блюдо
-bool IsRecommend;
 bool LeftWas[200];
 bool RightWas[200];
 bool IsSaved;
 bool IsDel;
 int SettingsNum,PictureNum;
 int WasDeleted;
+bool isExpantion;
 int FocusIndex;
 	__fastcall TForm3(TComponent* Owner);
 	void __fastcall TForm3::AddClick(TObject *Sender);
@@ -108,7 +99,8 @@ int FocusIndex;
 	void __fastcall TForm3::EditsHaveChange(TObject *Sender);
 	void __fastcall TForm3::EditsClick(TObject *Sender);
 	void __fastcall TForm3::CreateNewMeal();
-	void __fastcall TForm3::RecountCal();
+	void __fastcall TForm3::RecountCalFromProd(int num);
+	void __fastcall TForm3::RecountCalFromMeal();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;

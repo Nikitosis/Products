@@ -62,9 +62,9 @@ struct MealStr{
 	TLabel* Carbon;
 	TLabel* Calories;
 	TBitBtn* SettingButton;
-	bool IsLeft[200];
-	bool IsRight[200];
-	AnsiString Weight[200];
+	bool IsLeft[1000];
+	bool IsRight[1000];
+	AnsiString Weight[1000];
 };
 struct ProductHave{
 	TPanel* Panel;
@@ -83,8 +83,8 @@ int ProductsHave,ProductsUse;           //кол-во продуктов слева и справа соотв.
 int PropNum;    //номер нажатой кнопки настроек
 
 bool IsNew; //новое ли блюдо
-bool LeftWas[200];
-bool RightWas[200];
+bool LeftWas[1000];
+bool RightWas[1000];
 bool IsSaved;
 bool IsDel;
 int SettingsNum,PictureNum;

@@ -295,6 +295,7 @@ void __fastcall TForm11::toExcelCell(int Row, int Column, AnsiString data) {
 
 void __fastcall TForm11::Excel1Click(TObject *Sender) {
 	ExcelInit("");
+	Sh.OlePropertySet("Name","Страви");
 	toExcelCell(2, 4, "Розподіл по стравам");
 	toExcelCell(4,1,"Назва страви");
 	toExcelCell(4, 2, "Маса(г)");
@@ -357,9 +358,13 @@ void __fastcall TForm11::Excel1Click(TObject *Sender) {
 	VarCell=Sh.OlePropertyGet("Cells",CurRow,6);
 	VarCell.OlePropertyGet("Font").OlePropertySet("Bold",true);
 
-	VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",5,1),Sh.OlePropertyGet("Cells",CurRow-1,6)); //граница блюд
+	VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",5,1),Sh.OlePropertyGet("Cells",CurRow-1,6)); //Выравнивание текста
 	VarCell.OlePropertySet("HorizontalAlignment",-4152);
 	VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",4,1),Sh.OlePropertyGet("Cells",CurRow-1,1));
+	VarCell.OlePropertySet("HorizontalAlignment",-4131);
+
+
+	VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",4,1),Sh.OlePropertyGet("Cells",CurRow-1,6)); //граница блюд
 	VarCell.OlePropertyGet("Borders",11).OlePropertySet("LineStyle",1);
 	VarCell.OlePropertyGet("Borders",11).OlePropertySet("Weight",2);
 	VarCell.OlePropertyGet("Borders",12).OlePropertySet("LineStyle",1);
@@ -378,6 +383,119 @@ void __fastcall TForm11::Excel1Click(TObject *Sender) {
 	VarCell.OlePropertyGet("Borders",10).OlePropertySet("Weight",3);
 	VarCell.OlePropertyGet("Borders",8).OlePropertySet("LineStyle",1);
 	VarCell.OlePropertyGet("Borders",8).OlePropertySet("Weight",3);
+	/////////////////////////////////////////////////////////////////////////////
+	Sh=App.OlePropertyGet("WorkSheets",2);
+	Sh.OlePropertySet("Name","Опис страв");
+	toExcelCell(2,1,"Опис кожної страви");
+	VarCell=Sh.OlePropertyGet("Range","A2:B2");
+	VarCell.OleProcedure("Merge");
+	VarCell.OlePropertySet("HorizontalAlignment", -4108);//выравнивание по центру
+	VarCell.OlePropertySet("VerticalAlignment",-4108);
+	VarCell.OlePropertyGet("Font").OlePropertySet("Size",15);
+	VarCell.OlePropertyGet("Interior").OlePropertySet("ColorIndex",34);
+
+	VarCell=Sh.OlePropertyGet("Cells",2,1);
+	VarCell.OlePropertySet("ColumnWidth",40);
+
+	VarCell=Sh.OlePropertyGet("Cells",2,2);
+	VarCell.OlePropertySet("ColumnWidth",17);
+
+	toExcelCell(3,1,"Назва продукту");
+	toExcelCell(3,2,"Маса(г)");
+
+
+	int *Weights=new int[Form2->Product.size()];
+	memset(Weights,0,Form2->Product.size()*sizeof(int));
+	CurRow=4;
+	for(int i=0;i<RecomMeal.size();i++)
+	{
+		if(RecomMeal[i].Weight->Text=="" || RecomMeal[i].Weight->Text=="0")
+			continue;
+	   VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",CurRow,1),Sh.OlePropertyGet("Cells",CurRow,2));
+	   VarCell.OleProcedure("Merge");
+       VarCell.OlePropertySet("HorizontalAlignment", -4108);//выравнивание по центру
+	   VarCell.OlePropertySet("VerticalAlignment",-4108);
+	   VarCell.OlePropertyGet("Font").OlePropertySet("Size",13);
+	   VarCell.OlePropertyGet("Interior").OlePropertySet("ColorIndex",45);
+	   toExcelCell(CurRow,1,RecomMeal[i].Name->Caption);
+
+	   CurRow++;
+	   int FirstRow=CurRow;
+
+
+	   double mas=0;
+	   for(int j=0;j<Form2->Product.size();j++)
+		if(Form3->Meal[i].IsRight[j])
+			mas+=StrToFloat(Form3->Meal[i].Weight[j]);
+
+	   double koef;
+	   if(mas!=0)
+			koef=StrToFloat(RecomMeal[i].Weight->Text)/mas;
+			else
+			koef=0;
+
+	   for(int j=0;j<Form2->Product.size();j++)
+			if(Form3->Meal[i].IsRight[j])
+				{
+					toExcelCell(CurRow,1,Form2->Product[j].Name->Caption);
+					int w=SimpleRoundTo(koef*StrToFloat(Form3->Meal[i].Weight[j]),0);
+					toExcelCell(CurRow,2,w);
+					Weights[j]+=w;
+					CurRow++;
+				}
+	   VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",FirstRow,1),Sh.OlePropertyGet("Cells",CurRow-1,2)); //границы
+	   VarCell.OlePropertyGet("Borders",11).OlePropertySet("LineStyle",1);
+	   VarCell.OlePropertyGet("Borders",11).OlePropertySet("Weight",2);
+	   VarCell.OlePropertyGet("Borders",12).OlePropertySet("LineStyle",1);
+	   VarCell.OlePropertyGet("Borders",12).OlePropertySet("Weight",2);
+	   VarCell.OlePropertyGet("Borders",10).OlePropertySet("LineStyle",1);
+	   VarCell.OlePropertyGet("Borders",10).OlePropertySet("Weight",2);
+	   VarCell.OlePropertyGet("Borders",9).OlePropertySet("LineStyle",1);
+	   VarCell.OlePropertyGet("Borders",9).OlePropertySet("Weight",2);
+	   VarCell.OlePropertyGet("Borders",8).OlePropertySet("LineStyle",1);
+	   VarCell.OlePropertyGet("Borders",8).OlePropertySet("Weight",2);
+    }
+////////////////////////////////////////////////////////////////////////////////
+	Sh=App.OlePropertyGet("WorkSheets",3);
+	Sh.OlePropertySet("Name","Необхідні продукти");
+	toExcelCell(2,1,"Необхідні продукти для повного приготування");
+	VarCell=Sh.OlePropertyGet("Range","A2:B2");
+	VarCell.OleProcedure("Merge");
+	VarCell.OlePropertySet("HorizontalAlignment", -4108);//выравнивание по центру
+	VarCell.OlePropertySet("VerticalAlignment",-4108);
+	VarCell.OlePropertyGet("Font").OlePropertySet("Size",15);
+	VarCell.OlePropertyGet("Interior").OlePropertySet("ColorIndex",34);
+
+	VarCell=Sh.OlePropertyGet("Cells",2,1);
+	VarCell.OlePropertySet("ColumnWidth",40);
+
+
+	VarCell=Sh.OlePropertyGet("Cells",2,2);
+	VarCell.OlePropertySet("ColumnWidth",17);
+
+	toExcelCell(3,1,"Назва продукту");
+	toExcelCell(3,2,"Маса(г)");
+	CurRow=4;
+	for(int i=0;i<Form2->Product.size();i++)
+	{
+		if(Weights[i]>0)
+		{
+			toExcelCell(CurRow,1,Form2->Product[i].Name->Caption);
+			toExcelCell(CurRow,2,IntToStr(Weights[i]));
+			CurRow++;
+        }
+	}
+    VarCell=Sh.OlePropertyGet("Range",Sh.OlePropertyGet("Cells",3,1),Sh.OlePropertyGet("Cells",CurRow-1,2)); //границы
+	VarCell.OlePropertyGet("Borders",11).OlePropertySet("LineStyle",1);
+	VarCell.OlePropertyGet("Borders",11).OlePropertySet("Weight",2);
+	VarCell.OlePropertyGet("Borders",12).OlePropertySet("LineStyle",1);
+	VarCell.OlePropertyGet("Borders",12).OlePropertySet("Weight",2);
+	VarCell.OlePropertyGet("Borders",10).OlePropertySet("LineStyle",1);
+	VarCell.OlePropertyGet("Borders",10).OlePropertySet("Weight",2);
+	VarCell.OlePropertyGet("Borders",9).OlePropertySet("LineStyle",1);
+	VarCell.OlePropertyGet("Borders",9).OlePropertySet("Weight",2);
+	VarCell.OlePropertyGet("Borders",8).OlePropertySet("LineStyle",1);
+	VarCell.OlePropertyGet("Borders",8).OlePropertySet("Weight",2);
 
 	App.OlePropertySet("Visible",true);
 }

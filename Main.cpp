@@ -322,11 +322,19 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 
 		for(int i=0;i<MealNum;i++)      // IsLeft
 			for(int j=0;j<ProdNum;j++)
+			{
 				fin>>Form3->Meal[i].IsLeft[j];
+				bool b=Form3->Meal[i].IsLeft[j];
+				int k=12;
+			}
 
 		for(int i=0;i<MealNum;i++)      // IsRight
 			for(int j=0;j<ProdNum;j++)
+			{
 				fin>>Form3->Meal[i].IsRight[j];
+				bool b=Form3->Meal[i].IsRight[j];
+				int k=12;
+			}
 
 		for(int i=0;i<MealNum;i++)      // Weight
 			for(int j=0;j<ProdNum;j++)
