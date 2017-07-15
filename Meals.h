@@ -88,7 +88,6 @@ bool RightWas[1000];
 bool IsSaved;
 bool IsDel;
 int SettingsNum,PictureNum;
-int WasDeleted;
 bool isExpantion;
 int FocusIndex;
 	__fastcall TForm3(TComponent* Owner);
@@ -101,6 +100,7 @@ int FocusIndex;
 	void __fastcall TForm3::CreateNewMeal();
 	void __fastcall TForm3::RecountCalFromProd(int num);
 	void __fastcall TForm3::RecountCalFromMeal();
+	void __fastcall TForm3::AddLeft(int num);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm3 *Form3;

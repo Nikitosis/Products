@@ -259,6 +259,8 @@ if(IsNew)     //если мы зашли через кнопку добавит�
 
 	for(int i=0;i<Form3->Meal.size();i++)   //добавляем веса во все блюда(чтоб не было ошибки при загрузке сохр)
 		Form3->Meal[i].Weight[n]='0';
+
+    Form3->AddLeft(n);
 }
 	else
 	{
@@ -306,7 +308,8 @@ for(int i=num+1;i<n;i++)
 	{
 		Form2->Product[i].Panel->Top-=Form2->PanelH;
 		Form2->Product[i].SettingButton->Tag--;
-
+		if(Form3->ProdHave[i].Panel->Parent==Form3->ProdHave[num].Panel->Parent)
+			Form3->ProdHave[i].Panel->Top-=Form3->PanelHaveH;
 	}
 
 for(int i=0;i<Form3->Meal.size();i++)
@@ -326,10 +329,12 @@ for(int i=0;i<Form3->Meal.size();i++)
 Form2->Product[num].Panel->Free();
 Form2->Product.erase(Form2->Product.begin()+num);
 
+Form3->ProdHave[num].Panel->Free();
+Form3->ProdHave.erase(Form3->ProdHave.begin()+num);
+
 	for(int i=0;i<Form3->Meal.size();i++) //пересчет калорий
 		Form3->RecountCalFromProd(i);
 
-Form3->WasDeleted=-1;
 Form3->Close();
 Close();
 }

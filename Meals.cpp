@@ -25,10 +25,9 @@ __fastcall TForm3::TForm3(TComponent* Owner) : TForm(Owner) {
 }
 
 // ---------------------------------------------------------------------------
-void AddLeft(int num) {      //создаем новые панели в левой части
+void __fastcall TForm3::AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->ProductsHave++;
 	int n = Form3->ProdHave.size();
-	int k = Form6->ScrollBox1->VertScrollBar->Position;
 	Form6->ScrollBox1->VertScrollBar->Position = 0;
 
 	int w = Form6->ScrollBox1->Width / 4;
@@ -100,7 +99,11 @@ void AddLeft(int num) {      //создаем новые панели в левой части
 	Form3->ProdHave[n].Button->OnClick=Form3->AddClick;
 	Form3->ProdHave[n].Button->Glyph=Form6->BitBtn2->Glyph;
 
-	Form6->ScrollBox1->VertScrollBar->Position = k;
+	for(int i=0;i<Form3->Meal.size();i++)
+	{
+		Form3->Meal[i].IsLeft[n]=true;
+		Form3->Meal[i].IsRight[n]=false;
+	}
 }
 
 // ---------------------------------------------------------------------------
@@ -109,7 +112,6 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	int num=Meal.size()-1;
 	PropNum=Meal.size()-1;
 	IsNew=true;
-	WasDeleted=-1;
 	ProductsHave = 0;
 	ProductsUse = 0;
 
@@ -119,9 +121,15 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 		Meal[num].IsRight[i]=false;
 	}
 
-	for (int i = 0; i < Form2->Product.size(); i++)
+	Form6->ScrollBox1->VertScrollBar->Position = 0;
+	Form6->ScrollBox2->VertScrollBar->Position = 0;
+	for(int i=0;i<Form3->ProdHave.size();i++)
 	{
-		AddLeft(i);
+		Form3->ProdHave[i].Edit->Text="0";
+		Form3->ProdHave[i].Panel->Parent=Form6->ScrollBox1;
+		Form3->ProdHave[i].Panel->Top=ProductsHave*Form3->PanelHaveH;
+		Form3->ProdHave[i].Button->Glyph=Form6->BitBtn2->Glyph;
+		ProductsHave++;
 	}
 
 	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
@@ -133,6 +141,7 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Label11->Caption="0";
 	Form6->Label12->Caption="0";
 	Form6->Button4->Visible=false;
+	Form6->Image1->Picture=Form6->Image2->Picture;
 	Form6->Edit1->Text="";
 	Form7->Memo1->Lines->Clear();
 
@@ -325,12 +334,13 @@ void __fastcall TForm3::AddClickF(int num)
 	if(Meal[mealNum].IsLeft[num]==true)  //если был слева
 	{
 		ProdHave[num].Edit->Text="0";
-		ProductsUse++;
-		ProductsHave--;
+
 		Meal[mealNum].IsLeft[num] = false;
 		Meal[mealNum].IsRight[num] = true;
+		ProductsHave--;
+		ProductsUse++;
 		ProdHave[num].Panel->Parent=Form6->ScrollBox2; //привязка к правому scrollbox
-		for(int j=0;j<ProductsUse+ProductsHave;j++)
+		for(int j=0;j<ProdHave.size();j++)
 		if(Meal[mealNum].IsLeft[j] && ProdHave[j].Panel->Top > ProdHave[num].Panel->Top)  //изменяем высоту панелей слева
 			ProdHave[j].Panel->Top-=PanelHaveH;
 
@@ -345,7 +355,7 @@ void __fastcall TForm3::AddClickF(int num)
 		Meal[mealNum].IsLeft[num] = true;
 		Meal[mealNum].IsRight[num] = false;
 		ProdHave[num].Panel->Parent=Form6->ScrollBox1;
-		for(int j=0;j<ProductsUse+ProductsHave;j++)
+		for(int j=0;j<ProdHave.size();j++)
 		if(Meal[mealNum].IsRight[j] && ProdHave[j].Panel->Top > ProdHave[num].Panel->Top)   //изменяем высоту панелей справа
 			ProdHave[j].Panel->Top-=PanelHaveH;
 
@@ -388,8 +398,6 @@ void __fastcall TForm3::PropClickNum(int num)
 	  LeftWas[i]=Meal[num].IsLeft[i];
 	  RightWas[i]=Meal[num].IsRight[i];
   }
-	int n=0;
-	WasDeleted=-1;
 	PropNum=num;
 	ProductsHave = 0;
 	ProductsUse = 0;
@@ -398,16 +406,27 @@ void __fastcall TForm3::PropClickNum(int num)
 	if(!Meal[num].IsRight[i])
 		Meal[num].IsLeft[i]=true;
 
-	for (int i = 0; i < Form2->Product.size(); i++)
+	Form6->ScrollBox1->VertScrollBar->Position = 0;  //ставим скролл наверх
+	Form6->ScrollBox2->VertScrollBar->Position = 0;
+
+	for(int i=0;i<Form3->ProdHave.size();i++)//ставим панели по местам
+	{
+		if(Meal[num].IsRight[i])
 		{
-			AddLeft(i);
-			if(Meal[num].IsRight[i])
-			{
-				Meal[num].IsRight[i]==false;
-				Meal[num].IsLeft[i]=true;
-				AddClickF(i);
-			}
+			Form3->ProdHave[i].Panel->Parent=Form6->ScrollBox2;
+			Form3->ProdHave[i].Panel->Top=ProductsUse*Form3->PanelHaveH;
+			Form3->ProdHave[i].Button->Glyph=Form6->BitBtn3->Glyph;
+			ProductsUse++;
 		}
+		else
+		{
+            Form3->ProdHave[i].Panel->Parent=Form6->ScrollBox1;
+			Form3->ProdHave[i].Panel->Top=ProductsHave*Form3->PanelHaveH;
+			Form3->ProdHave[i].Button->Glyph=Form6->BitBtn2->Glyph;
+			ProductsHave++;
+        }
+
+	}
 
 	Form6->Label5->Caption="0";              //белков,каллорий на MealsForm
 	Form6->Label6->Caption="0";
@@ -420,6 +439,7 @@ void __fastcall TForm3::PropClickNum(int num)
 
 	for(int i=0;i<Form2->Product.size();i++)
 		 ProdHave[i].Edit->Text=Meal[num].Weight[i];
+	RecountCalFromMeal();
 
 
 	Form6->Show();
@@ -499,8 +519,6 @@ void __fastcall TForm3::RecountCalFromMeal() //Пересчет бжу из MealsForm
 
 void __fastcall TForm3::EditsHaveChange(TObject *Sender)
 {
-TEdit *btn = dynamic_cast<TEdit *>(Sender);
-
 RecountCalFromMeal();
 }
 
@@ -560,7 +578,6 @@ void __fastcall TForm3::Button1MouseEnter(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm3::EditsClick(TObject *Sender)
 {
-TEdit *edt = dynamic_cast<TEdit *>(Sender);
 for(int i=0;i<Form6->ComponentCount-1;i++)
 {
 	if(Form6->Components[i]->ClassName()=="TButton")
@@ -611,10 +628,9 @@ FocusIndex=0;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm3::BackspaceClick(TObject *Sender)
+void __fastcall TForm3::BackspaceClick(TObject *Sender) //backspace
 {
-  TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
-  AnsiString s=Form3->Components[FocusIndex]->ClassName();
+AnsiString s=Form3->Components[FocusIndex]->ClassName();
 if(Form3->Components[FocusIndex]->ClassName()=="TEdit")
 	{
 	  TEdit *edit = (TEdit*)Form3->Components[FocusIndex];

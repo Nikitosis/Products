@@ -209,12 +209,43 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 		fin.open(OpenDialog1->FileName.c_str());
 
 		for (int i = 0; i < Form2->Product.size(); i++) //  очищаем память
+		{
+			Form2->Product[i].Image->Free();
+			Form2->Product[i].Name->Free();
+			Form2->Product[i].Protein->Free();
+			Form2->Product[i].Carbon->Free();
+			Form2->Product[i].Fat->Free();
+			Form2->Product[i].SettingButton->Free();
+			Form2->Product[i].Calories->Free();
 			Form2->Product[i].Panel->Free();
+		}
 		for(int i=0;i<Form3->Meal.size();i++)
+		{
+			Form3->Meal[i].Image->Free();
+			Form3->Meal[i].Name->Free();
+			Form3->Meal[i].Memo->Free();
+			Form3->Meal[i].Protein->Free();
+			Form3->Meal[i].Carbon->Free();
+			Form3->Meal[i].Fat->Free();
+			Form3->Meal[i].Calories->Free();
+			Form3->Meal[i].SettingButton->Free();
 			Form3->Meal[i].Panel->Free();
+		}
+		for(int i=0;i<Form3->ProdHave.size();i++)
+		{
+			Form3->ProdHave[i].Image->Free();
+			Form3->ProdHave[i].Name->Free();
+			Form3->ProdHave[i].Protein->Free();
+			Form3->ProdHave[i].Carbon->Free();
+			Form3->ProdHave[i].Fat->Free();
+			Form3->ProdHave[i].Edit->Free();
+            Form3->ProdHave[i].Button->Free();
+			Form3->ProdHave[i].Panel->Free();
+		}
 
 		Form2->Product.clear();
 		Form3->Meal.clear();
+		Form3->ProdHave.clear();
 
 		Graphics::TBitmap* gBitmap = new Graphics::TBitmap;
 		gBitmap->Transparent = false;
@@ -293,6 +324,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			getline(fin, s);
 			Form2->Product[i].Calories->Caption = s.c_str();
 
+
 			int w, h;
 			fin >> w >> h;
 			gBitmap->Width = w;
@@ -304,6 +336,12 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 					gBitmap->Canvas->Pixels[x][y] = StringToColor(s.c_str());
 				}
 			Form2->Product[i].Image->Picture->Graphic = gBitmap;
+
+			Form3->ProdHave[i].Name->Caption=Form2->Product[i].Name->Caption;
+			Form3->ProdHave[i].Image->Picture=Form2->Product[i].Image->Picture;
+			Form3->ProdHave[i].Protein->Caption=Form2->Product[i].Protein->Caption;
+			Form3->ProdHave[i].Fat->Caption=Form2->Product[i].Fat->Caption;
+			Form3->ProdHave[i].Carbon->Caption=Form2->Product[i].Carbon->Caption;
 		}
 		gBitmap->Free();
 

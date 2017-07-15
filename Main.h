@@ -34,7 +34,6 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TLabel *Label2;
 	TLabel *Label3;
-	TTimer *Timer1;
 	TMenuItem *N1;
 	TMenuItem *N2;
 	TMenuItem *N3;

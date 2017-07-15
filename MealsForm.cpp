@@ -115,11 +115,11 @@ void __fastcall TForm6::FormMouseWheelUp(TObject *Sender, TShiftState Shift,
 // ---------------------------------------------------------------------------
 void __fastcall TForm6::FormClose(TObject *Sender, TCloseAction &Action)
 {
-while(!Form3->ProdHave.empty())    //очищаем prodhave
+/*while(!Form3->ProdHave.empty())    //очищаем prodhave
 {
 	Form3->ProdHave[Form3->ProdHave.size()-1].Panel->Free();
 	Form3->ProdHave.pop_back();
-}
+}                     */
 
 
 if(Form3->IsSaved || Form3->IsDel)
@@ -135,15 +135,13 @@ if (!Form3->IsNew) {
 			Form3->Meal[num].IsLeft[i] = Form3->LeftWas[i];
 			Form3->Meal[num].IsRight[i] = Form3->RightWas[i];
 		}
-		Form3->PropClick(Form3->Meal[num].SettingButton);
-		if(Form3->ProductsHave+Form3->ProductsUse>0)
-			Form3->EditsHaveChange(Form3->ProdHave[0].Edit);
+		Form3->RecountCalFromProd(num);
 
-        while(!Form3->ProdHave.empty())    //очищаем prodhave после PropClick
+		/*while(!Form3->ProdHave.empty())    //очищаем prodhave после PropClick
 		{
 			Form3->ProdHave[Form3->ProdHave.size()-1].Panel->Free();
 			Form3->ProdHave.pop_back();
-		}
+		} */
 
 	}
 	else
@@ -224,9 +222,8 @@ for(int i=0;i<Form6->ComponentCount-1;i++)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm6::Button7Click(TObject *Sender)
+void __fastcall TForm6::Button7Click(TObject *Sender)//backspace
 {
-  TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
   AnsiString s=Form6->Components[FocusIndex]->ClassName();
 if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 	{
@@ -299,7 +296,6 @@ FocusIndex=foc;
 
 void __fastcall TForm6::Button133Click(TObject *Sender)
 {
-TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
 AnsiString s=Form6->Components[FocusIndex]->ClassName();
 if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 	{
@@ -313,7 +309,6 @@ if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 
 void __fastcall TForm6::Button134Click(TObject *Sender)
 {
-TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
 AnsiString s=Form6->Components[FocusIndex]->ClassName();
 if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 	{
@@ -415,9 +410,8 @@ if(isExpantion)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm6::BackspaceClick(TObject *Sender)
+void __fastcall TForm6::BackspaceClick(TObject *Sender)//backspace
 {
- TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
   AnsiString s=Form6->Components[FocusIndex]->ClassName();
 if(Form6->Components[FocusIndex]->ClassName()=="TEdit")
 	{
