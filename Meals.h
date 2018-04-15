@@ -88,6 +88,7 @@ bool RightWas[1000];
 bool IsSaved;
 bool IsDel;
 int SettingsNum,PictureNum;
+int WasDeleted;
 bool isExpantion;
 int FocusIndex;
 	__fastcall TForm3(TComponent* Owner);

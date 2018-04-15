@@ -1286,8 +1286,8 @@ object Form5: TForm5
     OnClick = Edit1Click
   end
   object Edit2: TEdit
-    Left = 500
-    Top = 117
+    Left = 494
+    Top = 119
     Width = 106
     Height = 32
     Font.Charset = DEFAULT_CHARSET
@@ -3469,7 +3469,7 @@ object Form5: TForm5
     Visible = False
   end
   object Button2: TBitBtn
-    Left = 556
+    Left = 564
     Top = 320
     Width = 121
     Height = 33

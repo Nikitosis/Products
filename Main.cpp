@@ -8,6 +8,7 @@
 #include <windows.h>
 
 #include "Main.h"
+#include "Loading.h"
 #include "Products.h"
 #include "Meals.h"
 #include "Recommend.h"
@@ -88,6 +89,8 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 
 		fout << Form3->Meal.size() << endl;
 		fout << Form2->Product.size()<<endl;
+
+		Form12->OpenSaving(Form3->Meal.size()+Form2->Product.size());
 		//////////////////////////Meals
 		for (int i = 0; i < Form3->Meal.size(); i++)
 			 {
@@ -123,6 +126,7 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 						fout << s.c_str() << " ";
 					}
 				fout<<endl;
+				Form12->AddProgress();
 			}
 
 		fout << endl;
@@ -159,6 +163,7 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 						fout << s.c_str() << " ";
 					}
 				fout<<endl;
+				Form12->AddProgress();
 			}
 		gBitmap2->Free(); // освобождаем память битмапов
 		gBitmap->Free();
@@ -166,13 +171,13 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 		for (int i = 0; i < Form2->Product.size(); i++)
 		{
 				AnsiString s;
-				s = Form2->Product[i].MassProtein.c_str();
+				s = Form2->Product[i].Protein->Caption.c_str();
 				fout << s.c_str() << endl;
 
-				s = Form2->Product[i].MassFat.c_str();
+				s = Form2->Product[i].Fat->Caption.c_str();
 				fout << s.c_str() << endl;
 
-				s = Form2->Product[i].MassCarbon.c_str();
+				s = Form2->Product[i].Carbon->Caption.c_str();
 				fout << s.c_str() << endl;
 		}
 
@@ -193,6 +198,7 @@ void __fastcall TForm1::Save1Click(TObject *Sender) {
 				fout << s.c_str() << " ";
 			}
 	}
+	Form12->Hide();
 }
 // ---------------------------------------------------------------------------
 
@@ -202,8 +208,8 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 	SetConsoleCP(1251);
 	OpenDialog1->Filter = "Products|*.prd";
 	OpenDialog1->DefaultExt = "prd";
-	if (OpenDialog1->Execute()) {
 
+	if (OpenDialog1->Execute()) {
 		ifstream fin;
 		setlocale(LC_CTYPE, ".1251");
 		fin.open(OpenDialog1->FileName.c_str());
@@ -254,6 +260,8 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 		fin >> MealNum;
 		fin>>ProdNum;
 
+		Form12->OpenLoading(MealNum+ProdNum);
+
 		string s;
 		//////////////////////Meals
 		for (int i = 0; i < MealNum; i++)  //Создаем новый Meal и присваеваем ему все необходимое
@@ -261,7 +269,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			fin.ignore(numeric_limits<streamsize>::max(), '\n');  //Очищаем буфер
 			Form3->CreateNewMeal();
 			Form3->PropNum=i;
-			Form6->Button2Click(this);
+			Form6->SaveButtonClick();
 			getline(fin, s);
 			Form3->Meal[i].Name->Caption = s.c_str();
 
@@ -297,6 +305,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 					gBitmap->Canvas->Pixels[x][y] = StringToColor(s.c_str());
 				}
 			Form3->Meal[i].Image->Picture->Graphic = gBitmap;
+			Form12->AddProgress();
 		}
 
 		//if(MealNum==0 || ProdNum==0)
@@ -307,8 +316,7 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 		for (int i = 0; i < ProdNum; i++)  //Создаем продукт и присваиваем ему необходимое
 		{
 			fin.ignore(numeric_limits<streamsize>::max(), '\n');  //Очищаем буфер
-			Form2->Button1Click(this);
-			Form5->Button2Click(this);
+			Form2->CreateNewProduct();
 			getline(fin, s);
 			Form2->Product[i].Name->Caption = s.c_str();
 
@@ -342,6 +350,8 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			Form3->ProdHave[i].Protein->Caption=Form2->Product[i].Protein->Caption;
 			Form3->ProdHave[i].Fat->Caption=Form2->Product[i].Fat->Caption;
 			Form3->ProdHave[i].Carbon->Caption=Form2->Product[i].Carbon->Caption;
+
+			Form12->AddProgress();
 		}
 		gBitmap->Free();
 
@@ -349,29 +359,25 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 		for (int i = 0; i < ProdNum; i++) // массы б/ж/у для каждого products
 		{
 			getline(fin, s);
-			Form2->Product[i].MassProtein = s.c_str();
+			//Form2->Product[i].Protein->Caption = s.c_str();
 
 			getline(fin, s);
-			Form2->Product[i].MassFat = s.c_str();
+			//Form2->Product[i].Fat->Caption  = s.c_str();
 
 			getline(fin, s);
-			Form2->Product[i].MassCarbon = s.c_str();
+			//Form2->Product[i].Carbon->Caption  = s.c_str();
 		}
 
 		for(int i=0;i<MealNum;i++)      // IsLeft
 			for(int j=0;j<ProdNum;j++)
 			{
 				fin>>Form3->Meal[i].IsLeft[j];
-				bool b=Form3->Meal[i].IsLeft[j];
-				int k=12;
 			}
 
 		for(int i=0;i<MealNum;i++)      // IsRight
 			for(int j=0;j<ProdNum;j++)
 			{
 				fin>>Form3->Meal[i].IsRight[j];
-				bool b=Form3->Meal[i].IsRight[j];
-				int k=12;
 			}
 
 		for(int i=0;i<MealNum;i++)      // Weight
@@ -385,14 +391,14 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			Form3->RecountCalFromProd(i);
 	}
 
-	Form3->Hide();
 	Form2->Hide();
-	Form8->Hide();
-	Form4->Hide();
 	Form3->Hide();
-	Form1->Show();
+	Form4->Hide();
+	Form8->Hide();
+	Form12->Hide();
 }
 // ---------------------------------------------------------------------------
+
 
 void __fastcall TForm1::Button1MouseEnter(TObject *Sender) {
 	AnsiString s = ExtractFilePath(Application->ExeName);

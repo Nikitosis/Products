@@ -46,6 +46,7 @@ __published:	// IDE-managed Components
 	void __fastcall BitBtn4Click(TObject *Sender);
 	void __fastcall Timer2Timer(TObject *Sender);
 	void __fastcall Edit1Change(TObject *Sender);
+	void __fastcall CreateNewProduct();
 private:	// User declarations
 
 public:
@@ -58,9 +59,6 @@ struct Prod{
 	TLabel* Carbon;
 	TLabel* Calories;
 	TBitBtn* SettingButton;
-	AnsiString MassProtein;
-	AnsiString MassFat;
-	AnsiString MassCarbon;
 };
 int PanelH;
 std::vector<Prod> Product;

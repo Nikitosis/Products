@@ -20,8 +20,8 @@ private:	// User declarations
 public:		// User declarations
 	__fastcall TForm12(TComponent* Owner);
 	void __fastcall OpenLoading(int maximum);
-	void __fastcall AddProgress();
 	void __fastcall OpenSaving(int maximum);
+	void __fastcall AddProgress();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm12 *Form12;

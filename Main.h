@@ -39,6 +39,7 @@ __published:	// IDE-managed Components
 	TMenuItem *N3;
 	TMenuItem *N4;
 	TMenuItem *N5;
+	TTimer *Timer1;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);

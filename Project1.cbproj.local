@@ -74,5 +74,9 @@
     <File Path="About.cpp"/>
     <File Path="About.dfm"/>
     <File Path="About.h"/>
+    <File Path="Loading.cpp"/>
+    <File Path="Loading.cpp"/>
+    <File Path="Loading.dfm"/>
+    <File Path="Loading.h"/>
   </ProjectSortOrder>
 </BorlandProject>

@@ -1,0 +1,77 @@
+//---------------------------------------------------------------------------
+
+#ifndef RecommendMealsH
+#define RecommendMealsH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ExtCtrls.hpp>
+#include <Buttons.hpp>
+#include <Menus.hpp>
+#include <vector>
+#include "math.h"
+#include <Comobj.hpp>
+//---------------------------------------------------------------------------
+class TForm11 : public TForm
+{
+__published:	// IDE-managed Components
+	TScrollBox *ScrollBox1;
+	TLabel *Label1;
+	TLabel *Label2;
+	TLabel *Label4;
+	TLabel *Label5;
+	TLabel *Label7;
+	TLabel *Label6;
+	TLabel *Label3;
+	TPanel *RecomPanel;
+	TLabel *Label11;
+	TPanel *Panel4;
+	TButton *Button10;
+	TButton *Button6;
+	TButton *Button7;
+	TButton *Button8;
+	TButton *Button9;
+	TButton *Button11;
+	TButton *Button12;
+	TButton *Button13;
+	TButton *Button14;
+	TButton *Button15;
+	TBitBtn *Backspace;
+	TLabel *Label8;
+	TLabel *Label9;
+	TLabel *Label10;
+	TLabel *Label12;
+	TLabel *Label13;
+	TMainMenu *MainMenu1;
+	TMenuItem *Excel1;
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall Excel1Click(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+
+struct RecomT{
+	TPanel* Panel;
+	TImage* Image;
+	TEdit* Weight;
+	TLabel* Name;
+	TLabel* Protein;
+	TLabel* Fat;
+	TLabel* Carbon;
+	TLabel* Calories;
+};
+std::vector<RecomT> RecomMeal;
+int PanelH;
+Variant App,Wb,Sh;//application,workbook,sheet
+
+	__fastcall TForm11(TComponent* Owner);
+	void __fastcall TForm11::CreateNewRecomMeal(int num);
+	void __fastcall TForm11::MassChange(TObject *Sender);
+	void __fastcall TForm11::ExcelInit(AnsiString File);
+	void __fastcall TForm11::toExcelCell(int Row,int Cell,AnsiString data);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm11 *Form11;
+//---------------------------------------------------------------------------
+#endif

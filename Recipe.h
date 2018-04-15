@@ -26,6 +26,7 @@ __published:	// IDE-managed Components
 	void __fastcall Button1MouseEnter(TObject *Sender);
 	void __fastcall Image1MouseEnter(TObject *Sender);
 	void __fastcall Button2MouseEnter(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 AnsiString text;

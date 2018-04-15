@@ -17,25 +17,33 @@ TForm6 *Form6;
 // ---------------------------------------------------------------------------
 __fastcall TForm6::TForm6(TComponent* Owner) : TForm(Owner) {
 }
-
 // ---------------------------------------------------------------------------
-void __fastcall TForm6::Button2Click(TObject *Sender) {
+void __fastcall TForm6::SaveButtonClick()
+{
+	Form3->IsSaved=false;
+	Form3->IsDel=false;
+
 	Form3->IsSaved=true;
 
 	int n=Form3->PropNum;
-
-	Form3->Meal[n].Image->Picture = Image1->Picture;
+	Form3->Meal[n].Image->Picture = Form6->Image1->Picture;
 	Form3->Meal[n].Memo->Lines->Text = Form7->Memo1->Lines->Text;
 	Form3->Meal[n].Name->Caption = Form6->Edit1->Text;
-	Form3->Meal[n].Protein->Caption = Label9->Caption;
-	Form3->Meal[n].Fat->Caption = Label10->Caption;
-	Form3->Meal[n].Carbon->Caption = Label11->Caption;
-	Form3->Meal[n].Calories->Caption = Label12->Caption;
+	Form3->Meal[n].Protein->Caption = Form6->Label9->Caption;
+	Form3->Meal[n].Fat->Caption = Form6->Label10->Caption;
+	Form3->Meal[n].Carbon->Caption = Form6->Label11->Caption;
+	Form3->Meal[n].Calories->Caption = Form6->Label12->Caption;
 
 	Form3->Meal[Form3->Meal.size()-1].Panel->Visible=true;
 
 	for (int i = 0; i < Form2->Product.size(); i++)
+	{
 		Form3->Meal[n].Weight[i] = Form3->ProdHave[i].Edit->Text;
+    }
+}
+// ---------------------------------------------------------------------------
+void __fastcall TForm6::Button2Click(TObject *Sender) {
+	SaveButtonClick();
 
 	Close();
 }
@@ -115,13 +123,6 @@ void __fastcall TForm6::FormMouseWheelUp(TObject *Sender, TShiftState Shift,
 // ---------------------------------------------------------------------------
 void __fastcall TForm6::FormClose(TObject *Sender, TCloseAction &Action)
 {
-/*while(!Form3->ProdHave.empty())    //очищаем prodhave
-{
-	Form3->ProdHave[Form3->ProdHave.size()-1].Panel->Free();
-	Form3->ProdHave.pop_back();
-}                     */
-
-
 if(Form3->IsSaved || Form3->IsDel)
 {
 	Form3->IsSaved=false;
@@ -136,22 +137,11 @@ if (!Form3->IsNew) {
 			Form3->Meal[num].IsRight[i] = Form3->RightWas[i];
 		}
 		Form3->RecountCalFromProd(num);
-
-		/*while(!Form3->ProdHave.empty())    //очищаем prodhave после PropClick
-		{
-			Form3->ProdHave[Form3->ProdHave.size()-1].Panel->Free();
-			Form3->ProdHave.pop_back();
-		} */
-
 	}
 	else
 	{
 		Form3->Meal.pop_back();
 	}
-
-
-
-//Form3->Visible=true;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm6::SettingsEnter(TObject *Sender)

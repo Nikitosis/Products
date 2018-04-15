@@ -4,7 +4,7 @@ object Form7: TForm7
   BorderStyle = bsToolWindow
   Caption = #1054#1087#1080#1089' '#1073#1083#1102#1076#1072
   ClientHeight = 338
-  ClientWidth = 447
+  ClientWidth = 473
   Color = 15000730
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -39132,9 +39132,9 @@ object Form7: TForm7
   end
   object Memo1: TMemo
     Left = 40
-    Top = 47
-    Width = 377
-    Height = 209
+    Top = 38
+    Width = 433
+    Height = 214
     BorderStyle = bsNone
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -39142,6 +39142,7 @@ object Form7: TForm7
     Font.Name = 'Segoe Print'
     Font.Style = []
     ParentFont = False
+    ScrollBars = ssVertical
     TabOrder = 0
     OnMouseEnter = Image1MouseEnter
   end

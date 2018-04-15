@@ -20,7 +20,22 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 double BMR;
+struct RecomT{
+	TEdit* Weight;
+	TLabel* Protein;
+	TLabel* Fat;
+	TLabel* Carbon;
+	TLabel* Calor;
+};
+std::vector<RecomT> RecomMeal;
+TEdit *LWeights[200];
+TLabel *LBel[200];
+TLabel *LZh[200];
+TLabel *LUgl[200];
+TLabel *LKal[200];
+bool WatchedRecom;
 	__fastcall TForm8(TComponent* Owner);
+	void __fastcall TForm8::MassChange(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm8 *Form8;

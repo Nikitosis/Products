@@ -76,6 +76,14 @@
 				<DependentOn>Meals.h</DependentOn>
 				<BuildOrder>3</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="Project1.cpp">
+				<BuildOrder>0</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Loading.cpp">
+				<Form>Form12</Form>
+				<DependentOn>Loading.h</DependentOn>
+				<BuildOrder>13</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="RecommendDialog.cpp">
 				<Form>Form8</Form>
 				<DependentOn>RecommendDialog.h</DependentOn>
@@ -85,14 +93,6 @@
 				<Form>Form5</Form>
 				<DependentOn>ProdForm.h</DependentOn>
 				<BuildOrder>6</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Project1.cpp">
-				<BuildOrder>0</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="Main.cpp">
-				<Form>Form1</Form>
-				<DependentOn>Main.h</DependentOn>
-				<BuildOrder>2</BuildOrder>
 			</CppCompile>
 			<CppCompile Include="Recipe.cpp">
 				<Form>Form7</Form>
@@ -107,6 +107,16 @@
 				<DependentOn>MealsForm.h</DependentOn>
 				<BuildOrder>7</BuildOrder>
 			</CppCompile>
+			<CppCompile Include="RecommendMeals.cpp">
+				<Form>Form11</Form>
+				<DependentOn>RecommendMeals.h</DependentOn>
+				<BuildOrder>12</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="Main.cpp">
+				<Form>Form1</Form>
+				<DependentOn>Main.h</DependentOn>
+				<BuildOrder>2</BuildOrder>
+			</CppCompile>
 			<CppCompile Include="Instruction.cpp">
 				<Form>Form9</Form>
 				<DependentOn>Instruction.h</DependentOn>
@@ -117,22 +127,18 @@
 				<DependentOn>About.h</DependentOn>
 				<BuildOrder>11</BuildOrder>
 			</CppCompile>
-			<CppCompile Include="RecommendMeals.cpp">
-				<Form>Form11</Form>
-				<DependentOn>RecommendMeals.h</DependentOn>
-				<BuildOrder>12</BuildOrder>
-			</CppCompile>
 			<FormResources Include="Products.dfm"/>
 			<FormResources Include="Recommend.dfm"/>
 			<FormResources Include="Meals.dfm"/>
+			<FormResources Include="Loading.dfm"/>
 			<FormResources Include="RecommendDialog.dfm"/>
 			<FormResources Include="ProdForm.dfm"/>
-			<FormResources Include="Main.dfm"/>
 			<FormResources Include="Recipe.dfm"/>
 			<FormResources Include="MealsForm.dfm"/>
+			<FormResources Include="RecommendMeals.dfm"/>
+			<FormResources Include="Main.dfm"/>
 			<FormResources Include="Instruction.dfm"/>
 			<FormResources Include="About.dfm"/>
-			<FormResources Include="RecommendMeals.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
