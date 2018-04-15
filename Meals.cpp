@@ -88,7 +88,8 @@ void __fastcall TForm3::AddLeft(int num) {      //создаем новые панели в левой ч
 	Form3->ProdHave[n].Edit->Text="0";
 	Form3->ProdHave[n].Edit->MaxLength=6;
 	Form3->ProdHave[n].Edit->OnChange=Form3->EditsHaveChange;
-    Form3->ProdHave[n].Edit->OnClick=Form3->EditsClick;
+	Form3->ProdHave[n].Edit->OnClick=Form3->EditsClick;
+	Form3->ProdHave[n].Edit->NumbersOnly=true;
 
 	Form3->ProdHave[n].Button = new TBitBtn(Form6);
 	Form3->ProdHave[n].Button->Parent = Form3->ProdHave[n].Panel;
@@ -129,6 +130,7 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 		Form3->ProdHave[i].Panel->Parent=Form6->ScrollBox1;
 		Form3->ProdHave[i].Panel->Top=ProductsHave*Form3->PanelHaveH;
 		Form3->ProdHave[i].Button->Glyph=Form6->BitBtn2->Glyph;
+		Form3->ProdHave[i].Edit->Visible=false;
 		ProductsHave++;
 	}
 
@@ -143,6 +145,8 @@ void __fastcall TForm3::Button1Click(TObject *Sender) {     //кнопка добавить
 	Form6->Button4->Visible=false;
 	Form6->Image1->Picture=Form6->Image2->Picture;
 	Form6->Edit1->Text="";
+	Form3->IsDel=false;
+	Form3->IsSaved=false;
 	Form7->Memo1->Lines->Clear();
 
 
@@ -346,6 +350,7 @@ void __fastcall TForm3::AddClickF(int num)
 
 		ProdHave[num].Panel->Top=(ProductsUse-1)*PanelHaveH;
 		ProdHave[num].Button->Glyph=Form6->BitBtn3->Glyph;
+		ProdHave[num].Edit->Visible=true;
 	}
 	else
 	{
@@ -361,6 +366,7 @@ void __fastcall TForm3::AddClickF(int num)
 
 		ProdHave[num].Panel->Top=(ProductsHave-1)*PanelHaveH;
 		ProdHave[num].Button->Glyph=Form6->BitBtn2->Glyph;
+		ProdHave[num].Edit->Visible=false;
 	}
 
 	Form6->ScrollBox1->VertScrollBar->Position = k;
@@ -416,6 +422,7 @@ void __fastcall TForm3::PropClickNum(int num)
 			Form3->ProdHave[i].Panel->Parent=Form6->ScrollBox2;
 			Form3->ProdHave[i].Panel->Top=ProductsUse*Form3->PanelHaveH;
 			Form3->ProdHave[i].Button->Glyph=Form6->BitBtn3->Glyph;
+			Form3->ProdHave[i].Edit->Visible=true;
 			ProductsUse++;
 		}
 		else
@@ -423,6 +430,7 @@ void __fastcall TForm3::PropClickNum(int num)
             Form3->ProdHave[i].Panel->Parent=Form6->ScrollBox1;
 			Form3->ProdHave[i].Panel->Top=ProductsHave*Form3->PanelHaveH;
 			Form3->ProdHave[i].Button->Glyph=Form6->BitBtn2->Glyph;
+			Form3->ProdHave[i].Edit->Visible=false;
 			ProductsHave++;
         }
 
@@ -438,7 +446,9 @@ void __fastcall TForm3::PropClickNum(int num)
 	Form6->Label12->Caption="0";
 
 	for(int i=0;i<Form2->Product.size();i++)
+	{
 		 ProdHave[i].Edit->Text=Meal[num].Weight[i];
+    }
 	RecountCalFromMeal();
 
 
@@ -454,10 +464,11 @@ void __fastcall TForm3::RecountCalFromProd(int num)  //пересчет бжу из Products
 		if(Meal[num].IsRight[i])
 			{
 				AnsiString s=Meal[num].Weight[i];
-				sum1+=StrToInt(Form2->Product[i].Protein->Caption)*StrToInt(Meal[num].Weight[i]);
-				sum2+=StrToInt(Form2->Product[i].Fat->Caption)*StrToInt(Meal[num].Weight[i]);
-				sum3+=StrToInt(Form2->Product[i].Carbon->Caption)*StrToInt(Meal[num].Weight[i]);
+				sum1+=StrToFloat(Form2->Product[i].Protein->Caption)*StrToFloat(Meal[num].Weight[i]);
+				sum2+=StrToFloat(Form2->Product[i].Fat->Caption)*StrToFloat(Meal[num].Weight[i]);
+				sum3+=StrToFloat(Form2->Product[i].Carbon->Caption)*StrToFloat(Meal[num].Weight[i]);
 			}
+		ProdHave[i].Name->Caption=Form2->Product[i].Name->Caption;
 	}
 	Form6->Label5->Caption=FloatToStr(sum1);
 	Form6->Label6->Caption=FloatToStr(sum2);
@@ -489,25 +500,25 @@ void __fastcall TForm3::RecountCalFromMeal() //Пересчет бжу из MealsForm
 	{
 		if(Meal[num].IsRight[i] && !ProdHave[i].Edit->Text.IsEmpty())
 			{
-				sum1+=StrToInt(Form2->Product[i].Protein->Caption)*StrToInt(ProdHave[i].Edit->Text);
-				sum2+=StrToInt(Form2->Product[i].Fat->Caption)*StrToInt(ProdHave[i].Edit->Text);
-				sum3+=StrToInt(Form2->Product[i].Carbon->Caption)*StrToInt(ProdHave[i].Edit->Text);
+				sum1+=StrToFloat(Form2->Product[i].Protein->Caption)*StrToFloat(ProdHave[i].Edit->Text);
+				sum2+=StrToFloat(Form2->Product[i].Fat->Caption)*StrToFloat(ProdHave[i].Edit->Text);
+				sum3+=StrToFloat(Form2->Product[i].Carbon->Caption)*StrToFloat(ProdHave[i].Edit->Text);
 			}
 	}
 	Form6->Label5->Caption=FloatToStr(sum1);
 	Form6->Label6->Caption=FloatToStr(sum2);
 	Form6->Label7->Caption=FloatToStr(sum3);
 	Form6->Label8->Caption=FloatToStr(sum1*4+sum2*9+sum3*4);
-	int n1=ceil(StrToFloat(Form6->Label5->Caption)/1000);
+	int n1=ceil(sum1/1000);
 		Form6->Label9->Caption=IntToStr(n1);
 
-		n1=ceil(StrToFloat(Form6->Label6->Caption)/1000);
+		n1=ceil(sum2/1000);
 		Form6->Label10->Caption=IntToStr(n1);
 
-		n1=ceil(StrToFloat(Form6->Label7->Caption)/1000);
+		n1=ceil(sum3/1000);
 		Form6->Label11->Caption=IntToStr(n1);
 
-		n1=ceil(StrToFloat(Form6->Label8->Caption)/1000);
+		n1=ceil((sum1*4+sum2*9+sum3*4)/1000);
 		Form6->Label12->Caption=IntToStr(n1);
 
 	Form3->Meal[num].Protein->Caption=Form6->Label9->Caption;

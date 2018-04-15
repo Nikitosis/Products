@@ -29,13 +29,10 @@ Close();
 //---------------------------------------------------------------------------
 void __fastcall TForm8::Button2Click(TObject *Sender)
 {
+
 for(int i=0;i<Form3->Meal.size();i++)
 	Form11->CreateNewRecomMeal(i);
 
-Form11->Label9->Caption="0";
-Form11->Label10->Caption="0";
-Form11->Label12->Caption="0";
-Form11->Label13->Caption="0";
 
 Form11->ShowModal();
 }

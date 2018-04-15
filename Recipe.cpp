@@ -49,4 +49,11 @@ Button2->Picture->LoadFromFile(s+"/RecipeButton/Grey.png");
 //---------------------------------------------------------------------------
 
 
+void __fastcall TForm7::FormCreate(TObject *Sender)
+{
+AnsiString s=ExtractFilePath(Application->ExeName);
+s+="/Fonts/segoepr.ttf";
+AddFontResource(s.c_str());
+}
+//---------------------------------------------------------------------------
 

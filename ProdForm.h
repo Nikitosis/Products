@@ -12,6 +12,7 @@
 #include <Dialogs.hpp>
 #include <ExtDlgs.hpp>
 #include <Buttons.hpp>
+#include <string>
 //---------------------------------------------------------------------------
 class TForm5 : public TForm
 {
@@ -86,7 +87,6 @@ __published:	// IDE-managed Components
 	void __fastcall Button3Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
 	void __fastcall Edit2Change(TObject *Sender);
-	void __fastcall SettingsEnter(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall Button6MouseEnter(TObject *Sender);
 	void __fastcall Button6Click(TObject *Sender);
@@ -101,9 +101,11 @@ __published:	// IDE-managed Components
 	void __fastcall Button50Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
+	AnsiString Masses[600];
 	int FocusIndex;
 	bool IsNew;
 	__fastcall TForm5(TComponent* Owner);
+	void __fastcall TForm5::SettingsEnter(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm5 *Form5;

@@ -21,18 +21,18 @@ __fastcall TForm4::TForm4(TComponent* Owner) : TForm(Owner) {
 
 void __fastcall TForm4::Button1Click(TObject *Sender) {
 	if (Edit1->Text == "" || Edit2->Text == "" || Edit3->Text == "") {
-		ShowMessage("Заполните поля роста,веса и возраста");
+		ShowMessage("Заповніть поля зросту,ваги та віку");
 	}
 	else if (ComboBox1->ItemIndex < 0 || ComboBox2->ItemIndex < 0)
-		ShowMessage("Выберите ваш пол и уровень активности");
+		ShowMessage("Оберіть вашу стать та рівень активності");
 	else {
 		double weight = StrToInt(Edit2->Text);
 		double height = StrToInt(Edit1->Text);
 		double age = StrToInt(Edit3->Text);
 		if (ComboBox1->ItemIndex == 0)
-			BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+			BMR =(10 * weight) + (6,25 * height) - (5 * age)+5;
 		else
-			BMR = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+			BMR = (10 * weight) + (6,25 * height) - (5 * age)-161;
 		if (ComboBox2->ItemIndex == 0)
 			BMR *= 1.2;
 		if (ComboBox2->ItemIndex == 1)
@@ -45,7 +45,7 @@ void __fastcall TForm4::Button1Click(TObject *Sender) {
 			BMR *= 1.9;
 		BMR = ceil(BMR);
 		Form8->Label1->Caption =
-			"Ваше рекомендуемое количество ккал в день: " + FloatToStr(BMR);
+			"Ваша рекомендована кількість калорій на добу: " + FloatToStr(BMR);
 		Form8->BMR = BMR;
 		Form8->ShowModal();
 	}

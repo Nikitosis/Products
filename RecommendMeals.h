@@ -44,10 +44,23 @@ __published:	// IDE-managed Components
 	TLabel *Label10;
 	TLabel *Label12;
 	TLabel *Label13;
+	TEdit *Edit1;
+	TMenuItem *AutoOn;
+	TMenuItem *AutoOff;
 	TMainMenu *MainMenu1;
 	TMenuItem *Excel1;
+	TTimer *Timer2;
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 	void __fastcall Excel1Click(TObject *Sender);
+	void __fastcall Button6Click(TObject *Sender);
+	void __fastcall Button6MouseEnter(TObject *Sender);
+	void __fastcall BackspaceClick(TObject *Sender);
+	void __fastcall FormShow(TObject *Sender);
+	void __fastcall BitBtn4Click(TObject *Sender);
+	void __fastcall Timer2Timer(TObject *Sender);
+	void __fastcall Edit1Change(TObject *Sender);
+	void __fastcall AutoOffClick(TObject *Sender);
+	void __fastcall AutoOnClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 
@@ -60,15 +73,20 @@ struct RecomT{
 	TLabel* Fat;
 	TLabel* Carbon;
 	TLabel* Calories;
+	TCheckBox *Check;
 };
 std::vector<RecomT> RecomMeal;
 int PanelH;
+int FocusIndex;
+bool isExpantion;
 Variant App,Wb,Sh;//application,workbook,sheet
 
 	__fastcall TForm11(TComponent* Owner);
 	void __fastcall TForm11::CreateNewRecomMeal(int num);
 	void __fastcall TForm11::MassChange(TObject *Sender);
 	void __fastcall TForm11::ExcelInit(AnsiString File);
+	void __fastcall TForm11::CheckClick(TObject *Sender);
+	void __fastcall TForm11::UpdateWeights(int num);
 	void __fastcall TForm11::toExcelCell(int Row,int Cell,AnsiString data);
 };
 //---------------------------------------------------------------------------

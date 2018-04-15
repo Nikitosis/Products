@@ -7,9 +7,11 @@
 #include "RecommendDialog.h"
 #include "Products.h"
 #include "Meals.h"
+#include "Main.h"
 #include <math.h>
 #include "Math.hpp"
 #include <Comobj.hpp>
+#include <olectrls.hpp>
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -26,7 +28,7 @@ void __fastcall TForm11::CreateNewRecomMeal(int num) {
 	// нужно обязательно,иначе появл. пропуски
 	Form11->ScrollBox1->VertScrollBar->Position = 0;
 
-	TForm11::RecomT TemporRecomMeal; // создаем новый meal(если нажмут отмена,то мы его удалим)
+	TForm11::RecomT TemporRecomMeal;
 	Form11->RecomMeal.push_back(TemporRecomMeal);
 	int n = Form11->RecomMeal.size() - 1;
 
@@ -104,7 +106,6 @@ void __fastcall TForm11::CreateNewRecomMeal(int num) {
 	Form11->RecomMeal[n].Weight->Parent = Form11->RecomMeal[n].Panel;
 	Form11->RecomMeal[n].Weight->Left = 803;
 	Form11->RecomMeal[n].Weight->Top = 40;
-	Form11->RecomMeal[n].Weight->Width = 40;
 	Form11->RecomMeal[n].Weight->NumbersOnly = true;
 	Form11->RecomMeal[n].Weight->MaxLength = 9;
 	Form11->RecomMeal[n].Weight->Font->Size = 10;
@@ -113,6 +114,15 @@ void __fastcall TForm11::CreateNewRecomMeal(int num) {
 	Form11->RecomMeal[n].Weight->Text = "0";
 	Form11->RecomMeal[n].Weight->Tag = n;
 	Form11->RecomMeal[n].Weight->OnChange = MassChange;
+	Form11->RecomMeal[n].Weight->MaxLength=5;
+
+	Form11->RecomMeal[n].Check=new TCheckBox(Form11);
+	Form11->RecomMeal[n].Check->Parent=Form11->RecomMeal[n].Panel;
+	Form11->RecomMeal[n].Check->Left=870;
+	Form11->RecomMeal[n].Check->Top = 43;
+	Form11->RecomMeal[n].Check->Tag=n;
+	Form11->RecomMeal[n].Check->Visible=false;
+	Form11->RecomMeal[n].Check->OnClick=CheckClick;
 
 	TImage *line2 = new TImage(Form11);
 	line2->Parent = Form11->RecomMeal[n].Panel;
@@ -180,9 +190,26 @@ void __fastcall TForm11::CreateNewRecomMeal(int num) {
 // ------------------------------------------------------------------------------
 void __fastcall TForm11::MassChange(TObject *Sender) {
 	TEdit *btn = dynamic_cast<TEdit*>(Sender);
-
 	int num = btn->Tag;
 
+	UpdateWeights(num);
+
+	if(RecomMeal[num].Check->Checked==false)
+		for(int i=0;i<RecomMeal.size();i++)
+			if(RecomMeal[i].Check->Checked==true)
+			{
+				CheckClick(RecomMeal[i].Check);
+				break;
+			}
+
+	UpdateWeights(num);
+
+
+
+}
+
+void __fastcall TForm11::UpdateWeights(int num)
+{
 	double sum = 0;
 	double cal = 0;
 	double prot = 0;
@@ -191,14 +218,10 @@ void __fastcall TForm11::MassChange(TObject *Sender) {
 	for (int i = 0; i < Form2->Product.size(); i++) {
 		if (Form3->Meal[num].IsRight[i]) {
 			sum += StrToInt(Form3->Meal[num].Weight[i]);
-			cal += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat
-			(Form2->Product[i].Calories->Caption);
-			prot += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat
-			(Form2->Product[i].Protein->Caption) / 1000;
-			fat += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat
-			(Form2->Product[i].Fat->Caption) / 1000;
-			carbon += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat
-			(Form2->Product[i].Carbon->Caption) / 1000;
+			cal += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat(Form2->Product[i].Calories->Caption);
+			prot += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat(Form2->Product[i].Protein->Caption) / 1000;
+			fat += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat(Form2->Product[i].Fat->Caption) / 1000;
+			carbon += StrToFloat(Form3->Meal[num].Weight[i]) * StrToFloat(Form2->Product[i].Carbon->Caption) / 1000;
 		}
 	}
 	double kpergramm;
@@ -206,10 +229,10 @@ void __fastcall TForm11::MassChange(TObject *Sender) {
 	double zpergramm;
 	double upergramm;
 	if (sum != 0) {
-		kpergramm = StrToFloat(cal) / sum;
-		bpergramm = StrToFloat(prot) / sum;
-		zpergramm = StrToFloat(fat) / sum;
-		upergramm = StrToFloat(carbon) / sum;
+		kpergramm = cal / sum;
+		bpergramm = prot / sum;
+		zpergramm = fat / sum;
+		upergramm = carbon / sum;
 	}
 	else {
 		kpergramm = 0;
@@ -247,6 +270,7 @@ void __fastcall TForm11::MassChange(TObject *Sender) {
 	Label10->Caption = IntToStr(allfat);
 	Label12->Caption = IntToStr(allcarbon);
 	Label13->Caption = IntToStr(allcal);
+
 	if (Form8->BMR - allcal > 400) // если меньше
 	{
 		Form11->RecomPanel->Color = clHighlight;
@@ -270,11 +294,18 @@ void __fastcall TForm11::MassChange(TObject *Sender) {
 			+ "ккал)";
 		Form11->Label11->Font->Color = clBlack;
 	}
-
 }
 
 void __fastcall TForm11::FormClose(TObject *Sender, TCloseAction &Action) {
 	while (!RecomMeal.empty()) {
+		RecomMeal.back().Image->Free();
+		RecomMeal.back().Weight->Free();
+		RecomMeal.back().Name->Free();
+		RecomMeal.back().Protein->Free();
+		RecomMeal.back().Fat->Free();
+		RecomMeal.back().Carbon->Free();
+		RecomMeal.back().Calories->Free();
+		RecomMeal.back().Panel->Free();
 		RecomMeal.pop_back();
 	}
 	Label11->Caption = "В сумі меньше ккал,ніж ваша денна норма";
@@ -284,6 +315,7 @@ void __fastcall TForm11::FormClose(TObject *Sender, TCloseAction &Action) {
 void __fastcall TForm11::ExcelInit(AnsiString File) {
 	App = CreateOleObject("Excel.Application");
 	Wb = App.OlePropertyGet("WorkBooks");
+	App.OlePropertySet("SheetsInNewWorkbook", 3);
 	Wb.OleProcedure("add");
 	Sh = App.OlePropertyGet("WorkSheets", 1);
 }
@@ -335,7 +367,8 @@ void __fastcall TForm11::Excel1Click(TObject *Sender) {
 	CurRow++;
 	int sumweight=0;
 	for(int i=0;i<RecomMeal.size();i++)
-		sumweight+=StrToInt(RecomMeal[i].Weight->Text);
+		if(RecomMeal[i].Weight->Text!="")
+	     	sumweight+=StrToInt(RecomMeal[i].Weight->Text);
 
 	toExcelCell(CurRow,1,"Всього");
 	VarCell=Sh.OlePropertyGet("Cells",CurRow,1);
@@ -387,7 +420,7 @@ void __fastcall TForm11::Excel1Click(TObject *Sender) {
 	VarCell.OlePropertyGet("Borders",8).OlePropertySet("LineStyle",1);
 	VarCell.OlePropertyGet("Borders",8).OlePropertySet("Weight",3);
 	///////////////////////////////////////////////////////////////////////////// Опис Страв
-	Sh=App.OlePropertyGet("WorkSheets",2);
+	Sh=App.OlePropertyGet("WorkSheets", 2);
 	Sh.OlePropertySet("Name","Опис страв");
 	toExcelCell(2,1,"Опис кожної страви");
 	VarCell=Sh.OlePropertyGet("Range","A2:B2");
@@ -519,3 +552,220 @@ void __fastcall TForm11::Excel1Click(TObject *Sender) {
 	App.OlePropertySet("Visible",true);
 }
 // ---------------------------------------------------------------------------
+void __fastcall TForm11::Button6Click(TObject *Sender)
+{
+TButton *button = dynamic_cast<TButton *>(Sender);         //буквы+цифры
+AnsiString s=Form11->Components[FocusIndex]->ClassName();
+if(Form11->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form11->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  AnsiString s=edit->Text;
+	  s.Delete(start+1,edit->SelLength);    //если выделено,то заменяем
+	  s.Insert(button->Caption,start+1);    //вставляем букву
+	  edit->SetFocus();
+	  edit->Text=s;
+	  edit->SelStart=start+1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::Button6MouseEnter(TObject *Sender)
+{
+for(int i=0;i<Form11->ComponentCount-1;i++)
+	{
+	   if(Form11->ActiveControl==Form11->Components[i] && Form11->Components[i]->ClassName()=="TEdit")
+		FocusIndex=i;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::BackspaceClick(TObject *Sender)
+{
+ TButton *button = dynamic_cast<TButton *>(Sender);         //backspace
+  AnsiString s=Form11->Components[FocusIndex]->ClassName();
+if(Form11->Components[FocusIndex]->ClassName()=="TEdit")
+	{
+	  TEdit *edit = (TEdit*)Form11->Components[FocusIndex];
+	  int start=edit->SelStart;
+	  if(edit->SelLength!=0)
+		start++;
+	  AnsiString s=edit->Text;
+	  int length=edit->SelLength;
+	  if(length==0)
+		length=1;
+	  s.Delete(start,length);
+	  edit->SetFocus();
+	  edit->Text=s;
+	  if(start!=0)
+		 edit->SelStart=start-1;
+	  edit->SelLength=0;
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::FormShow(TObject *Sender)
+{
+FocusIndex=0;
+isExpantion=false;
+if(Form1->IsKeyboard)
+{
+	Panel4->Visible=true;
+	Form11->Height=614;
+}
+else
+{
+	Panel4->Visible=false;
+	Form11->Height=546;
+}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm11::BitBtn4Click(TObject *Sender)
+{
+if(!isExpantion)
+{
+	Edit1->Left=211;
+}
+isExpantion=! isExpantion;
+Timer2->Enabled=true;
+Edit1->Text="";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::Timer2Timer(TObject *Sender)
+{
+if(isExpantion)
+	{
+		if(Edit1->Width<100)
+			{
+			Edit1->Width+=3;
+			Edit1->Left=111;
+			}
+			else
+			{
+			Timer2->Enabled=false;
+			Edit1->Width=100;
+			}
+	}
+	else
+	{
+		if(Edit1->Width>0)
+		{
+			Edit1->Width-=3;
+			Edit1->Left=111;
+		}
+			else
+			{
+			Timer2->Enabled=false;
+			Edit1->Width=0;
+			}
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::Edit1Change(TObject *Sender)
+{
+ScrollBox1->VertScrollBar->Position=0;
+AnsiString WordToFind=Edit1->Text.LowerCase();
+int SearchAmount=0;
+for(int i=0;i<Form3->Meal.size();i++)
+	{
+	AnsiString Name=RecomMeal[i].Name->Caption.LowerCase();
+	int pos=Name.Pos(WordToFind);
+	if(pos!=0 || WordToFind=="")
+		{
+		RecomMeal[i].Panel->Top=Form3->PanelH*SearchAmount;
+		RecomMeal[i].Panel->Visible=true;
+		SearchAmount++;
+		}
+	else
+		{
+		RecomMeal[i].Panel->Visible=false;
+		}
+}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::AutoOffClick(TObject *Sender)
+{
+AutoOff->Checked=true;
+AutoOn->Checked=false;
+for(int i=0;i<RecomMeal.size();i++)
+{
+	RecomMeal[i].Check->Visible=false;
+	if(RecomMeal[i].Check->Checked==true)
+	{
+		RecomMeal[i].Check->Checked=false;
+		CheckClick(RecomMeal[i].Check);
+    }
+}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm11::AutoOnClick(TObject *Sender)
+{
+AutoOn->Checked=true;
+AutoOff->Checked=false;
+for(int i=0;i<RecomMeal.size();i++)
+{
+    RecomMeal[i].Check->Visible=true;
+}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm11::CheckClick(TObject *Sender)
+{
+	TCheckBox *btn = dynamic_cast<TCheckBox*>(Sender);
+
+	int num=btn->Tag;
+	RecomMeal[num].Weight->Text="";
+
+	if(RecomMeal[num].Check->Checked==true)
+	{
+		RecomMeal[num].Weight->Enabled=false;
+	}
+	else
+	{
+		RecomMeal[num].Weight->Enabled=true;
+    }
+
+
+	int CheckedAm=0;
+	for(int i=0;i<RecomMeal.size();i++)
+		if(RecomMeal[i].Check->Checked==true)
+			CheckedAm++;
+
+	int LastCalor=Form8->BMR;
+	for(int i=0;i<RecomMeal.size();i++)
+		if(RecomMeal[i].Check->Checked==false && RecomMeal[i].Calories->Caption!="")
+		{
+			LastCalor-=StrToInt(RecomMeal[i].Calories->Caption);
+		}
+	if(LastCalor<0)
+		LastCalor=0;
+	if(CheckedAm>0)
+	{
+		int CalorPerMeal=LastCalor/CheckedAm;
+
+		for(int i=0;i<RecomMeal.size();i++)
+			if(RecomMeal[i].Check->Checked==true)
+			{
+				int calor=StrToInt(Form3->Meal[i].Calories->Caption);
+				int weight=0;
+				for (int j = 0; j < Form2->Product.size(); j++)
+					if (Form3->Meal[i].IsRight[j])
+						{
+							weight += StrToInt(Form3->Meal[i].Weight[j]);
+						}
+
+				double CalorPerGramm=double(calor)/weight;
+				int gramm=CalorPerMeal/CalorPerGramm;
+				RecomMeal[i].Weight->Text=IntToStr(gramm);
+            }
+	}
+}
+
+
+
