@@ -12158,7 +12158,7 @@ object Form6: TForm6
     Visible = False
   end
   object Button2: TBitBtn
-    Left = 584
+    Left = 579
     Top = 491
     Width = 120
     Height = 33

@@ -65,9 +65,9 @@ void __fastcall TForm1::Button3Click(TObject *Sender) {
 	Form4->Edit2->Text = "";
 	Form4->Edit3->Text = "";
 	Form4->ComboBox1->ItemIndex = -1;
-	Form4->ComboBox1->Text = "Пол";
+	Form4->ComboBox1->Text = "Стать";
 	Form4->ComboBox2->ItemIndex = -1;
-	Form4->ComboBox2->Text = "Уровень активности";
+	Form4->ComboBox2->Text = "Рівень активності";
 }
 // ---------------------------------------------------------------------------
 
@@ -249,9 +249,12 @@ void __fastcall TForm1::Load1Click(TObject *Sender) {
 			Form3->ProdHave[i].Panel->Free();
 		}
 
-		Form2->Product.clear();
-		Form3->Meal.clear();
-		Form3->ProdHave.clear();
+		if(!Form2->Product.empty())
+			Form2->Product.clear();
+		if(!Form3->Meal.empty())
+			Form3->Meal.clear();
+		if(!Form3->ProdHave.empty())
+			Form3->ProdHave.clear();
 
 		Graphics::TBitmap* gBitmap = new Graphics::TBitmap;
 		gBitmap->Transparent = false;

@@ -1303,7 +1303,7 @@ object Form5: TForm5
     OnClick = Edit2Click
   end
   object Edit3: TEdit
-    Left = 500
+    Left = 494
     Top = 181
     Width = 106
     Height = 32
@@ -1320,7 +1320,7 @@ object Form5: TForm5
     OnClick = Edit2Click
   end
   object Edit4: TEdit
-    Left = 500
+    Left = 494
     Top = 240
     Width = 106
     Height = 32

@@ -30,9 +30,9 @@ void __fastcall TForm4::Button1Click(TObject *Sender) {
 		double height = StrToInt(Edit1->Text);
 		double age = StrToInt(Edit3->Text);
 		if (ComboBox1->ItemIndex == 0)
-			BMR =(10 * weight) + (6,25 * height) - (5 * age)+5;
+			BMR =(10 * weight) + (6.25 * height) - (5 * age)+5;
 		else
-			BMR = (10 * weight) + (6,25 * height) - (5 * age)-161;
+			BMR = (10 * weight) + (6.25 * height) - (5 * age)-161;
 		if (ComboBox2->ItemIndex == 0)
 			BMR *= 1.2;
 		if (ComboBox2->ItemIndex == 1)

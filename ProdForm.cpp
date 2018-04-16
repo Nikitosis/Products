@@ -118,8 +118,9 @@ if(IsNew)     //если мы зашли через кнопку добавит�
 		Form2->Product[n].Calories->Caption=FloatToStr(SimpleRoundTo(n1+n2+n3,-2));
 
 		for(int i=0;i<Form3->ProdHave.size();i++)
-			if(Form3->ProdHave[i].Button->Tag==Form2->Product[i].SettingButton->Tag)
-				Form3->ProdHave[i].Name->Caption=Form2->Product[n].Name->Caption;
+		{
+			Form3->ProdHave[i].Name->Caption=Form2->Product[n].Name->Caption;
+        }
 	}
 
 	for(int i=0;i<Form3->Meal.size();i++)  //пересчитыв калории

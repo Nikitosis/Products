@@ -404,7 +404,7 @@ object Form2: TForm2
   object Edit1: TEdit
     Left = 111
     Top = 10
-    Width = 1
+    Width = 0
     Height = 21
     TabOrder = 2
     OnChange = Edit1Change
